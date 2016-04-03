@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.07  3/31/2016
+    'Version 1.08  4/3/2016
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -294,60 +294,22 @@ Public Class Form1
                     FileCount = FileCount + 1
                 Loop
 
-                If DB1.Checked = True Then
-                    Name1.Text = TextLine(0)
-                    Title1.Text = TextLine(1)
-                    Phone1.Text = TextLine(2)
-                    email1.Text = TextLine(3)
-                    Website1.Text = TextLine(4)
-                    CityPhone1.Text = TextLine(5)
-                    CityWebsite1.Text = TextLine(6)
-                End If
-                If DB2.Checked = True Then
-                    Name2.Text = TextLine(0)
-                    Title2.Text = TextLine(1)
-                    Phone2.Text = TextLine(2)
-                    email2.Text = TextLine(3)
-                    Website2.Text = TextLine(4)
-                    CityPhone2.Text = TextLine(5)
-                    CityWebsite2.Text = TextLine(6)
-                End If
-                If DB3.Checked = True Then
-                    Name3.Text = TextLine(0)
-                    Title3.Text = TextLine(1)
-                    Phone3.Text = TextLine(2)
-                    email3.Text = TextLine(3)
-                    Website3.Text = TextLine(4)
-                    CityPhone3.Text = TextLine(5)
-                    CityWebsite3.Text = TextLine(6)
-                End If
-                If DB4.Checked = True Then
-                    Name4.Text = TextLine(0)
-                    Title4.Text = TextLine(1)
-                    Phone4.Text = TextLine(2)
-                    email4.Text = TextLine(3)
-                    Website4.Text = TextLine(4)
-                    CityPhone4.Text = TextLine(5)
-                    CityWebsite4.Text = TextLine(6)
-                End If
-                If DB5.Checked = True Then
-                    Name5.Text = TextLine(0)
-                    Title5.Text = TextLine(1)
-                    Phone5.Text = TextLine(2)
-                    email5.Text = TextLine(3)
-                    Website5.Text = TextLine(4)
-                    CityPhone5.Text = TextLine(5)
-                    CityWebsite5.Text = TextLine(6)
-                End If
-                If DB6.Checked = True Then
-                    Name6.Text = TextLine(0)
-                    Title6.Text = TextLine(1)
-                    Phone6.Text = TextLine(2)
-                    email6.Text = TextLine(3)
-                    Website6.Text = TextLine(4)
-                    CityPhone6.Text = TextLine(5)
-                    CityWebsite6.Text = TextLine(6)
-                End If
+
+
+
+                For i = 1 To 6
+                    If CType(Me.Controls.Item("DB" & i), RadioButton).Checked = True Then
+                        Me.Controls("Name" & i).Text = TextLine(0)
+                        Me.Controls("Title" & i).Text = TextLine(1)
+                        Me.Controls("Phone" & i).Text = TextLine(2)
+                        Me.Controls("email" & i).Text = TextLine(3)
+                        Me.Controls("Website" & i).Text = TextLine(4)
+                        Me.Controls("CityPhone" & i).Text = TextLine(5)
+                        Me.Controls("CityWebsite" & i).Text = TextLine(6)
+                    End If
+                Next i
+
+
                 objReader.Close()
             End If
         End If
@@ -355,61 +317,18 @@ Public Class Form1
 
     Private Sub Clear_Click(sender As Object, e As EventArgs) Handles Clear.Click
 
-        If DB1.Checked = True Then
-            Name1.Text = ""
-            Title1.Text = ""
-            Phone1.Text = ""
-            email1.Text = ""
-            Website1.Text = ""
-            CityPhone1.Text = ""
-            CityWebsite1.Text = ""
-        End If
-        If DB2.Checked = True Then
-            Name2.Text = ""
-            Title2.Text = ""
-            Phone2.Text = ""
-            email2.Text = ""
-            Website2.Text = ""
-            CityPhone2.Text = ""
-            CityWebsite2.Text = ""
-        End If
-        If DB3.Checked = True Then
-            Name3.Text = ""
-            Title3.Text = ""
-            Phone3.Text = ""
-            email3.Text = ""
-            Website3.Text = ""
-            CityPhone3.Text = ""
-            CityWebsite3.Text = ""
-        End If
-        If DB4.Checked = True Then
-            Name4.Text = ""
-            Title4.Text = ""
-            Phone4.Text = ""
-            email4.Text = ""
-            Website4.Text = ""
-            CityPhone4.Text = ""
-            CityWebsite4.Text = ""
-        End If
-        If DB5.Checked = True Then
-            Name5.Text = ""
-            Title5.Text = ""
-            Phone5.Text = ""
-            email5.Text = ""
-            Website5.Text = ""
-            CityPhone5.Text = ""
-            CityWebsite5.Text = ""
-        End If
-        If DB6.Checked = True Then
-            Name6.Text = ""
-            Title6.Text = ""
-            Phone6.Text = ""
-            email6.Text = ""
-            Website6.Text = ""
-            CityPhone6.Text = ""
-            CityWebsite6.Text = ""
-        End If
 
+        For i = 1 To 6
+            If CType(Me.Controls.Item("DB" & i), RadioButton).Checked = True Then
+                Me.Controls("Name" & i).Text = ""
+                Me.Controls("Title" & i).Text = ""
+                Me.Controls("Phone" & i).Text = ""
+                Me.Controls("email" & i).Text = ""
+                Me.Controls("Website" & i).Text = ""
+                Me.Controls("CityPhone" & i).Text = ""
+                Me.Controls("CityWebsite" & i).Text = ""
+            End If
+        Next i
 
     End Sub
 
@@ -417,60 +336,18 @@ Public Class Form1
 
         Dim TextLine(9) As String
 
-        If DB1.Checked = True Then
-            TextLine(0) = Name1.Text
-            TextLine(1) = Title1.Text
-            TextLine(2) = Phone1.Text
-            TextLine(3) = email1.Text
-            TextLine(4) = Website1.Text
-            TextLine(5) = CityPhone1.Text
-            TextLine(6) = CityWebsite1.Text
-        End If
-        If DB2.Checked = True Then
-            TextLine(0) = Name2.Text
-            TextLine(1) = Title2.Text
-            TextLine(2) = Phone2.Text
-            TextLine(3) = email2.Text
-            TextLine(4) = Website2.Text
-            TextLine(5) = CityPhone2.Text
-            TextLine(6) = CityWebsite2.Text
-        End If
-        If DB3.Checked = True Then
-            TextLine(0) = Name3.Text
-            TextLine(1) = Title3.Text
-            TextLine(2) = Phone3.Text
-            TextLine(3) = email3.Text
-            TextLine(4) = Website3.Text
-            TextLine(5) = CityPhone3.Text
-            TextLine(6) = CityWebsite3.Text
-        End If
-        If DB4.Checked = True Then
-            TextLine(0) = Name4.Text
-            TextLine(1) = Title4.Text
-            TextLine(2) = Phone4.Text
-            TextLine(3) = email4.Text
-            TextLine(4) = Website4.Text
-            TextLine(5) = CityPhone4.Text
-            TextLine(6) = CityWebsite4.Text
-        End If
-        If DB5.Checked = True Then
-            TextLine(0) = Name5.Text
-            TextLine(1) = Title5.Text
-            TextLine(2) = Phone5.Text
-            TextLine(3) = email5.Text
-            TextLine(4) = Website5.Text
-            TextLine(5) = CityPhone5.Text
-            TextLine(6) = CityWebsite5.Text
-        End If
-        If DB6.Checked = True Then
-            TextLine(0) = Name6.Text
-            TextLine(1) = Title6.Text
-            TextLine(2) = Phone6.Text
-            TextLine(3) = email6.Text
-            TextLine(4) = Website6.Text
-            TextLine(5) = CityPhone6.Text
-            TextLine(6) = CityWebsite6.Text
-        End If
+
+        For i = 1 To 6
+            If CType(Me.Controls.Item("DB" & i), RadioButton).Checked = True Then
+                TextLine(0) = Me.Controls("Name" & i).Text
+                TextLine(1) = Me.Controls("Title" & i).Text
+                TextLine(2) = Me.Controls("Phone" & i).Text
+                TextLine(3) = Me.Controls("email" & i).Text
+                TextLine(4) = Me.Controls("Website" & i).Text
+                TextLine(5) = Me.Controls("CityPhone" & i).Text
+                TextLine(6) = Me.Controls("CityWebsite" & i).Text
+            End If
+        Next i
 
 
         If TextLine(0) <> "" Then
