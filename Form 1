@@ -1,0 +1,615 @@
+Imports System.Text
+
+Public Class Form1
+    'Version 1.06  3/28/2016
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+
+        Dim dir = ".\Database\"
+        For Each DBfilelist As String In System.IO.Directory.GetFiles(dir)
+            DBbox.Items.Add(System.IO.Path.GetFileNameWithoutExtension(DBfilelist))
+        Next
+
+            If System.IO.File.Exists(".\txt\Name1.txt") Then
+                Name1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Name1.txt")
+            End If
+            If System.IO.File.Exists(".\txt\Title1.txt") Then
+                Title1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Title1.txt")
+            End If
+            If System.IO.File.Exists(".\txt\Phone1.txt") Then
+                Phone1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Phone1.txt")
+            End If
+            If System.IO.File.Exists(".\txt\email1.txt") Then
+                email1.Text = My.Computer.FileSystem.ReadAllText(".\txt\email1.txt")
+            End If
+            If System.IO.File.Exists(".\txt\Website1.txt") Then
+                Website1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Website1.txt")
+            End If
+            If System.IO.File.Exists(".\txt\CityPhone1.txt") Then
+                CityPhone1.Text = My.Computer.FileSystem.ReadAllText(".\txt\CityPhone1.txt")
+            End If
+            If System.IO.File.Exists(".\txt\CityWebsite1.txt") Then
+                CityWebsite1.Text = My.Computer.FileSystem.ReadAllText(".\txt\CityWebsite1.txt")
+            End If
+
+
+            If System.IO.File.Exists(".\txt\Name2.txt") Then
+                Name1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Name2.txt")
+            End If
+            If System.IO.File.Exists(".\txt\Title2.txt") Then
+                Title1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Title2.txt")
+            End If
+            If System.IO.File.Exists(".\txt\Phone2.txt") Then
+                Phone1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Phone2.txt")
+            End If
+            If System.IO.File.Exists(".\txt\email2.txt") Then
+                email1.Text = My.Computer.FileSystem.ReadAllText(".\txt\email2.txt")
+            End If
+            If System.IO.File.Exists(".\txt\Website2.txt") Then
+                Website1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Website2.txt")
+            End If
+            If System.IO.File.Exists(".\txt\CityPhone2.txt") Then
+                CityPhone1.Text = My.Computer.FileSystem.ReadAllText(".\txt\CityPhone2.txt")
+            End If
+            If System.IO.File.Exists(".\txt\CityWebsite2.txt") Then
+                CityWebsite1.Text = My.Computer.FileSystem.ReadAllText(".\txt\CityWebsite2.txt")
+            End If
+
+
+            If System.IO.File.Exists(".\txt\Name3.txt") Then
+                Name1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Name3.txt")
+            End If
+            If System.IO.File.Exists(".\txt\Title3.txt") Then
+                Title1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Title3.txt")
+            End If
+            If System.IO.File.Exists(".\txt\Phone3.txt") Then
+                Phone1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Phone3.txt")
+            End If
+            If System.IO.File.Exists(".\txt\email3.txt") Then
+                email1.Text = My.Computer.FileSystem.ReadAllText(".\txt\email3.txt")
+            End If
+            If System.IO.File.Exists(".\txt\Website3.txt") Then
+                Website1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Website3.txt")
+            End If
+            If System.IO.File.Exists(".\txt\CityPhone3.txt") Then
+                CityPhone1.Text = My.Computer.FileSystem.ReadAllText(".\txt\CityPhone3.txt")
+            End If
+            If System.IO.File.Exists(".\txt\CityWebsite3.txt") Then
+                CityWebsite1.Text = My.Computer.FileSystem.ReadAllText(".\txt\CityWebsite3.txt")
+            End If
+
+
+            If System.IO.File.Exists(".\txt\Name4.txt") Then
+                Name1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Name4.txt")
+            End If
+            If System.IO.File.Exists(".\txt\Title4.txt") Then
+                Title1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Title4.txt")
+            End If
+            If System.IO.File.Exists(".\txt\Phone4.txt") Then
+                Phone1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Phone4.txt")
+            End If
+            If System.IO.File.Exists(".\txt\email4.txt") Then
+                email1.Text = My.Computer.FileSystem.ReadAllText(".\txt\email4.txt")
+            End If
+            If System.IO.File.Exists(".\txt\Website4.txt") Then
+                Website1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Website4.txt")
+            End If
+            If System.IO.File.Exists(".\txt\CityPhone4.txt") Then
+                CityPhone1.Text = My.Computer.FileSystem.ReadAllText(".\txt\CityPhone4.txt")
+            End If
+            If System.IO.File.Exists(".\txt\CityWebsite4.txt") Then
+                CityWebsite1.Text = My.Computer.FileSystem.ReadAllText(".\txt\CityWebsite4.txt")
+            End If
+
+
+            If System.IO.File.Exists(".\txt\Name5.txt") Then
+                Name1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Name5.txt")
+            End If
+            If System.IO.File.Exists(".\txt\Title5.txt") Then
+                Title1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Title5.txt")
+            End If
+            If System.IO.File.Exists(".\txt\Phone5.txt") Then
+                Phone1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Phone5.txt")
+            End If
+            If System.IO.File.Exists(".\txt\email5.txt") Then
+                email1.Text = My.Computer.FileSystem.ReadAllText(".\txt\email5.txt")
+            End If
+            If System.IO.File.Exists(".\txt\Website5.txt") Then
+                Website1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Website5.txt")
+            End If
+            If System.IO.File.Exists(".\txt\CityPhone5.txt") Then
+                CityPhone1.Text = My.Computer.FileSystem.ReadAllText(".\txt\CityPhone5.txt")
+            End If
+            If System.IO.File.Exists(".\txt\CityWebsite5.txt") Then
+                CityWebsite1.Text = My.Computer.FileSystem.ReadAllText(".\txt\CityWebsite5.txt")
+            End If
+
+
+            If System.IO.File.Exists(".\txt\Name6.txt") Then
+                Name1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Name6.txt")
+            End If
+            If System.IO.File.Exists(".\txt\Title6.txt") Then
+                Title1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Title6.txt")
+            End If
+            If System.IO.File.Exists(".\txt\Phone6.txt") Then
+                Phone1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Phone6.txt")
+            End If
+            If System.IO.File.Exists(".\txt\email6.txt") Then
+                email1.Text = My.Computer.FileSystem.ReadAllText(".\txt\email6.txt")
+            End If
+            If System.IO.File.Exists(".\txt\Website6.txt") Then
+                Website1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Website6.txt")
+            End If
+            If System.IO.File.Exists(".\txt\CityPhone6.txt") Then
+                CityPhone1.Text = My.Computer.FileSystem.ReadAllText(".\txt\CityPhone6.txt")
+            End If
+            If System.IO.File.Exists(".\txt\CityWebsite6.txt") Then
+                CityWebsite1.Text = My.Computer.FileSystem.ReadAllText(".\txt\CityWebsite6.txt")
+            End If
+
+
+        If System.IO.File.Exists(".\txt\Producer1.txt") Then
+            Producer1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Producer1.txt")
+        End If
+
+        If System.IO.File.Exists(".\txt\Host1.txt") Then
+            Host1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Host1.txt")
+        End If
+
+
+
+         If System.IO.File.Exists(".\txt\Director1.txt") Then
+            Director1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Director1.txt")
+        End If
+         If System.IO.File.Exists(".\txt\Director2.txt") Then
+            Director2.Text = My.Computer.FileSystem.ReadAllText(".\txt\Director2.txt")
+        End If
+
+         If System.IO.File.Exists(".\txt\Graphics1.txt") Then
+            Graphics1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Graphics1.txt")
+        End If
+         If System.IO.File.Exists(".\txt\Graphics2.txt") Then
+            Graphics2.Text = My.Computer.FileSystem.ReadAllText(".\txt\Graphics2.txt")
+        End If
+
+         If System.IO.File.Exists(".\txt\Audio1.txt") Then
+            Audio1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Audio1.txt")
+        End If
+         If System.IO.File.Exists(".\txt\Audio2.txt") Then
+            Audio2.Text = My.Computer.FileSystem.ReadAllText(".\txt\Audio2.txt")
+        End If
+
+
+         If System.IO.File.Exists(".\txt\Camera1.txt") Then
+            Camera1.Text = My.Computer.FileSystem.ReadAllText(".\txt\Camera1.txt")
+        End If
+         If System.IO.File.Exists(".\txt\Camera2.txt") Then
+            Camera2.Text = My.Computer.FileSystem.ReadAllText(".\txt\Camera2.txt")
+        End If
+         If System.IO.File.Exists(".\txt\Camera3.txt") Then
+            Camera3.Text = My.Computer.FileSystem.ReadAllText(".\txt\Camera3.txt")
+        End If
+        
+
+
+        If System.IO.File.Exists(".\txt\NWCPphone.txt") Then
+            NWCPphone.Text = My.Computer.FileSystem.ReadAllText(".\txt\NWCPphone.txt")
+        End If
+
+        If System.IO.File.Exists(".\txt\CommentLine.txt") Then
+            CommentLine.Text = My.Computer.FileSystem.ReadAllText(".\txt\CommentLine.txt")
+        End If
+
+        If System.IO.File.Exists(".\txt\YouTube.txt") Then
+            YouTube.Text = My.Computer.FileSystem.ReadAllText(".\txt\YouTube.txt")
+        End If
+
+        Dim thisDate As Date
+        thisDate = Today
+        My.Computer.FileSystem.WriteAllText(".\txt\RecordDate.txt", thisDate, False)
+        RecordDate.Text = My.Computer.FileSystem.ReadAllText(".\txt\RecordDate.txt")
+
+        If System.IO.File.Exists(".\txt\ShowTitle.txt") Then
+            ShowTitle.Text = My.Computer.FileSystem.ReadAllText(".\txt\ShowTitle.txt")
+        End If
+
+
+    End Sub
+
+    Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
+
+            My.Computer.FileSystem.WriteAllText(".\txt\Name1.txt", Name1.Text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Title1.txt", Title1.Text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Phone1.txt", Phone1.Text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\email1.txt", email1.Text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Website1.txt", Website1.Text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\CityPhone1.txt", CityPhone1.Text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\CityWebsite1.txt", CityWebsite1.Text, False, Encoding.Default)
+
+            My.Computer.FileSystem.WriteAllText(".\txt\Name2.txt", Name2.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Title2.txt", Title2.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Phone2.txt", Phone2.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\email2.txt", email2.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Website2.txt", Website2.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\CityPhone2.txt", CityPhone2.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\CityWebsite2.txt", CityWebsite2.text, False, Encoding.Default)
+
+            My.Computer.FileSystem.WriteAllText(".\txt\Name3.txt", Name3.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Title3.txt", Title3.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Phone3.txt", Phone3.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\email3.txt", email3.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Website3.txt", Website3.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\CityPhone3.txt", CityPhone3.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\CityWebsite3.txt", CityWebsite3.text, False, Encoding.Default)
+
+            My.Computer.FileSystem.WriteAllText(".\txt\Name4.txt", Name4.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Title4.txt", Title4.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Phone4.txt", Phone4.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\email4.txt", email4.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Website4.txt", Website4.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\CityPhone4.txt", CityPhone4.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\CityWebsite4.txt", CityWebsite4.text, False, Encoding.Default)
+
+            My.Computer.FileSystem.WriteAllText(".\txt\Name5.txt", Name5.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Title5.txt", Title5.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Phone5.txt", Phone5.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\email5.txt", email5.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Website5.txt", Website5.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\CityPhone5.txt", CityPhone5.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\CityWebsite5.txt", CityWebsite5.text, False, Encoding.Default)
+
+            My.Computer.FileSystem.WriteAllText(".\txt\Name6.txt", Name6.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Title6.txt", Title6.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Phone6.txt", Phone6.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\email6.txt", email6.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Website6.txt", Website6.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\CityPhone6.txt", CityPhone6.text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\CityWebsite6.txt", CityWebsite6.text, False, Encoding.Default)
+
+
+	My.Computer.FileSystem.WriteAllText(".\txt\Producer1.txt", Producer1.text, False, Encoding.Default)
+	My.Computer.FileSystem.WriteAllText(".\txt\Host1.txt", Host1.text, False, Encoding.Default)
+
+      	My.Computer.FileSystem.WriteAllText(".\txt\Director1.txt", Director1.text, False, Encoding.Default)
+	My.Computer.FileSystem.WriteAllText(".\txt\Director2.txt", Director2.text, False, Encoding.Default)
+
+      	My.Computer.FileSystem.WriteAllText(".\txt\Graphics1.txt", Graphics1.text, False, Encoding.Default)
+	My.Computer.FileSystem.WriteAllText(".\txt\Graphics2.txt", Graphics2.text, False, Encoding.Default)
+
+      	My.Computer.FileSystem.WriteAllText(".\txt\Audio1.txt", Audio1.text, False, Encoding.Default)
+	My.Computer.FileSystem.WriteAllText(".\txt\Audio2.txt", Audio2.text, False, Encoding.Default)
+
+	My.Computer.FileSystem.WriteAllText(".\txt\Camera1.txt", Camera1.text, False, Encoding.Default)
+	My.Computer.FileSystem.WriteAllText(".\txt\Camera2.txt", Camera2.text, False, Encoding.Default)
+	My.Computer.FileSystem.WriteAllText(".\txt\Camera3.txt", Camera3.text, False, Encoding.Default)
+
+
+        My.Computer.FileSystem.WriteAllText(".\txt\NWCPphone.txt", NWCPphone.Text, False, Encoding.Default)
+
+        My.Computer.FileSystem.WriteAllText(".\txt\CommentLine.txt", CommentLine.Text, False, Encoding.Default)
+
+        My.Computer.FileSystem.WriteAllText(".\txt\YouTube.txt", YouTube.Text, False, Encoding.Default)
+
+        My.Computer.FileSystem.WriteAllText(".\txt\RecordDate.txt", RecordDate.Text, False, Encoding.Default)
+
+        My.Computer.FileSystem.WriteAllText(".\txt\ShowTitle.txt", ShowTitle.Text, False, Encoding.Default)
+
+
+
+
+        If Trim(Director1.Text) <> "" And Trim(Director2.Text) <> "" Then
+            My.Computer.FileSystem.WriteAllText(".\txt\DirectorHeader.txt", "Directors:", False, Encoding.Default)
+        Else
+            My.Computer.FileSystem.WriteAllText(".\txt\DirectorHeader.txt", "Director:", False, Encoding.Default)
+        End If
+
+        If Trim(Graphics1.Text) <> "" And Trim(Graphics2.Text) <> "" Then
+            My.Computer.FileSystem.WriteAllText(".\txt\GraphicsHeader.txt", "Graphics Operators:", False, Encoding.Default)
+        Else
+            My.Computer.FileSystem.WriteAllText(".\txt\GraphicsHeader.txt", "Graphics Operator:", False, Encoding.Default)
+        End If
+
+        If Trim(Audio1.Text) <> "" And Trim(Audio2.Text) <> "" Then
+            My.Computer.FileSystem.WriteAllText(".\txt\AudioHeader.txt", "Audio Operators:", False, Encoding.Default)
+        Else
+            My.Computer.FileSystem.WriteAllText(".\txt\AudioHeader.txt", "Audio Operator:", False, Encoding.Default)
+        End If
+
+
+        Dim CamVar As Integer
+        CamVar = 0
+
+
+            If Camera1.Text <> "" Then
+                CamVar = CamVar + 1
+            End If
+            If Camera2.Text <> "" Then
+                CamVar = CamVar + 1
+            End If
+            If Camera3.Text <> "" Then
+                CamVar = CamVar + 1
+            End If
+
+        If CamVar > 1 Then
+            My.Computer.FileSystem.WriteAllText(".\txt\CameraHeader.txt", "Camera Operators:", False, Encoding.Default)
+        Else
+            My.Computer.FileSystem.WriteAllText(".\txt\CameraHeader.txt", "Camera Operator:", False, Encoding.Default)
+        End If
+
+
+
+        Dim NameVar As Integer
+        NameVar = 0
+
+  
+            If Name1.Text <> "" Then
+                NameVar = NameVar + 1
+            End If
+            If Name2.Text <> "" Then
+                NameVar = NameVar + 1
+            End If
+            If Name3.Text <> "" Then
+                NameVar = NameVar + 1
+            End If
+            If Name4.Text <> "" Then
+                NameVar = NameVar + 1
+            End If
+            If Name5.Text <> "" Then
+                NameVar = NameVar + 1
+            End If
+            If Name6.Text <> "" Then
+                NameVar = NameVar + 1
+            End If
+
+
+        If NameVar > 1 Then
+            My.Computer.FileSystem.WriteAllText(".\txt\NameHeader.txt", "Guests:", False, Encoding.Default)
+        Else
+            My.Computer.FileSystem.WriteAllText(".\txt\NameHeader.txt", "Guest:", False, Encoding.Default)
+        End If
+
+
+
+        MessageBox.Show("Files Saved to Graphics", "Northwest Community Politics",
+           MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+    End Sub
+
+    Private Sub DBload_Click(sender As Object, e As EventArgs) Handles DBload.Click
+        If DBbox.SelectedIndex > -1 Then
+
+            Dim FileCount As Integer
+
+            Dim FILE_NAME As String = ".\Database\" & DBbox.SelectedItem & ".txt"
+
+            Dim TextLine(9) As String
+
+            If System.IO.File.Exists(FILE_NAME) = True Then
+
+                Dim objReader As New System.IO.StreamReader(FILE_NAME)
+
+                Do While objReader.Peek() <> -1
+
+                    TextLine(FileCount) = objReader.ReadLine()
+
+                    FileCount = FileCount + 1
+                Loop
+
+
+
+                    If DB1.Checked = True Then
+                        Name1.Text = TextLine(0)
+                        Title1.Text = TextLine(1)
+                        Phone1.Text = TextLine(2)
+                        email1.Text = TextLine(3)
+                        Website1.Text = TextLine(4)
+                        CityPhone1.Text = TextLine(5)
+                        CityWebsite1.Text = TextLine(6)
+                    End If
+
+                    If DB2.Checked = True Then
+                        Name2.Text = TextLine(0)
+                        Title2.Text = TextLine(1)
+                        Phone2.Text = TextLine(2)
+                        email2.Text = TextLine(3)
+                        Website2.Text = TextLine(4)
+                        CityPhone2.Text = TextLine(5)
+                        CityWebsite2.Text = TextLine(6)
+                    End If
+
+                    If DB3.Checked = True Then
+                        Name3.Text = TextLine(0)
+                        Title3.Text = TextLine(1)
+                        Phone3.Text = TextLine(2)
+                        email3.Text = TextLine(3)
+                        Website3.Text = TextLine(4)
+                        CityPhone3.Text = TextLine(5)
+                        CityWebsite3.Text = TextLine(6)
+                    End If
+
+                    If DB4.Checked = True Then
+                        Name4.Text = TextLine(0)
+                        Title4.Text = TextLine(1)
+                        Phone4.Text = TextLine(2)
+                        email4.Text = TextLine(3)
+                        Website4.Text = TextLine(4)
+                        CityPhone4.Text = TextLine(5)
+                        CityWebsite4.Text = TextLine(6)
+                    End If
+
+                    If DB5.Checked = True Then
+                        Name5.Text = TextLine(0)
+                        Title5.Text = TextLine(1)
+                        Phone5.Text = TextLine(2)
+                        email5.Text = TextLine(3)
+                        Website5.Text = TextLine(4)
+                        CityPhone5.Text = TextLine(5)
+                        CityWebsite5.Text = TextLine(6)
+                    End If
+
+                    If DB6.Checked = True Then
+                        Name6.Text = TextLine(0)
+                        Title6.Text = TextLine(1)
+                        Phone6.Text = TextLine(2)
+                        email6.Text = TextLine(3)
+                        Website6.Text = TextLine(4)
+                        CityPhone6.Text = TextLine(5)
+                        CityWebsite6.Text = TextLine(6)
+                    End If
+
+
+                objReader.Close()
+            End If
+        End If
+    End Sub
+
+    Private Sub Clear_Click(sender As Object, e As EventArgs) Handles Clear.Click
+
+
+            If DB1.Checked = True Then
+                Name1.Text = ""
+                Title1.Text = ""
+                Phone1.Text = ""
+                email1.Text = ""
+                Website1.Text = ""
+                CityPhone1.Text = ""
+                CityWebsite1.Text = ""
+            End If
+
+            If DB2.Checked = True Then
+                Name2.Text = ""
+                Title2.Text = ""
+                Phone2.Text = ""
+                email2.Text = ""
+                Website2.Text = ""
+                CityPhone2.Text = ""
+                CityWebsite2.Text = ""
+            End If
+
+            If DB3.Checked = True Then
+                Name3.Text = ""
+                Title3.Text = ""
+                Phone3.Text = ""
+                email3.Text = ""
+                Website3.Text = ""
+                CityPhone3.Text = ""
+                CityWebsite3.Text = ""
+            End If
+
+            If DB4.Checked = True Then
+                Name4.Text = ""
+                Title4.Text = ""
+                Phone4.Text = ""
+                email4.Text = ""
+                Website4.Text = ""
+                CityPhone4.Text = ""
+                CityWebsite4.Text = ""
+            End If
+
+            If DB5.Checked = True Then
+                Name5.Text = ""
+                Title5.Text = ""
+                Phone5.Text = ""
+                email5.Text = ""
+                Website5.Text = ""
+                CityPhone5.Text = ""
+                CityWebsite5.Text = ""
+            End If
+
+            If DB6.Checked = True Then
+                Name6.Text = ""
+                Title6.Text = ""
+                Phone6.Text = ""
+                email6.Text = ""
+                Website6.Text = ""
+                CityPhone6.Text = ""
+                CityWebsite6.Text = ""
+            End If
+
+
+    End Sub
+
+    Private Sub SaveDB_Click(sender As Object, e As EventArgs) Handles SaveDB.Click
+
+        Dim TextLine(9) As String
+
+
+            If DB1.Checked = True Then
+                TextLine(0) = Name1.Text
+                TextLine(1) = Title1.Text
+                TextLine(2) = Phone1.Text
+                TextLine(3) = email1.Text
+                TextLine(4) = Website1.Text
+                TextLine(5) = CityPhone1.Text
+                TextLine(6) = CityWebsite1.Text
+            End If
+
+            If DB2.Checked = True Then
+                TextLine(0) = Name2.Text
+                TextLine(1) = Title2.Text
+                TextLine(2) = Phone2.Text
+                TextLine(3) = email2.Text
+                TextLine(4) = Website2.Text
+                TextLine(5) = CityPhone2.Text
+                TextLine(6) = CityWebsite2.Text
+            End If
+
+            If DB3.Checked = True Then
+                TextLine(0) = Name3.Text
+                TextLine(1) = Title3.Text
+                TextLine(2) = Phone3.Text
+                TextLine(3) = email3.Text
+                TextLine(4) = Website3.Text
+                TextLine(5) = CityPhone3.Text
+                TextLine(6) = CityWebsite3.Text
+            End If
+
+            If DB4.Checked = True Then
+                TextLine(0) = Name4.Text
+                TextLine(1) = Title4.Text
+                TextLine(2) = Phone4.Text
+                TextLine(3) = email4.Text
+                TextLine(4) = Website4.Text
+                TextLine(5) = CityPhone4.Text
+                TextLine(6) = CityWebsite4.Text
+            End If
+
+            If DB5.Checked = True Then
+                TextLine(0) = Name5.Text
+                TextLine(1) = Title5.Text
+                TextLine(2) = Phone5.Text
+                TextLine(3) = email5.Text
+                TextLine(4) = Website5.Text
+                TextLine(5) = CityPhone5.Text
+                TextLine(6) = CityWebsite5.Text
+            End If
+
+            If DB6.Checked = True Then
+                TextLine(0) = Name6.Text
+                TextLine(1) = Title6.Text
+                TextLine(2) = Phone6.Text
+                TextLine(3) = email6.Text
+                TextLine(4) = Website6.Text
+                TextLine(5) = CityPhone6.Text
+                TextLine(6) = CityWebsite6.Text
+            End If
+
+
+        If TextLine(0) <> "" Then
+            System.IO.File.WriteAllLines(".\Database\" & TextLine(0) & ".txt", TextLine)
+
+            DBbox.Items.Clear()
+
+            Dim dir = ".\Database\"
+            For Each DBfilelist As String In System.IO.Directory.GetFiles(dir)
+                DBbox.Items.Add(System.IO.Path.GetFileNameWithoutExtension(DBfilelist))
+            Next
+
+            MessageBox.Show(TextLine(0) & " Saved to Database", "Northwest Community Politics",
+   MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+        End If
+
+    End Sub
+
+
+End Class
