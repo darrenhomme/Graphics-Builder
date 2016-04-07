@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.08  4/3/2016
+    'Version 1.09  4/6/2016
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -95,7 +95,7 @@ Public Class Form1
 
         Dim thisDate As Date
         thisDate = Today
-        My.Computer.FileSystem.WriteAllText(".\txt\RecordDate.txt", thisDate, False)
+        My.Computer.FileSystem.WriteAllText(".\txt\RecordDate.txt", thisDate, False, Encoding.ASCII)
         RecordDate.Text = My.Computer.FileSystem.ReadAllText(".\txt\RecordDate.txt")
 
         If System.IO.File.Exists(".\txt\ShowTitle.txt") Then
@@ -109,129 +109,129 @@ Public Class Form1
 
         For i = 1 To 6
 
-            My.Computer.FileSystem.WriteAllText(".\txt\Name" & i & ".txt", Me.Controls("Name" & i).Text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Name" & i & ".txt", Me.Controls("Name" & i).Text, False, Encoding.ASCII)
             If Me.Controls("Name" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Name" & i & ".txt", "   ", False, Encoding.Default)
+                My.Computer.FileSystem.WriteAllText(".\txt\Name" & i & ".txt", "   ", False, Encoding.ASCII)
             End If
 
-            My.Computer.FileSystem.WriteAllText(".\txt\Title" & i & ".txt", Me.Controls("Title" & i).Text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Title" & i & ".txt", Me.Controls("Title" & i).Text, False, Encoding.ASCII)
             If Me.Controls("Title" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Title" & i & ".txt", "   ", False, Encoding.Default)
+                My.Computer.FileSystem.WriteAllText(".\txt\Title" & i & ".txt", "   ", False, Encoding.ASCII)
             End If
 
-            My.Computer.FileSystem.WriteAllText(".\txt\Phone" & i & ".txt", Me.Controls("Phone" & i).Text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Phone" & i & ".txt", Me.Controls("Phone" & i).Text, False, Encoding.ASCII)
             If Me.Controls("Phone" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Phone" & i & ".txt", "   ", False, Encoding.Default)
+                My.Computer.FileSystem.WriteAllText(".\txt\Phone" & i & ".txt", "   ", False, Encoding.ASCII)
             End If
 
-            My.Computer.FileSystem.WriteAllText(".\txt\email" & i & ".txt", Me.Controls("email" & i).Text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\email" & i & ".txt", Me.Controls("email" & i).Text, False, Encoding.ASCII)
             If Me.Controls("email" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\email" & i & ".txt", "   ", False, Encoding.Default)
+                My.Computer.FileSystem.WriteAllText(".\txt\email" & i & ".txt", "   ", False, Encoding.ASCII)
             End If
 
-            My.Computer.FileSystem.WriteAllText(".\txt\Website" & i & ".txt", Me.Controls("Website" & i).Text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Website" & i & ".txt", Me.Controls("Website" & i).Text, False, Encoding.ASCII)
             If Me.Controls("Website" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Website" & i & ".txt", "   ", False, Encoding.Default)
+                My.Computer.FileSystem.WriteAllText(".\txt\Website" & i & ".txt", "   ", False, Encoding.ASCII)
             End If
 
-            My.Computer.FileSystem.WriteAllText(".\txt\CityPhone" & i & ".txt", Me.Controls("CityPhone" & i).Text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\CityPhone" & i & ".txt", Me.Controls("CityPhone" & i).Text, False, Encoding.ASCII)
             If Me.Controls("CityPhone" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\CityPhone" & i & ".txt", "   ", False, Encoding.Default)
+                My.Computer.FileSystem.WriteAllText(".\txt\CityPhone" & i & ".txt", "   ", False, Encoding.ASCII)
             End If
 
-            My.Computer.FileSystem.WriteAllText(".\txt\CityWebsite" & i & ".txt", Me.Controls("CityWebsite" & i).Text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\CityWebsite" & i & ".txt", Me.Controls("CityWebsite" & i).Text, False, Encoding.ASCII)
             If Me.Controls("CityWebsite" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\CityWebsite" & i & ".txt", "   ", False, Encoding.Default)
+                My.Computer.FileSystem.WriteAllText(".\txt\CityWebsite" & i & ".txt", "   ", False, Encoding.ASCII)
             End If
 
         Next i
 
 
-        My.Computer.FileSystem.WriteAllText(".\txt\Producer1.txt", Producer1.Text, False, Encoding.Default)
+        My.Computer.FileSystem.WriteAllText(".\txt\Producer1.txt", Producer1.Text, False, Encoding.ASCII)
         If Producer1.Text = "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\Producer1.txt", "   ", False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Producer1.txt", "   ", False, Encoding.ASCII)
         End If
 
-        My.Computer.FileSystem.WriteAllText(".\txt\Host1.txt", Host1.Text, False, Encoding.Default)
+        My.Computer.FileSystem.WriteAllText(".\txt\Host1.txt", Host1.Text, False, Encoding.ASCII)
         If Host1.Text = "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\Host1.txt", "   ", False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Host1.txt", "   ", False, Encoding.ASCII)
         End If
 
 
 
         For i = 1 To 2
 
-            My.Computer.FileSystem.WriteAllText(".\txt\Director" & i & ".txt", Me.Controls("Director" & i).Text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Director" & i & ".txt", Me.Controls("Director" & i).Text, False, Encoding.ASCII)
             If Me.Controls("Director" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Director" & i & ".txt", "   ", False, Encoding.Default)
+                My.Computer.FileSystem.WriteAllText(".\txt\Director" & i & ".txt", "   ", False, Encoding.ASCII)
             End If
 
-            My.Computer.FileSystem.WriteAllText(".\txt\Graphics" & i & ".txt", Me.Controls("Graphics" & i).Text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Graphics" & i & ".txt", Me.Controls("Graphics" & i).Text, False, Encoding.ASCII)
             If Me.Controls("Graphics" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Graphics" & i & ".txt", "   ", False, Encoding.Default)
+                My.Computer.FileSystem.WriteAllText(".\txt\Graphics" & i & ".txt", "   ", False, Encoding.ASCII)
             End If
 
-            My.Computer.FileSystem.WriteAllText(".\txt\Audio" & i & ".txt", Me.Controls("Audio" & i).Text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Audio" & i & ".txt", Me.Controls("Audio" & i).Text, False, Encoding.ASCII)
             If Me.Controls("Audio" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Audio" & i & ".txt", "   ", False, Encoding.Default)
+                My.Computer.FileSystem.WriteAllText(".\txt\Audio" & i & ".txt", "   ", False, Encoding.ASCII)
             End If
 
         Next i
 
         For i = 1 To 3
 
-            My.Computer.FileSystem.WriteAllText(".\txt\Camera" & i & ".txt", Me.Controls("Camera" & i).Text, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\Camera" & i & ".txt", Me.Controls("Camera" & i).Text, False, Encoding.ASCII)
             If Me.Controls("Camera" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Camera" & i & ".txt", "   ", False, Encoding.Default)
+                My.Computer.FileSystem.WriteAllText(".\txt\Camera" & i & ".txt", "   ", False, Encoding.ASCII)
             End If
 
         Next i
 
 
 
-        My.Computer.FileSystem.WriteAllText(".\txt\NWCPphone.txt", NWCPphone.Text, False, Encoding.Default)
+        My.Computer.FileSystem.WriteAllText(".\txt\NWCPphone.txt", NWCPphone.Text, False, Encoding.ASCII)
         If NWCPphone.Text = "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\NWCPphone.txt", "   ", False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\NWCPphone.txt", "   ", False, Encoding.ASCII)
         End If
 
-        My.Computer.FileSystem.WriteAllText(".\txt\CommentLine.txt", CommentLine.Text, False, Encoding.Default)
+        My.Computer.FileSystem.WriteAllText(".\txt\CommentLine.txt", CommentLine.Text, False, Encoding.ASCII)
         If CommentLine.Text = "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\CommentLine.txt", "   ", False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\CommentLine.txt", "   ", False, Encoding.ASCII)
         End If
 
-        My.Computer.FileSystem.WriteAllText(".\txt\YouTube.txt", YouTube.Text, False, Encoding.Default)
+        My.Computer.FileSystem.WriteAllText(".\txt\YouTube.txt", YouTube.Text, False, Encoding.ASCII)
         If YouTube.Text = "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\YouTube.txt", "   ", False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\YouTube.txt", "   ", False, Encoding.ASCII)
         End If
 
-        My.Computer.FileSystem.WriteAllText(".\txt\RecordDate.txt", RecordDate.Text, False, Encoding.Default)
+        My.Computer.FileSystem.WriteAllText(".\txt\RecordDate.txt", RecordDate.Text, False, Encoding.ASCII)
         If RecordDate.Text = "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\RecordDate.txt", "   ", False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\RecordDate.txt", "   ", False, Encoding.ASCII)
         End If
 
-        My.Computer.FileSystem.WriteAllText(".\txt\ShowTitle.txt", ShowTitle.Text, False, Encoding.Default)
+        My.Computer.FileSystem.WriteAllText(".\txt\ShowTitle.txt", ShowTitle.Text, False, Encoding.ASCII)
         If ShowTitle.Text = "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\ShowTitle.txt", "   ", False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\ShowTitle.txt", "   ", False, Encoding.ASCII)
         End If
 
 
 
         If Trim(Director1.Text) <> "" And Trim(Director2.Text) <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\DirectorHeader.txt", "Directors:", False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\DirectorHeader.txt", "Directors:", False, Encoding.ASCII)
         Else
-            My.Computer.FileSystem.WriteAllText(".\txt\DirectorHeader.txt", "Director:", False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\DirectorHeader.txt", "Director:", False, Encoding.ASCII)
         End If
 
         If Trim(Graphics1.Text) <> "" And Trim(Graphics2.Text) <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\GraphicsHeader.txt", "Graphics Operators:", False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\GraphicsHeader.txt", "Graphics Operators:", False, Encoding.ASCII)
         Else
-            My.Computer.FileSystem.WriteAllText(".\txt\GraphicsHeader.txt", "Graphics Operator:", False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\GraphicsHeader.txt", "Graphics Operator:", False, Encoding.ASCII)
         End If
 
         If Trim(Audio1.Text) <> "" And Trim(Audio2.Text) <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\AudioHeader.txt", "Audio Operators:", False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\AudioHeader.txt", "Audio Operators:", False, Encoding.ASCII)
         Else
-            My.Computer.FileSystem.WriteAllText(".\txt\AudioHeader.txt", "Audio Operator:", False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\AudioHeader.txt", "Audio Operator:", False, Encoding.ASCII)
         End If
 
 
@@ -245,9 +245,9 @@ Public Class Form1
         Next i
 
         If CamVar > 1 Then
-            My.Computer.FileSystem.WriteAllText(".\txt\CameraHeader.txt", "Camera Operators:", False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\CameraHeader.txt", "Camera Operators:", False, Encoding.ASCII)
         Else
-            My.Computer.FileSystem.WriteAllText(".\txt\CameraHeader.txt", "Camera Operator:", False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\CameraHeader.txt", "Camera Operator:", False, Encoding.ASCII)
         End If
 
 
@@ -263,9 +263,9 @@ Public Class Form1
 
 
         If NameVar > 1 Then
-            My.Computer.FileSystem.WriteAllText(".\txt\NameHeader.txt", "Guests:", False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\NameHeader.txt", "Guests:", False, Encoding.ASCII)
         Else
-            My.Computer.FileSystem.WriteAllText(".\txt\NameHeader.txt", "Guest:", False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\txt\NameHeader.txt", "Guest:", False, Encoding.ASCII)
         End If
 
 
@@ -365,6 +365,5 @@ Public Class Form1
         End If
 
     End Sub
-
 
 End Class
