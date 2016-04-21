@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.09  4/6/2016
+    'Version 1.10  4/14/2016
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -10,6 +10,14 @@ Public Class Form1
         For Each DBfilelist As String In System.IO.Directory.GetFiles(dir)
             DBbox.Items.Add(System.IO.Path.GetFileNameWithoutExtension(DBfilelist))
         Next
+
+
+        Dim cdir = ".\CrewDatabase\"
+        For Each CDBfilelist As String In System.IO.Directory.GetFiles(cdir)
+            CDBbox.Items.Add(System.IO.Path.GetFileNameWithoutExtension(CDBfilelist))
+        Next
+
+
 
         For i = 1 To 6
 
@@ -270,6 +278,463 @@ Public Class Form1
 
 
 
+
+
+
+
+        Dim Name1text As String
+        If Trim(Name1.Text) <> "" Then
+            Name1text = Name1.Text
+        Else
+            Name1text = "   "
+        End If
+
+        Dim Title1text As String
+        If Trim(Title1.Text) <> "" Then
+            Title1text = Title1.Text
+        Else
+            Title1text = "   "
+        End If
+
+        Dim Phone1text As String
+        If Trim(Phone1.Text) <> "" Then
+            Phone1text = Phone1.Text
+        Else
+            Phone1text = "   "
+        End If
+
+        Dim email1text As String
+        If Trim(email1.Text) <> "" Then
+            email1text = email1.Text
+        Else
+            email1text = "   "
+        End If
+
+        Dim Website1text As String
+        If Trim(Website1.Text) <> "" Then
+            Website1text = Website1.Text
+        Else
+            Website1text = "   "
+        End If
+
+        Dim CityPhone1text As String
+        If Trim(CityPhone1.Text) <> "" Then
+            CityPhone1text = CityPhone1.Text
+        Else
+            CityPhone1text = "   "
+        End If
+
+        Dim CityWebsite1text As String
+        If Trim(CityWebsite1.Text) <> "" Then
+            CityWebsite1text = CityWebsite1.Text
+        Else
+            CityWebsite1text = "   "
+        End If
+
+
+
+        Dim Name2text As String
+        If Trim(Name2.Text) <> "" Then
+            Name2text = Name2.Text
+        Else
+            Name2text = "   "
+        End If
+
+        Dim Title2text As String
+        If Trim(Title2.Text) <> "" Then
+            Title2text = Title2.Text
+        Else
+            Title2text = "   "
+        End If
+
+        Dim Phone2text As String
+        If Trim(Phone2.Text) <> "" Then
+            Phone2text = Phone2.Text
+        Else
+            Phone2text = "   "
+        End If
+
+        Dim email2text As String
+        If Trim(email2.Text) <> "" Then
+            email2text = email2.Text
+        Else
+            email2text = "   "
+        End If
+
+        Dim Website2text As String
+        If Trim(Website2.Text) <> "" Then
+            Website2text = Website2.Text
+        Else
+            Website2text = "   "
+        End If
+
+        Dim CityPhone2text As String
+        If Trim(CityPhone2.Text) <> "" Then
+            CityPhone2text = CityPhone2.Text
+        Else
+            CityPhone2text = "   "
+        End If
+
+        Dim CityWebsite2text As String
+        If Trim(CityWebsite2.Text) <> "" Then
+            CityWebsite2text = CityWebsite2.Text
+        Else
+            CityWebsite2text = "   "
+        End If
+
+
+
+        Dim Name3text As String
+        If Trim(Name3.Text) <> "" Then
+            Name3text = Name3.Text
+        Else
+            Name3text = "   "
+        End If
+
+        Dim Title3text As String
+        If Trim(Title3.Text) <> "" Then
+            Title3text = Title3.Text
+        Else
+            Title3text = "   "
+        End If
+
+        Dim Phone3text As String
+        If Trim(Phone3.Text) <> "" Then
+            Phone3text = Phone3.Text
+        Else
+            Phone3text = "   "
+        End If
+
+        Dim email3text As String
+        If Trim(email3.Text) <> "" Then
+            email3text = email3.Text
+        Else
+            email3text = "   "
+        End If
+
+        Dim Website3text As String
+        If Trim(Website3.Text) <> "" Then
+            Website3text = Website3.Text
+        Else
+            Website3text = "   "
+        End If
+
+        Dim CityPhone3text As String
+        If Trim(CityPhone3.Text) <> "" Then
+            CityPhone3text = CityPhone3.Text
+        Else
+            CityPhone3text = "   "
+        End If
+
+        Dim CityWebsite3text As String
+        If Trim(CityWebsite3.Text) <> "" Then
+            CityWebsite3text = CityWebsite3.Text
+        Else
+            CityWebsite3text = "   "
+        End If
+
+
+
+        Dim Name4text As String
+        If Trim(Name4.Text) <> "" Then
+            Name4text = Name4.Text
+        Else
+            Name4text = "   "
+        End If
+
+        Dim Title4text As String
+        If Trim(Title4.Text) <> "" Then
+            Title4text = Title4.Text
+        Else
+            Title4text = "   "
+        End If
+
+        Dim Phone4text As String
+        If Trim(Phone4.Text) <> "" Then
+            Phone4text = Phone4.Text
+        Else
+            Phone4text = "   "
+        End If
+
+        Dim email4text As String
+        If Trim(email4.Text) <> "" Then
+            email4text = email4.Text
+        Else
+            email4text = "   "
+        End If
+
+        Dim Website4text As String
+        If Trim(Website4.Text) <> "" Then
+            Website4text = Website4.Text
+        Else
+            Website4text = "   "
+        End If
+
+        Dim CityPhone4text As String
+        If Trim(CityPhone4.Text) <> "" Then
+            CityPhone4text = CityPhone4.Text
+        Else
+            CityPhone4text = "   "
+        End If
+
+        Dim CityWebsite4text As String
+        If Trim(CityWebsite4.Text) <> "" Then
+            CityWebsite4text = CityWebsite4.Text
+        Else
+            CityWebsite4text = "   "
+        End If
+
+
+        Dim Name5text As String
+        If Trim(Name5.Text) <> "" Then
+            Name5text = Name5.Text
+        Else
+            Name5text = "   "
+        End If
+
+        Dim Title5text As String
+        If Trim(Title5.Text) <> "" Then
+            Title5text = Title5.Text
+        Else
+            Title5text = "   "
+        End If
+
+        Dim Phone5text As String
+        If Trim(Phone5.Text) <> "" Then
+            Phone5text = Phone5.Text
+        Else
+            Phone5text = "   "
+        End If
+
+        Dim email5text As String
+        If Trim(email5.Text) <> "" Then
+            email5text = email5.Text
+        Else
+            email5text = "   "
+        End If
+
+        Dim Website5text As String
+        If Trim(Website5.Text) <> "" Then
+            Website5text = Website5.Text
+        Else
+            Website5text = "   "
+        End If
+
+        Dim CityPhone5text As String
+        If Trim(CityPhone5.Text) <> "" Then
+            CityPhone5text = CityPhone5.Text
+        Else
+            CityPhone5text = "   "
+        End If
+
+        Dim CityWebsite5text As String
+        If Trim(CityWebsite5.Text) <> "" Then
+            CityWebsite5text = CityWebsite5.Text
+        Else
+            CityWebsite5text = "   "
+        End If
+
+
+        Dim Name6text As String
+        If Trim(Name6.Text) <> "" Then
+            Name6text = Name6.Text
+        Else
+            Name6text = "   "
+        End If
+
+        Dim Title6text As String
+        If Trim(Title6.Text) <> "" Then
+            Title6text = Title6.Text
+        Else
+            Title6text = "   "
+        End If
+
+        Dim Phone6text As String
+        If Trim(Phone6.Text) <> "" Then
+            Phone6text = Phone6.Text
+        Else
+            Phone6text = "   "
+        End If
+
+        Dim email6text As String
+        If Trim(email6.Text) <> "" Then
+            email6text = email6.Text
+        Else
+            email6text = "   "
+        End If
+
+        Dim Website6text As String
+        If Trim(Website6.Text) <> "" Then
+            Website6text = Website6.Text
+        Else
+            Website6text = "   "
+        End If
+
+        Dim CityPhone6text As String
+        If Trim(CityPhone6.Text) <> "" Then
+            CityPhone6text = CityPhone6.Text
+        Else
+            CityPhone6text = "   "
+        End If
+
+        Dim CityWebsite6text As String
+        If Trim(CityWebsite6.Text) <> "" Then
+            CityWebsite6text = CityWebsite6.Text
+        Else
+            CityWebsite6text = "   "
+        End If
+
+
+        Dim Producer1text As String
+        If Trim(Producer1.Text) <> "" Then
+            Producer1text = Producer1.Text
+        Else
+            Producer1text = "   "
+        End If
+
+        Dim Host1text As String
+        If Trim(Host1.Text) <> "" Then
+            Host1text = Host1.Text
+        Else
+            Host1text = "   "
+        End If
+
+
+        Dim Director1text As String
+        If Trim(Director1.Text) <> "" Then
+            Director1text = Director1.Text
+        Else
+            Director1text = "   "
+        End If
+
+        Dim Director2text As String
+        If Trim(Director2.Text) <> "" Then
+            Director2text = Director2.Text
+        Else
+            Director2text = "   "
+        End If
+
+
+        Dim Audio1text As String
+        If Trim(Audio1.Text) <> "" Then
+            Audio1text = Audio1.Text
+        Else
+            Audio1text = "   "
+        End If
+
+        Dim Audio2text As String
+        If Trim(Audio2.Text) <> "" Then
+            Audio2text = Audio2.Text
+        Else
+            Audio2text = "   "
+        End If
+
+
+        Dim Camera1text As String
+        If Trim(Camera1.Text) <> "" Then
+            Camera1text = Camera1.Text
+        Else
+            Camera1text = "   "
+        End If
+
+        Dim Camera2text As String
+        If Trim(Camera2.Text) <> "" Then
+            Camera2text = Camera2.Text
+        Else
+            Camera2text = "   "
+        End If
+
+        Dim Camera3text As String
+        If Trim(Camera3.Text) <> "" Then
+            Camera3text = Camera3.Text
+        Else
+            Camera3text = "   "
+        End If
+
+
+        Dim NWCPphonetext As String
+        If Trim(NWCPphone.Text) <> "" Then
+            NWCPphonetext = NWCPphone.Text
+        Else
+            NWCPphonetext = "   "
+        End If
+
+        Dim CommentLinetext As String
+        If Trim(CommentLine.Text) <> "" Then
+            CommentLinetext = CommentLine.Text
+        Else
+            CommentLinetext = "   "
+        End If
+
+        Dim YouTubetext As String
+        If Trim(YouTube.Text) <> "" Then
+            YouTubetext = YouTube.Text
+        Else
+            YouTubetext = "   "
+        End If
+
+
+        Dim RecordDatetext As String
+        If Trim(RecordDate.Text) <> "" Then
+            RecordDatetext = RecordDate.Text
+        Else
+            RecordDatetext = "   "
+        End If
+
+        Dim ShowTitletext As String
+        If Trim(ShowTitle.Text) <> "" Then
+            ShowTitletext = ShowTitle.Text
+        Else
+            ShowTitletext = "   "
+        End If
+
+
+
+        Dim DirectorHeadertext As String
+        If Trim(Director1.Text) <> "" And Trim(Director2.Text) <> "" Then
+            DirectorHeadertext = "Directors:"
+        Else
+            DirectorHeadertext = "Director:"
+        End If
+
+        Dim GraphicsHeadertext As String
+        If Trim(Graphics1.Text) <> "" And Trim(Graphics2.Text) <> "" Then
+            GraphicsHeadertext = "Graphics Operators:"
+        Else
+            GraphicsHeadertext = "Graphics Operator:"
+        End If
+
+        Dim AudioHeadertext As String
+        If Trim(Audio1.Text) <> "" And Trim(Audio2.Text) <> "" Then
+            AudioHeadertext = "Audio Operators:"
+        Else
+            AudioHeadertext = "Audio Operator:"
+        End If
+
+
+        Dim CameraHeadertext As String
+        If CamVar > 1 Then
+            CameraHeadertext = "Camera Operators:"
+        Else
+            CameraHeadertext = "Camera Operator:"
+        End If
+
+
+        Dim NameHeadertext As String
+        If NameVar > 1 Then
+            NameHeadertext = "Guests:"
+        Else
+            NameHeadertext = "Guest:"
+        End If
+
+
+
+
+        'My.Computer.FileSystem.WriteAllText(".\CutFiles\Test.ctf", "Guest:", False, Encoding.ASCII)
+
+
+
+
         MessageBox.Show("Files Saved to Graphics", "Northwest Community Politics",
            MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
     End Sub
@@ -366,4 +831,109 @@ Public Class Form1
 
     End Sub
 
+    Private Sub CDBload_Click(sender As Object, e As EventArgs) Handles CDBload.Click
+
+        If CDBbox.SelectedItem <> "" Then
+
+            If CDB1.Checked Then
+                Producer1.Text = CDBbox.SelectedItem
+            End If
+            If CDB2.Checked Then
+                Host1.Text = CDBbox.SelectedItem
+            End If
+            If CDB3.Checked Then
+                Director1.Text = CDBbox.SelectedItem
+            End If
+            If CDB4.Checked Then
+                Director2.Text = CDBbox.SelectedItem
+            End If
+            If CDB5.Checked Then
+                Graphics1.Text = CDBbox.SelectedItem
+            End If
+            If CDB6.Checked Then
+                Graphics2.Text = CDBbox.SelectedItem
+            End If
+
+            If CDB7.Checked Then
+                Audio1.Text = CDBbox.SelectedItem
+            End If
+            If CDB8.Checked Then
+                Audio2.Text = CDBbox.SelectedItem
+            End If
+            If CDB9.Checked Then
+                Camera1.Text = CDBbox.SelectedItem
+            End If
+            If CDB10.Checked Then
+                Camera2.Text = CDBbox.SelectedItem
+            End If
+            If CDB11.Checked Then
+                Camera3.Text = CDBbox.SelectedItem
+            End If
+
+        End If
+    End Sub
+
+    Private Sub SaveCDB_Click(sender As Object, e As EventArgs) Handles SaveCDB.Click
+
+        Dim CDBvalue As String
+
+        If CDB1.Checked And Producer1.Text <> "" Then
+            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Producer1.Text & ".txt", "", False)
+            CDBvalue = Producer1.Text
+        End If
+        If CDB2.Checked And Host1.Text <> "" Then
+            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Host1.Text & ".txt", "", False)
+            CDBvalue = Host1.Text
+        End If
+        If CDB3.Checked And Director1.Text <> "" Then
+            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Director1.Text & ".txt", "", False)
+            CDBvalue = Director1.Text
+        End If
+        If CDB4.Checked And Director2.Text <> "" Then
+            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Director2.Text & ".txt", "", False)
+            CDBvalue = Director2.Text
+        End If
+        If CDB5.Checked And Graphics1.Text <> "" Then
+            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Graphics1.Text & ".txt", "", False)
+            CDBvalue = Graphics1.Text
+        End If
+        If CDB6.Checked And Graphics2.Text <> "" Then
+            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Graphics2.Text & ".txt", "", False)
+            CDBvalue = Graphics2.Text
+        End If
+
+        If CDB7.Checked And Audio1.Text <> "" Then
+            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Audio1.Text & ".txt", "", False)
+            CDBvalue = Audio1.Text
+        End If
+        If CDB8.Checked And Audio2.Text <> "" Then
+            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Audio2.Text & ".txt", "", False)
+            CDBvalue = Audio2.Text
+        End If
+        If CDB9.Checked And Camera1.Text <> "" Then
+            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Camera1.Text & ".txt", "", False)
+            CDBvalue = Camera1.Text
+        End If
+        If CDB10.Checked And Camera2.Text <> "" Then
+            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Camera2.Text & ".txt", "", False)
+            CDBvalue = Camera2.Text
+        End If
+        If CDB11.Checked And Camera3.Text <> "" Then
+            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Camera3.Text & ".txt", "", False)
+            CDBvalue = Camera3.Text
+        End If
+
+
+        If CDBvalue <> "" Then
+                CDBbox.Items.Clear()
+
+                Dim cdir = ".\CrewDatabase\"
+            For Each CDBfilelist As String In System.IO.Directory.GetFiles(cdir)
+                CDBbox.Items.Add(System.IO.Path.GetFileNameWithoutExtension(CDBfilelist))
+            Next
+
+            MessageBox.Show(CDBvalue & " Saved to Crew Database", "Northwest Community Politics", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+            End If
+
+    End Sub
 End Class
