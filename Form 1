@@ -1,7 +1,32 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.10  4/14/2016
+    'Version 1.11  4/21/2016
+
+    Dim NameCheck(6) As String
+    Dim TitleCheck(6) As String
+    Dim PhoneCheck(6) As String
+    Dim emailCheck(6) As String
+    Dim WebsiteCheck(6) As String
+    Dim CityPhoneCheck(6) As String
+    Dim CityWebsiteCheck(6) As String
+
+    Dim HostCheck(2) As String
+    Dim ProducerCheck(2) As String
+    Dim DirectorCheck(2) As String
+    Dim GraphicsCheck(2) As String
+    Dim AudioCheck(2) As String
+    Dim CameraCheck(3) As String
+
+    Dim NWCPphoneCheck(1) As String
+    Dim CommentLineCheck(1) As String
+    Dim YouTubeCheck(1) As String
+    Dim RecordDateCheck(1) As String
+    Dim ShowTitleCheck(1) As String
+
+
+
+
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -17,98 +42,11 @@ Public Class Form1
             CDBbox.Items.Add(System.IO.Path.GetFileNameWithoutExtension(CDBfilelist))
         Next
 
-
-
-        For i = 1 To 6
-
-            If System.IO.File.Exists(".\txt\Name" & i & ".txt") Then
-                Me.Controls("Name" & i).Text = Trim(My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt"))
-            End If
-
-            If System.IO.File.Exists(".\txt\Title" & i & ".txt") Then
-                Me.Controls("Title" & i).Text = Trim(My.Computer.FileSystem.ReadAllText(".\txt\Title" & i & ".txt"))
-            End If
-
-            If System.IO.File.Exists(".\txt\Phone" & i & ".txt") Then
-                Me.Controls("Phone" & i).Text = Trim(My.Computer.FileSystem.ReadAllText(".\txt\Phone" & i & ".txt"))
-            End If
-
-            If System.IO.File.Exists(".\txt\email" & i & ".txt") Then
-                Me.Controls("email" & i).Text = Trim(My.Computer.FileSystem.ReadAllText(".\txt\email" & i & ".txt"))
-            End If
-
-            If System.IO.File.Exists(".\txt\Website" & i & ".txt") Then
-                Me.Controls("Website" & i).Text = Trim(My.Computer.FileSystem.ReadAllText(".\txt\Website" & i & ".txt"))
-            End If
-
-            If System.IO.File.Exists(".\txt\CityPhone" & i & ".txt") Then
-                Me.Controls("CityPhone" & i).Text = Trim(My.Computer.FileSystem.ReadAllText(".\txt\CityPhone" & i & ".txt"))
-            End If
-
-            If System.IO.File.Exists(".\txt\CityWebsite" & i & ".txt") Then
-                Me.Controls("CityWebsite" & i).Text = Trim(My.Computer.FileSystem.ReadAllText(".\txt\CityWebsite" & i & ".txt"))
-            End If
-
-        Next i
-
-
-        If System.IO.File.Exists(".\txt\Producer1.txt") Then
-            Producer1.Text = Trim(My.Computer.FileSystem.ReadAllText(".\txt\Producer1.txt"))
-        End If
-
-        If System.IO.File.Exists(".\txt\Host1.txt") Then
-            Host1.Text = Trim(My.Computer.FileSystem.ReadAllText(".\txt\Host1.txt"))
-        End If
-
-
-
-        For i = 1 To 2
-
-            If System.IO.File.Exists(".\txt\Director" & i & ".txt") Then
-                Me.Controls("Director" & i).Text = Trim(My.Computer.FileSystem.ReadAllText(".\txt\Director" & i & ".txt"))
-            End If
-
-            If System.IO.File.Exists(".\txt\Graphics" & i & ".txt") Then
-                Me.Controls("Graphics" & i).Text = Trim(My.Computer.FileSystem.ReadAllText(".\txt\Graphics" & i & ".txt"))
-            End If
-
-            If System.IO.File.Exists(".\txt\Audio" & i & ".txt") Then
-                Me.Controls("Audio" & i).Text = Trim(My.Computer.FileSystem.ReadAllText(".\txt\Audio" & i & ".txt"))
-            End If
-
-        Next i
-
-
-
-        For i = 1 To 3
-
-            If System.IO.File.Exists(".\txt\Camera" & i & ".txt") Then
-                Me.Controls("Camera" & i).Text = Trim(My.Computer.FileSystem.ReadAllText(".\txt\Camera" & i & ".txt"))
-            End If
-
-        Next i
-
-
-        If System.IO.File.Exists(".\txt\NWCPphone.txt") Then
-            NWCPphone.Text = Trim(My.Computer.FileSystem.ReadAllText(".\txt\NWCPphone.txt"))
-        End If
-
-        If System.IO.File.Exists(".\txt\CommentLine.txt") Then
-            CommentLine.Text = Trim(My.Computer.FileSystem.ReadAllText(".\txt\CommentLine.txt"))
-        End If
-
-        If System.IO.File.Exists(".\txt\YouTube.txt") Then
-            YouTube.Text = Trim(My.Computer.FileSystem.ReadAllText(".\txt\YouTube.txt"))
-        End If
-
         Dim thisDate As Date
         thisDate = Today
         My.Computer.FileSystem.WriteAllText(".\txt\RecordDate.txt", thisDate, False, Encoding.ASCII)
-        RecordDate.Text = My.Computer.FileSystem.ReadAllText(".\txt\RecordDate.txt")
 
-        If System.IO.File.Exists(".\txt\ShowTitle.txt") Then
-            ShowTitle.Text = Trim(My.Computer.FileSystem.ReadAllText(".\txt\ShowTitle.txt"))
-        End If
+        FileCheck()
 
 
     End Sub
@@ -730,10 +668,6 @@ Public Class Form1
 
 
 
-        'My.Computer.FileSystem.WriteAllText(".\CutFiles\Test.ctf", "Guest:", False, Encoding.ASCII)
-
-
-
 
         MessageBox.Show("Files Saved to Graphics", "Northwest Community Politics",
            MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
@@ -936,4 +870,164 @@ Public Class Form1
             End If
 
     End Sub
+
+    Private Sub TextFileCheckTime_Tick(sender As Object, e As EventArgs) Handles TextFileCheckTime.Tick
+
+        FileCheck()
+
+    End Sub
+
+    Function FileCheck()
+
+        For i = 1 To 6
+
+            If System.IO.File.Exists(".\txt\Name" & i & ".txt") Then
+                If NameCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt") Then
+                    NameCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt")
+                    Me.Controls("Name" & i).Text = Trim(NameCheck(i))
+                End If
+            End If
+
+            If System.IO.File.Exists(".\txt\Title" & i & ".txt") Then
+                If TitleCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Title" & i & ".txt") Then
+                    TitleCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Title" & i & ".txt")
+                    Me.Controls("Title" & i).Text = Trim(TitleCheck(i))
+                End If
+            End If
+
+            If System.IO.File.Exists(".\txt\Phone" & i & ".txt") Then
+                If PhoneCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Phone" & i & ".txt") Then
+                    PhoneCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Phone" & i & ".txt")
+                    Me.Controls("Phone" & i).Text = Trim(PhoneCheck(i))
+                End If
+            End If
+
+            If System.IO.File.Exists(".\txt\email" & i & ".txt") Then
+                If emailCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\email" & i & ".txt") Then
+                    emailCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\email" & i & ".txt")
+                    Me.Controls("email" & i).Text = Trim(emailCheck(i))
+                End If
+            End If
+
+            If System.IO.File.Exists(".\txt\Website" & i & ".txt") Then
+                If WebsiteCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Website" & i & ".txt") Then
+                    WebsiteCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Website" & i & ".txt")
+                    Me.Controls("Website" & i).Text = Trim(WebsiteCheck(i))
+                End If
+            End If
+
+            If System.IO.File.Exists(".\txt\CityPhone" & i & ".txt") Then
+                If CityPhoneCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\CityPhone" & i & ".txt") Then
+                    CityPhoneCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\CityPhone" & i & ".txt")
+                    Me.Controls("CityPhone" & i).Text = Trim(CityPhoneCheck(i))
+                End If
+            End If
+
+            If System.IO.File.Exists(".\txt\CityWebsite" & i & ".txt") Then
+                If CityWebsiteCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\CityWebsite" & i & ".txt") Then
+                    CityWebsiteCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\CityWebsite" & i & ".txt")
+                    Me.Controls("CityWebsite" & i).Text = Trim(CityWebsiteCheck(i))
+                End If
+            End If
+
+        Next i
+
+
+        For i = 1 To 1
+            If System.IO.File.Exists(".\txt\Producer" & i & ".txt") Then
+                If ProducerCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Producer" & i & ".txt") Then
+                    ProducerCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Producer" & i & ".txt")
+                    Me.Controls("Producer" & i).Text = Trim(ProducerCheck(i))
+                End If
+            End If
+
+            If System.IO.File.Exists(".\txt\Host" & i & ".txt") Then
+                If HostCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Host" & i & ".txt") Then
+                    HostCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Host" & i & ".txt")
+                    Me.Controls("Host" & i).Text = Trim(HostCheck(i))
+                End If
+            End If
+        Next i
+
+
+        For i = 1 To 2
+
+            If System.IO.File.Exists(".\txt\Director" & i & ".txt") Then
+                If DirectorCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Director" & i & ".txt") Then
+                    DirectorCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Director" & i & ".txt")
+                    Me.Controls("Director" & i).Text = Trim(DirectorCheck(i))
+                End If
+            End If
+
+            If System.IO.File.Exists(".\txt\Graphics" & i & ".txt") Then
+                If GraphicsCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Graphics" & i & ".txt") Then
+                    GraphicsCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Graphics" & i & ".txt")
+                    Me.Controls("Graphics" & i).Text = Trim(GraphicsCheck(i))
+                End If
+            End If
+
+            If System.IO.File.Exists(".\txt\Audio" & i & ".txt") Then
+                If AudioCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Audio" & i & ".txt") Then
+                    AudioCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Audio" & i & ".txt")
+                    Me.Controls("Audio" & i).Text = Trim(AudioCheck(i))
+                End If
+            End If
+
+        Next i
+
+
+
+        For i = 1 To 3
+
+            If System.IO.File.Exists(".\txt\Camera" & i & ".txt") Then
+                If CameraCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Camera" & i & ".txt") Then
+                    CameraCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Camera" & i & ".txt")
+                    Me.Controls("Camera" & i).Text = Trim(CameraCheck(i))
+                End If
+            End If
+
+        Next i
+
+
+        For i = 1 To 1
+
+            If System.IO.File.Exists(".\txt\NWCPphone.txt") Then
+                If NWCPphoneCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\NWCPphone.txt") Then
+                    NWCPphoneCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\NWCPphone.txt")
+                    NWCPphone.Text = Trim(NWCPphoneCheck(i))
+                End If
+            End If
+
+            If System.IO.File.Exists(".\txt\CommentLine.txt") Then
+                If CommentLineCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\CommentLine.txt") Then
+                    CommentLineCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\CommentLine.txt")
+                    CommentLine.Text = Trim(CommentLineCheck(i))
+                End If
+            End If
+
+            If System.IO.File.Exists(".\txt\YouTube.txt") Then
+                If YouTubeCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\YouTube.txt") Then
+                    YouTubeCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\YouTube.txt")
+                    YouTube.Text = Trim(YouTubeCheck(i))
+                End If
+            End If
+
+
+            If System.IO.File.Exists(".\txt\RecordDate.txt") Then
+                If RecordDateCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\RecordDate.txt") Then
+                    RecordDateCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\RecordDate.txt")
+                    RecordDate.Text = Trim(RecordDateCheck(i))
+                End If
+            End If
+
+            If System.IO.File.Exists(".\txt\ShowTitle.txt") Then
+                If ShowTitleCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\ShowTitle.txt") Then
+                    ShowTitleCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\ShowTitle.txt")
+                    ShowTitle.Text = Trim(ShowTitleCheck(i))
+                End If
+            End If
+
+        Next i
+    End Function
+
 End Class
