@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.15  6/17/2016
+    'Version 1.16  6/18/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -760,7 +760,7 @@ Public Class Form1
     Sub LowerThird(ByVal TopLine As String, ByVal BottomLine As String, ByVal Pic As String, ByVal FileName As String)
 
         If System.IO.File.Exists(".\Templates\Lower.tcf") Then
-            Dim Template As String = My.Computer.FileSystem.ReadAllText(".\Templates\Lower.tcf", Encoding.Default)
+            Dim Template As String = My.Computer.FileSystem.ReadAllText(".\Templates\Lower.tcf", Encoding.GetEncoding("IBM861"))
 
             Dim Output As String
             Output = Template
@@ -783,7 +783,7 @@ Public Class Form1
             Output = Output.Replace(AddOneSpace("Youtube.tga"), Pic)
 
 
-            My.Computer.FileSystem.WriteAllText(".\CutFiles\" & FileName & ".tcf", Output, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\CutFiles\" & FileName & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
         End If
     End Sub
 
@@ -792,7 +792,7 @@ Public Class Form1
 
         If System.IO.File.Exists(".\Templates\Open.tcf") Then
 
-            Dim Template As String = My.Computer.FileSystem.ReadAllText(".\Templates\Open.tcf", Encoding.Default)
+            Dim Template As String = My.Computer.FileSystem.ReadAllText(".\Templates\Open.tcf", Encoding.GetEncoding("IBM861"))
 
             Dim Output As String
             Output = Template
@@ -808,10 +808,9 @@ Public Class Form1
             Output = Output.Replace(AddSpace("Guest Header"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\GuestHeader.txt")))
             For i = 1 To 6
                 Output = Output.Replace(AddSpace("Guest ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt")))
-                Output = Output.Replace(AddSpace("Guest  ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt")))
             Next i
 
-            My.Computer.FileSystem.WriteAllText(".\CutFiles\01Open.tcf", Output, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\CutFiles\01Open.tcf", Output, False, Encoding.GetEncoding("IBM861"))
         End If
     End Sub
 
@@ -821,7 +820,7 @@ Public Class Form1
         If System.IO.File.Exists(".\Templates\Credits.tcf") Then
 
 
-            Dim Template As String = My.Computer.FileSystem.ReadAllText(".\Templates\Credits.tcf", Encoding.Default)
+            Dim Template As String = My.Computer.FileSystem.ReadAllText(".\Templates\Credits.tcf", Encoding.GetEncoding("IBM861"))
 
             Dim Output As String
             Output = Template
@@ -834,11 +833,9 @@ Public Class Form1
             Output = Output.Replace(AddSpace("Guest Header"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\GuestHeader.txt")))
             For i = 1 To 6
                 Output = Output.Replace(AddSpace("Guest ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt")))
-                Output = Output.Replace(AddSpace("Guest  ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt")))
             Next i
 
             'Producer
-            Output = Output.Replace(AddSpace("Poducer Name"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\Producer1.txt")))
             Output = Output.Replace(AddSpace("Producer Name"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\Producer1.txt")))
             Output = Output.Replace(AddSpace("Producer 1"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\Producer1.txt")))
 
@@ -878,7 +875,7 @@ Public Class Form1
             Output = Output.Replace(AddSpace("Record Date"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\RecordDate.txt")))
             Output = Output.Replace(AddSpace("6/2/2016"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\RecordDate.txt")))
 
-            My.Computer.FileSystem.WriteAllText(".\CutFiles\02Credits.tcf", Output, False, Encoding.Default)
+            My.Computer.FileSystem.WriteAllText(".\CutFiles\02Credits.tcf", Output, False, Encoding.GetEncoding("IBM861"))
 
         End If
 
@@ -889,20 +886,21 @@ Public Class Form1
         If System.IO.File.Exists(".\Templates\Bug.tcf") Then
 
 
-            Dim Template As String = My.Computer.FileSystem.ReadAllText(".\Templates\Bug.tcf", Encoding.Default)
+            Dim Template As String = My.Computer.FileSystem.ReadAllText(".\Templates\Bug.tcf", Encoding.GetEncoding("IBM861"))
 
             Dim Output As String
+
             Output = Template
 
             'Page Name
             Output = Output.Replace(ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace("Bug"), ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace("03Bug"))
-            Output = Output.Replace(ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace("NWCP"), ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace("03Bug"))
 
+            My.Computer.FileSystem.WriteAllText(".\CutFiles\03Bug.tcf", Output, False, Encoding.GetEncoding("IBM861"))
 
-            My.Computer.FileSystem.WriteAllText(".\CutFiles\03Bug.tcf", Output, False, Encoding.Default)
 
         End If
 
     End Sub
+
 
 End Class
