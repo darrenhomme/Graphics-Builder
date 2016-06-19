@@ -902,7 +902,7 @@ Public Class Form1
             For i = 1 To 2
                 GraphicsString = My.Computer.FileSystem.ReadAllText(".\txt\Graphics" & i & ".txt")
                 CharCountNew = GraphicsString.Length
-                Output = Output.Replace(ChrW(9) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Graphics ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GraphicsString))
+                Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Graphics ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GraphicsString))
             Next i
 
 
