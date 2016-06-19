@@ -898,11 +898,11 @@ Public Class Form1
             Output = Output.Replace(ChrW(15) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Graphics Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GraphicsHeaderString))
 
             'Graphics
-            Dim GraphicString As String
+            Dim GraphicsString As String
             For i = 1 To 2
-                GraphicString = My.Computer.FileSystem.ReadAllText(".\txt\Graphic" & i & ".txt")
-                CharCountNew = GraphicString.Length
-                Output = Output.Replace(ChrW(9) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Graphic ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GraphicString))
+                GraphicsString = My.Computer.FileSystem.ReadAllText(".\txt\Graphics" & i & ".txt")
+                CharCountNew = GraphicsString.Length
+                Output = Output.Replace(ChrW(9) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Graphics ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GraphicsString))
             Next i
 
 
