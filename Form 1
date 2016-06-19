@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.16  6/18/2016
+    'Version 1.17  6/19/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -765,22 +765,29 @@ Public Class Form1
             Dim Output As String
             Output = Template
 
-            TopLine = AddSpace(TopLine)
-            BottomLine = AddSpace(BottomLine)
-            Pic = AddOneSpace(Pic)
+            Dim Path As String = "C:\Users\MyComputer\Desktop\Images\"
+            Dim CharCountOld As Integer
+            Dim CharCountNew As Integer
+
 
             'Page Name
-            Output = Output.Replace(AddOneSpace("Lower"), AddOneSpace(FileName))
+            CharCountNew = FileName.Length
+            Output = Output.Replace(ChrW(5) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace("Lower"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(FileName))
 
             'Top Line
-            Output = Output.Replace(AddSpace("Name"), TopLine)
+            CharCountNew = TopLine.Length
+            Output = Output.Replace(ChrW(4) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Name"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(TopLine))
 
             'Botton Line
-            Output = Output.Replace(AddSpace("Title"), BottomLine)
+            CharCountNew = BottomLine.Length
+            Output = Output.Replace(ChrW(5) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Title"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(BottomLine))
 
             'Pic
-            Output = Output.Replace(AddOneSpace("Picture.tga"), Pic)
-            Output = Output.Replace(AddOneSpace("Youtube.tga"), Pic)
+            CharCountOld = Path.Length + 11
+            CharCountNew = Path.Length + Pic.Length
+            Output = Output.Replace(ChrW(CharCountOld) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(Path) & AddOneSpace("Picture.tga"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(Path) & AddOneSpace(Pic))
+            Output = Output.Replace(ChrW(CharCountOld) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(Path) & AddOneSpace("YouTube.tga"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(Path) & AddOneSpace(Pic))
+
 
 
             My.Computer.FileSystem.WriteAllText(".\CutFiles\" & FileName & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
@@ -797,17 +804,29 @@ Public Class Form1
             Dim Output As String
             Output = Template
 
+            Dim CharCountNew As Integer
+
             'Page Name
-            Output = Output.Replace(AddOneSpace("Open"), AddOneSpace("01Open"))
+            Dim FileName As String = "01Open"
+            CharCountNew = FileName.Length
+            Output = Output.Replace(ChrW(4) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace("Open"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(FileName))
 
             'Show Title
-            Output = Output.Replace(AddSpace("Show Title"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\ShowTitle.txt")))
+            Dim ShowTitleString As String = My.Computer.FileSystem.ReadAllText(".\txt\ShowTitle.txt")
+            CharCountNew = ShowTitleString.Length
+            Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Show Title"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(ShowTitleString))
+
+            'Guest Header
+            Dim GuestHeaderString As String = My.Computer.FileSystem.ReadAllText(".\txt\GuestHeader.txt")
+            CharCountNew = GuestHeaderString.Length
+            Output = Output.Replace(ChrW(12) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Guest Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GuestHeaderString))
 
             'Guests
-            Output = Output.Replace(AddSpace("Guests:"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\GuestHeader.txt")))
-            Output = Output.Replace(AddSpace("Guest Header"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\GuestHeader.txt")))
+            Dim GuestString As String
             For i = 1 To 6
-                Output = Output.Replace(AddSpace("Guest ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt")))
+                GuestString = My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt")
+                CharCountNew = GuestString.Length
+                Output = Output.Replace(ChrW(7) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Guest ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GuestString))
             Next i
 
             My.Computer.FileSystem.WriteAllText(".\CutFiles\01Open.tcf", Output, False, Encoding.GetEncoding("IBM861"))
@@ -825,55 +844,101 @@ Public Class Form1
             Dim Output As String
             Output = Template
 
+            Dim CharCountNew As Integer
+
             'Page Name
-            Output = Output.Replace(AddOneSpace("Credits"), AddOneSpace("02Credits"))
+            Dim FileName As String = "02Credits"
+            CharCountNew = FileName.Length
+            Output = Output.Replace(ChrW(4) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace("Credits"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(FileName))
+
+
+            'Guest Header
+            Dim GuestHeaderString As String = My.Computer.FileSystem.ReadAllText(".\txt\GuestHeader.txt")
+            CharCountNew = GuestHeaderString.Length
+            Output = Output.Replace(ChrW(12) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Guest Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GuestHeaderString))
 
             'Guests
-            Output = Output.Replace(AddSpace("Guests:"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\GuestHeader.txt")))
-            Output = Output.Replace(AddSpace("Guest Header"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\GuestHeader.txt")))
+            Dim GuestString As String
             For i = 1 To 6
-                Output = Output.Replace(AddSpace("Guest ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt")))
+                GuestString = My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt")
+                CharCountNew = GuestString.Length
+                Output = Output.Replace(ChrW(7) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Guest ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GuestString))
             Next i
+
 
             'Producer
-            Output = Output.Replace(AddSpace("Producer Name"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\Producer1.txt")))
-            Output = Output.Replace(AddSpace("Producer 1"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\Producer1.txt")))
+            Dim Producer1String As String = My.Computer.FileSystem.ReadAllText(".\txt\Producer1.txt")
+            CharCountNew = Producer1String.Length
+            Output = Output.Replace(ChrW(9) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Producer 1"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(Producer1String))
+
 
             'Host
-            Output = Output.Replace(AddSpace("Host Name"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\Host1.txt")))
-            Output = Output.Replace(AddSpace("Host 1"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\Host1.txt")))
+            Dim Host1String As String = My.Computer.FileSystem.ReadAllText(".\txt\Host1.txt")
+            CharCountNew = Host1String.Length
+            Output = Output.Replace(ChrW(6) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Host 1"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(Host1String))
+
+
+            'Director Header
+            Dim DirectorHeaderString As String = My.Computer.FileSystem.ReadAllText(".\txt\DirectorHeader.txt")
+            CharCountNew = DirectorHeaderString.Length
+            Output = Output.Replace(ChrW(15) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Director Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(DirectorHeaderString))
 
             'Directors
-            Output = Output.Replace(AddSpace("Directors:"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\DirectorHeader.txt")))
-            Output = Output.Replace(AddSpace("Director Header"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\DirectorHeader.txt")))
+            Dim DirectorString As String
             For i = 1 To 2
-                Output = Output.Replace(AddSpace("Director ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\Director" & i & ".txt")))
+                DirectorString = My.Computer.FileSystem.ReadAllText(".\txt\Director" & i & ".txt")
+                CharCountNew = DirectorString.Length
+                Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Director ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(DirectorString))
             Next i
+
+
+            'Graphics Header
+            Dim GraphicsHeaderString As String = My.Computer.FileSystem.ReadAllText(".\txt\GraphicsHeader.txt")
+            CharCountNew = GraphicsHeaderString.Length
+            Output = Output.Replace(ChrW(15) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Graphics Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GraphicsHeaderString))
 
             'Graphics
-            Output = Output.Replace(AddSpace("Graphic Operators:"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\GraphicsHeader.txt")))
-            Output = Output.Replace(AddSpace("Graphics Header"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\GraphicsHeader.txt")))
+            Dim GraphicString As String
             For i = 1 To 2
-                Output = Output.Replace(AddSpace("Graphic ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\Graphics" & i & ".txt")))
+                GraphicString = My.Computer.FileSystem.ReadAllText(".\txt\Graphic" & i & ".txt")
+                CharCountNew = GraphicString.Length
+                Output = Output.Replace(ChrW(9) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Graphic ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GraphicString))
             Next i
+
+
+            'Audio Header
+            Dim AudioHeaderString As String = My.Computer.FileSystem.ReadAllText(".\txt\AudioHeader.txt")
+            CharCountNew = AudioHeaderString.Length
+            Output = Output.Replace(ChrW(12) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Audio Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(AudioHeaderString))
 
             'Audio
-            Output = Output.Replace(AddSpace("Audio Operators:"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\AudioHeader.txt")))
-            Output = Output.Replace(AddSpace("Audio Header"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\AudioHeader.txt")))
+            Dim AudioString As String
             For i = 1 To 2
-                Output = Output.Replace(AddSpace("Audio ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\Audio" & i & ".txt")))
+                AudioString = My.Computer.FileSystem.ReadAllText(".\txt\Audio" & i & ".txt")
+                CharCountNew = AudioString.Length
+                Output = Output.Replace(ChrW(7) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Audio ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(AudioString))
             Next i
+
+
+            'Camera Header
+            Dim CameraHeaderString As String = My.Computer.FileSystem.ReadAllText(".\txt\CameraHeader.txt")
+            CharCountNew = CameraHeaderString.Length
+            Output = Output.Replace(ChrW(13) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Camera Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(CameraHeaderString))
 
             'Camera
-            Output = Output.Replace(AddSpace("Camera Operators:"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\CameraHeader.txt")))
-            Output = Output.Replace(AddSpace("Camera Header"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\CameraHeader.txt")))
+            Dim CameraString As String
             For i = 1 To 3
-                Output = Output.Replace(AddSpace("Camera ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\Camera" & i & ".txt")))
+                CameraString = My.Computer.FileSystem.ReadAllText(".\txt\Camera" & i & ".txt")
+                CharCountNew = CameraString.Length
+                Output = Output.Replace(ChrW(8) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Camera ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(CameraString))
             Next i
 
+
             'Record Date
-            Output = Output.Replace(AddSpace("Record Date"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\RecordDate.txt")))
-            Output = Output.Replace(AddSpace("6/2/2016"), AddSpace(My.Computer.FileSystem.ReadAllText(".\txt\RecordDate.txt")))
+            Dim RecordDateString As String = My.Computer.FileSystem.ReadAllText(".\txt\RecordDate.txt")
+            CharCountNew = RecordDateString.Length
+            Output = Output.Replace(ChrW(11) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Record Date"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(RecordDateString))
+
 
             My.Computer.FileSystem.WriteAllText(".\CutFiles\02Credits.tcf", Output, False, Encoding.GetEncoding("IBM861"))
 
@@ -893,7 +958,8 @@ Public Class Form1
             Output = Template
 
             'Page Name
-            Output = Output.Replace(ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace("Bug"), ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace("03Bug"))
+            Dim FileName As String = "03Bug"
+            Output = Output.Replace(ChrW(3) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace("Bug"), ChrW(FileName.Length) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(FileName))
 
             My.Computer.FileSystem.WriteAllText(".\CutFiles\03Bug.tcf", Output, False, Encoding.GetEncoding("IBM861"))
 
