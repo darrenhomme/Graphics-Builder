@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.17  6/19/2016
+    'Version 1.18  6/21/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -295,14 +295,19 @@ Public Class Form1
         For i = 1 To 6
             If My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt") <> "   " Then
                 'Name
-                LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt"), My.Computer.FileSystem.ReadAllText(".\txt\Title" & i & ".txt"), "Blank.tga", 08 + (i * 3) & "Guest" & i)
+                LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt"), My.Computer.FileSystem.ReadAllText(".\txt\Title" & i & ".txt"), "Blank.tga", 07 + (i * 4) & "Guest" & i)
 
 
                 'Contact
-                LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\Phone" & i & ".txt"), My.Computer.FileSystem.ReadAllText(".\txt\email" & i & ".txt"), "Blank.tga", 09 + (i * 3) & "Contact" & i)
+                LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\Phone" & i & ".txt"), My.Computer.FileSystem.ReadAllText(".\txt\email" & i & ".txt"), "Blank.tga", 08 + (i * 4) & "Contact" & i)
+
+                'Website
+                If My.Computer.FileSystem.ReadAllText(".\txt\Website" & i & ".txt") <> "   " Then
+                    LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\Website" & i & ".txt"), "", "Blank.tga", 09 + (i * 4) & "Website" & i)
+                End If
 
                 'City
-                LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\CityPhone" & i & ".txt"), My.Computer.FileSystem.ReadAllText(".\txt\CityWebsite" & i & ".txt"), "Blank.tga", 10 + (i * 3) & "City" & i)
+                LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\CityPhone" & i & ".txt"), My.Computer.FileSystem.ReadAllText(".\txt\CityWebsite" & i & ".txt"), "Blank.tga", 10 + (i * 4) & "City" & i)
             End If
         Next i
 
@@ -830,6 +835,35 @@ Public Class Form1
             Next i
 
             My.Computer.FileSystem.WriteAllText(".\CutFiles\01Open.tcf", Output, False, Encoding.GetEncoding("IBM861"))
+
+
+            'Record Date
+            Dim RecordDateString As String = My.Computer.FileSystem.ReadAllText(".\txt\RecordDate.txt")
+            CharCountNew = RecordDateString.Length
+            Output = Output.Replace(ChrW(11) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Record Date"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(RecordDateString))
+
+            'Producer Header
+            Dim ProducerHeaderString As String = "Producer:"
+            CharCountNew = ProducerHeaderString.Length
+            Output = Output.Replace(ChrW(15) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Producer Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(ProducerHeaderString))
+
+            'Producer
+            Dim Producer1String As String = My.Computer.FileSystem.ReadAllText(".\txt\Producer1.txt")
+            CharCountNew = Producer1String.Length
+            Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Producer 1"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(Producer1String))
+
+
+            'Host Header
+            Dim HostHeaderString As String = "Host:"
+            CharCountNew = HostHeaderString.Length
+            Output = Output.Replace(ChrW(11) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Host Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(HostHeaderString))
+
+            'Host
+            Dim Host1String As String = My.Computer.FileSystem.ReadAllText(".\txt\Host1.txt")
+            CharCountNew = Host1String.Length
+            Output = Output.Replace(ChrW(6) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Host 1"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(Host1String))
+
+
         End If
     End Sub
 
@@ -852,6 +886,12 @@ Public Class Form1
             Output = Output.Replace(ChrW(4) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace("Credits"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(FileName))
 
 
+            'Show Title
+            Dim ShowTitleString As String = My.Computer.FileSystem.ReadAllText(".\txt\ShowTitle.txt")
+            CharCountNew = ShowTitleString.Length
+            Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Show Title"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(ShowTitleString))
+
+
             'Guest Header
             Dim GuestHeaderString As String = My.Computer.FileSystem.ReadAllText(".\txt\GuestHeader.txt")
             CharCountNew = GuestHeaderString.Length
@@ -866,11 +906,21 @@ Public Class Form1
             Next i
 
 
+            'Producer Header
+            Dim ProducerHeaderString As String = "Producer:"
+            CharCountNew = ProducerHeaderString.Length
+            Output = Output.Replace(ChrW(15) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Producer Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(ProducerHeaderString))
+
             'Producer
             Dim Producer1String As String = My.Computer.FileSystem.ReadAllText(".\txt\Producer1.txt")
             CharCountNew = Producer1String.Length
-            Output = Output.Replace(ChrW(9) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Producer 1"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(Producer1String))
+            Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Producer 1"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(Producer1String))
 
+
+            'Host Header
+            Dim HostHeaderString As String = "Host:"
+            CharCountNew = HostHeaderString.Length
+            Output = Output.Replace(ChrW(11) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Host Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(HostHeaderString))
 
             'Host
             Dim Host1String As String = My.Computer.FileSystem.ReadAllText(".\txt\Host1.txt")
