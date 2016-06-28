@@ -1,11 +1,12 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.19  6/26/2016
+    'Version 1.20  6/28/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
 
+    Dim GuestHeaderCheck As String
     Dim NameCheck(6) As String
     Dim TitleCheck(6) As String
     Dim PhoneCheck(6) As String
@@ -14,12 +15,21 @@ Public Class Form1
     Dim CityPhoneCheck(6) As String
     Dim CityWebsiteCheck(6) As String
 
-    Dim HostCheck(2) As String
+    Dim ProducerHeaderCheck As String
     Dim ProducerCheck(2) As String
+    Dim HostHeaderCheck As String
+    Dim HostCheck(2) As String
+
+    Dim DirectorHeaderCheck As String
     Dim DirectorCheck(2) As String
+    Dim GraphicsHeaderCheck As String
     Dim GraphicsCheck(2) As String
+    Dim AudioHeaderCheck As String
     Dim AudioCheck(2) As String
+
+    Dim CameraHeaderCheck As String
     Dim CameraCheck(3) As String
+    Dim FloorHeaderCheck As String
     Dim FloorCheck(3) As String
 
     Dim ShowPhoneCheck(1) As String
@@ -32,6 +42,7 @@ Public Class Form1
     Dim RecordDateCheck(1) As String
     Dim ShowNameCheck(1) As String
     Dim ShowTitleCheck(1) As String
+
     Dim DBCheck As String
     Dim CDBCheck As String
     Dim DBCheck2() As String
@@ -61,178 +72,287 @@ Public Class Form1
     End Sub
 
     Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
+        Dim StringHolder As String
+
         'Saves All the Fields to txt files
 
         'Guest Info
         For i = 1 To 6
-
-            My.Computer.FileSystem.WriteAllText(".\txt\Name" & i & ".txt", Me.Controls("Name" & i).Text, False, Encoding.ASCII)
+            'Name
+            StringHolder = Me.Controls("Name" & i).Text
             If Me.Controls("Name" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Name" & i & ".txt", "   ", False, Encoding.ASCII)
+                StringHolder = "   "
             End If
+            My.Computer.FileSystem.WriteAllText(".\txt\Name" & i & ".txt", StringHolder, False, Encoding.ASCII)
+            NameCheck(i) = StringHolder
 
-            My.Computer.FileSystem.WriteAllText(".\txt\Title" & i & ".txt", Me.Controls("Title" & i).Text, False, Encoding.ASCII)
+            'Title
+            StringHolder = Me.Controls("Title" & i).Text
             If Me.Controls("Title" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Title" & i & ".txt", "   ", False, Encoding.ASCII)
+                StringHolder = "   "
             End If
+            My.Computer.FileSystem.WriteAllText(".\txt\Title" & i & ".txt", StringHolder, False, Encoding.ASCII)
+            TitleCheck(i) = StringHolder
 
-            My.Computer.FileSystem.WriteAllText(".\txt\Phone" & i & ".txt", Me.Controls("Phone" & i).Text, False, Encoding.ASCII)
+            'Phone
+            StringHolder = Me.Controls("Phone" & i).Text
             If Me.Controls("Phone" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Phone" & i & ".txt", "   ", False, Encoding.ASCII)
+                StringHolder = "   "
             End If
+            My.Computer.FileSystem.WriteAllText(".\txt\Phone" & i & ".txt", StringHolder, False, Encoding.ASCII)
+            PhoneCheck(i) = StringHolder
 
-            My.Computer.FileSystem.WriteAllText(".\txt\email" & i & ".txt", Me.Controls("email" & i).Text, False, Encoding.ASCII)
+            'email
+            StringHolder = Me.Controls("email" & i).Text
             If Me.Controls("email" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\email" & i & ".txt", "   ", False, Encoding.ASCII)
+                StringHolder = "   "
             End If
+            My.Computer.FileSystem.WriteAllText(".\txt\email" & i & ".txt", StringHolder, False, Encoding.ASCII)
+            emailCheck(i) = StringHolder
 
-            My.Computer.FileSystem.WriteAllText(".\txt\Website" & i & ".txt", Me.Controls("Website" & i).Text, False, Encoding.ASCII)
+            'Website
+            StringHolder = Me.Controls("Website" & i).Text
             If Me.Controls("Website" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Website" & i & ".txt", "   ", False, Encoding.ASCII)
+                StringHolder = "   "
             End If
+            My.Computer.FileSystem.WriteAllText(".\txt\Website" & i & ".txt", StringHolder, False, Encoding.ASCII)
+            WebsiteCheck(i) = StringHolder
 
-            My.Computer.FileSystem.WriteAllText(".\txt\CityPhone" & i & ".txt", Me.Controls("CityPhone" & i).Text, False, Encoding.ASCII)
+            'CityPhone
+            StringHolder = Me.Controls("CityPhone" & i).Text
             If Me.Controls("CityPhone" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\CityPhone" & i & ".txt", "   ", False, Encoding.ASCII)
+                StringHolder = "   "
             End If
+            My.Computer.FileSystem.WriteAllText(".\txt\CityPhone" & i & ".txt", StringHolder, False, Encoding.ASCII)
+            CityPhoneCheck(i) = StringHolder
 
-            My.Computer.FileSystem.WriteAllText(".\txt\CityWebsite" & i & ".txt", Me.Controls("CityWebsite" & i).Text, False, Encoding.ASCII)
+            'CityWebsite
+            StringHolder = Me.Controls("CityWebsite" & i).Text
             If Me.Controls("CityWebsite" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\CityWebsite" & i & ".txt", "   ", False, Encoding.ASCII)
+                StringHolder = "   "
             End If
+            My.Computer.FileSystem.WriteAllText(".\txt\CityWebsite" & i & ".txt", StringHolder, False, Encoding.ASCII)
+            CityWebsiteCheck(i) = StringHolder
 
         Next i
 
         'Crew
         For i = 1 To 2
-            My.Computer.FileSystem.WriteAllText(".\txt\Producer" & i & ".txt", Me.Controls("Producer" & i).Text, False, Encoding.ASCII)
+            'Producer
+            StringHolder = Me.Controls("Producer" & i).Text
             If Me.Controls("Producer" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Producer" & i & ".txt", "   ", False, Encoding.ASCII)
+                StringHolder = "   "
             End If
+            My.Computer.FileSystem.WriteAllText(".\txt\Producer" & i & ".txt", StringHolder, False, Encoding.ASCII)
+            ProducerCheck(i) = StringHolder
 
-            My.Computer.FileSystem.WriteAllText(".\txt\Host" & i & ".txt", Me.Controls("Host" & i).Text, False, Encoding.ASCII)
+            'Host
+            StringHolder = Me.Controls("Host" & i).Text
             If Me.Controls("Host" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Host" & i & ".txt", "   ", False, Encoding.ASCII)
+                StringHolder = "   "
             End If
+            My.Computer.FileSystem.WriteAllText(".\txt\Host" & i & ".txt", StringHolder, False, Encoding.ASCII)
+            HostCheck(i) = StringHolder
 
-            My.Computer.FileSystem.WriteAllText(".\txt\Director" & i & ".txt", Me.Controls("Director" & i).Text, False, Encoding.ASCII)
+            'Director
+            StringHolder = Me.Controls("Director" & i).Text
             If Me.Controls("Director" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Director" & i & ".txt", "   ", False, Encoding.ASCII)
+                StringHolder = "   "
             End If
+            My.Computer.FileSystem.WriteAllText(".\txt\Director" & i & ".txt", StringHolder, False, Encoding.ASCII)
+            DirectorCheck(i) = StringHolder
 
-            My.Computer.FileSystem.WriteAllText(".\txt\Graphics" & i & ".txt", Me.Controls("Graphics" & i).Text, False, Encoding.ASCII)
+            'Graphics
+            StringHolder = Me.Controls("Graphics" & i).Text
             If Me.Controls("Graphics" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Graphics" & i & ".txt", "   ", False, Encoding.ASCII)
+                StringHolder = "   "
             End If
+            My.Computer.FileSystem.WriteAllText(".\txt\Graphics" & i & ".txt", StringHolder, False, Encoding.ASCII)
+            GraphicsCheck(i) = StringHolder
 
-            My.Computer.FileSystem.WriteAllText(".\txt\Audio" & i & ".txt", Me.Controls("Audio" & i).Text, False, Encoding.ASCII)
+            'Audio
+            StringHolder = Me.Controls("Audio" & i).Text
             If Me.Controls("Audio" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Audio" & i & ".txt", "   ", False, Encoding.ASCII)
+                StringHolder = "   "
             End If
+            My.Computer.FileSystem.WriteAllText(".\txt\Audio" & i & ".txt", StringHolder, False, Encoding.ASCII)
+            AudioCheck(i) = StringHolder
 
         Next i
 
         For i = 1 To 3
 
-            My.Computer.FileSystem.WriteAllText(".\txt\Camera" & i & ".txt", Me.Controls("Camera" & i).Text, False, Encoding.ASCII)
+            'Camera
+            StringHolder = Me.Controls("Camera" & i).Text
             If Me.Controls("Camera" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Camera" & i & ".txt", "   ", False, Encoding.ASCII)
+                StringHolder = "   "
             End If
+            My.Computer.FileSystem.WriteAllText(".\txt\Camera" & i & ".txt", StringHolder, False, Encoding.ASCII)
+            CameraCheck(i) = StringHolder
 
-            My.Computer.FileSystem.WriteAllText(".\txt\Floor" & i & ".txt", Me.Controls("Floor" & i).Text, False, Encoding.ASCII)
+            'Floor
+            StringHolder = Me.Controls("Floor" & i).Text
             If Me.Controls("Floor" & i).Text = "" Then
-                My.Computer.FileSystem.WriteAllText(".\txt\Floor" & i & ".txt", "   ", False, Encoding.ASCII)
+                StringHolder = "   "
             End If
+            My.Computer.FileSystem.WriteAllText(".\txt\Floor" & i & ".txt", StringHolder, False, Encoding.ASCII)
+            FloorCheck(i) = StringHolder
 
         Next i
 
 
         'Show Info
-        My.Computer.FileSystem.WriteAllText(".\txt\ShowPhone.txt", ShowPhone.Text, False, Encoding.ASCII)
+
+        'ShowPhone
+        StringHolder = ShowPhone.Text
         If ShowPhone.Text = "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\ShowPhone.txt", "   ", False, Encoding.ASCII)
+            StringHolder = "   "
         End If
+        My.Computer.FileSystem.WriteAllText(".\txt\ShowPhone.txt", StringHolder, False, Encoding.ASCII)
+        ShowPhoneCheck(1) = StringHolder
 
-        My.Computer.FileSystem.WriteAllText(".\txt\CommentLine.txt", CommentLine.Text, False, Encoding.ASCII)
+        'CommentLine
+        StringHolder = CommentLine.Text
         If CommentLine.Text = "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\CommentLine.txt", "   ", False, Encoding.ASCII)
+            StringHolder = "   "
         End If
+        My.Computer.FileSystem.WriteAllText(".\txt\CommentLine.txt", StringHolder, False, Encoding.ASCII)
+        CommentLineCheck(1) = StringHolder
 
-        My.Computer.FileSystem.WriteAllText(".\txt\ShowYouTube.txt", ShowYouTube.Text, False, Encoding.ASCII)
+        'ShowYouTube
+        StringHolder = ShowYouTube.Text
         If ShowYouTube.Text = "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\ShowYouTube.txt", "   ", False, Encoding.ASCII)
+            StringHolder = "   "
         End If
+        My.Computer.FileSystem.WriteAllText(".\txt\ShowYouTube.txt", StringHolder, False, Encoding.ASCII)
+        ShowYouTubeCheck(1) = StringHolder
 
-        My.Computer.FileSystem.WriteAllText(".\txt\ShowTwitter.txt", ShowTwitter.Text, False, Encoding.ASCII)
+        'ShowTwitter
+        StringHolder = ShowTwitter.Text
         If ShowTwitter.Text = "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\ShowTwitter.txt", "   ", False, Encoding.ASCII)
+            StringHolder = "   "
         End If
+        My.Computer.FileSystem.WriteAllText(".\txt\ShowTwitter.txt", StringHolder, False, Encoding.ASCII)
+        ShowTwitterCheck(1) = StringHolder
 
-        My.Computer.FileSystem.WriteAllText(".\txt\ShowFacebook.txt", ShowFacebook.Text, False, Encoding.ASCII)
+        'ShowFacebook
+        StringHolder = ShowFacebook.Text
         If ShowFacebook.Text = "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\ShowFacebook.txt", "   ", False, Encoding.ASCII)
+            StringHolder = "   "
         End If
+        My.Computer.FileSystem.WriteAllText(".\txt\ShowFacebook.txt", StringHolder, False, Encoding.ASCII)
+        ShowFacebookCheck(1) = StringHolder
 
-        My.Computer.FileSystem.WriteAllText(".\txt\ShowWebsite.txt", ShowWebsite.Text, False, Encoding.ASCII)
+        'ShowWebsite
+        StringHolder = ShowWebsite.Text
         If ShowWebsite.Text = "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\ShowWebsite.txt", "   ", False, Encoding.ASCII)
+            StringHolder = "   "
         End If
+        My.Computer.FileSystem.WriteAllText(".\txt\ShowWebsite.txt", StringHolder, False, Encoding.ASCII)
+        ShowWebsiteCheck(1) = StringHolder
 
-        My.Computer.FileSystem.WriteAllText(".\txt\Showemail.txt", Showemail.Text, False, Encoding.ASCII)
-        If ShowWebsite.Text = "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\Showemail.txt", "   ", False, Encoding.ASCII)
+        'Showemail
+        StringHolder = Showemail.Text
+        If Showemail.Text = "" Then
+            StringHolder = "   "
         End If
+        My.Computer.FileSystem.WriteAllText(".\txt\Showemail.txt", StringHolder, False, Encoding.ASCII)
+        ShowemailCheck(1) = StringHolder
 
-        My.Computer.FileSystem.WriteAllText(".\txt\RecordDate.txt", RecordDate.Text, False, Encoding.ASCII)
+        'RecordDate
+        StringHolder = RecordDate.Text
         If RecordDate.Text = "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\RecordDate.txt", "   ", False, Encoding.ASCII)
+            StringHolder = "   "
         End If
+        My.Computer.FileSystem.WriteAllText(".\txt\RecordDate.txt", StringHolder, False, Encoding.ASCII)
+        RecordDateCheck(1) = StringHolder
 
-        My.Computer.FileSystem.WriteAllText(".\txt\ShowName.txt", ShowName.Text, False, Encoding.ASCII)
+        'ShowName
+        StringHolder = ShowName.Text
         If ShowName.Text = "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\ShowName.txt", "   ", False, Encoding.ASCII)
+            StringHolder = "   "
         End If
+        My.Computer.FileSystem.WriteAllText(".\txt\ShowName.txt", StringHolder, False, Encoding.ASCII)
+        ShowNameCheck(1) = StringHolder
 
-        My.Computer.FileSystem.WriteAllText(".\txt\ShowTitle.txt", ShowTitle.Text, False, Encoding.ASCII)
+        'ShowTitle
+        StringHolder = ShowTitle.Text
         If ShowTitle.Text = "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\ShowTitle.txt", "   ", False, Encoding.ASCII)
+            StringHolder = "   "
         End If
+        My.Computer.FileSystem.WriteAllText(".\txt\ShowTitle.txt", StringHolder, False, Encoding.ASCII)
+        ShowTitleCheck(1) = StringHolder
 
 
         'Write txt Files for Use as Credit Titles
         'Singular or Plural
+
+        'Producer Header
         If Trim(Producer1.Text) <> "" And Trim(Producer2.Text) <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\ProducerHeader.txt", "Producers:", False, Encoding.ASCII)
+            StringHolder = "Producers:"
         Else
-            My.Computer.FileSystem.WriteAllText(".\txt\ProducerHeader.txt", "Producer:", False, Encoding.ASCII)
+            StringHolder = "Producer:"
         End If
+        If Trim(Producer1.Text) = "" And Trim(Producer2.Text) = "" Then
+            StringHolder = "   "
+        End If
+        My.Computer.FileSystem.WriteAllText(".\txt\ProducerHeader.txt", StringHolder, False, Encoding.ASCII)
+        ProducerHeaderCheck = StringHolder
 
+
+        'Host Header
         If Trim(Host1.Text) <> "" And Trim(Host2.Text) <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\HostHeader.txt", "Hosts:", False, Encoding.ASCII)
+            StringHolder = "Hosts:"
         Else
-            My.Computer.FileSystem.WriteAllText(".\txt\HostHeader.txt", "Host:", False, Encoding.ASCII)
+            StringHolder = "Host:"
         End If
+        If Trim(Host1.Text) = "" And Trim(Host2.Text) = "" Then
+            StringHolder = "   "
+        End If
+        My.Computer.FileSystem.WriteAllText(".\txt\HostHeader.txt", StringHolder, False, Encoding.ASCII)
+        HostHeaderCheck = StringHolder
 
+
+        'Director Header
         If Trim(Director1.Text) <> "" And Trim(Director2.Text) <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\DirectorHeader.txt", "Directors:", False, Encoding.ASCII)
+            StringHolder = "Directors:"
         Else
-            My.Computer.FileSystem.WriteAllText(".\txt\DirectorHeader.txt", "Director:", False, Encoding.ASCII)
+            StringHolder = "Director:"
         End If
+        If Trim(Director1.Text) = "" And Trim(Director2.Text) = "" Then
+            StringHolder = "   "
+        End If
+        My.Computer.FileSystem.WriteAllText(".\txt\DirectorHeader.txt", StringHolder, False, Encoding.ASCII)
+        DirectorHeaderCheck = StringHolder
 
+
+        'Graphics Header
         If Trim(Graphics1.Text) <> "" And Trim(Graphics2.Text) <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\GraphicsHeader.txt", "Graphics Operators:", False, Encoding.ASCII)
+            StringHolder = "Graphics Operators:"
         Else
-            My.Computer.FileSystem.WriteAllText(".\txt\GraphicsHeader.txt", "Graphics Operator:", False, Encoding.ASCII)
+            StringHolder = "Graphics Operator:"
         End If
+        If Trim(Graphics1.Text) = "" And Trim(Graphics2.Text) = "" Then
+            StringHolder = "   "
+        End If
+        My.Computer.FileSystem.WriteAllText(".\txt\GraphicsHeader.txt", StringHolder, False, Encoding.ASCII)
+        GraphicsHeaderCheck = StringHolder
 
+
+        'Audio Header
         If Trim(Audio1.Text) <> "" And Trim(Audio2.Text) <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\txt\AudioHeader.txt", "Audio Operators:", False, Encoding.ASCII)
+            StringHolder = "Audio Operators:"
         Else
-            My.Computer.FileSystem.WriteAllText(".\txt\AudioHeader.txt", "Audio Operator:", False, Encoding.ASCII)
+            StringHolder = "Audio Operator:"
         End If
+        If Trim(Audio1.Text) = "" And Trim(Audio2.Text) = "" Then
+            StringHolder = "   "
+        End If
+        My.Computer.FileSystem.WriteAllText(".\txt\AudioHeader.txt", StringHolder, False, Encoding.ASCII)
+        AudioHeaderCheck = StringHolder
 
 
-        'Camera
+        'Camera Header
         Dim CamVar As Integer
         CamVar = 0
 
@@ -243,13 +363,18 @@ Public Class Form1
         Next i
 
         If CamVar > 1 Then
-            My.Computer.FileSystem.WriteAllText(".\txt\CameraHeader.txt", "Camera Operators:", False, Encoding.ASCII)
+            StringHolder = "Camera Operators:"
         Else
-            My.Computer.FileSystem.WriteAllText(".\txt\CameraHeader.txt", "Camera Operator:", False, Encoding.ASCII)
+            StringHolder = "Camera Operator:"
         End If
+        If CamVar = 0 Then
+            StringHolder = "   "
+        End If
+        My.Computer.FileSystem.WriteAllText(".\txt\CameraHeader.txt", StringHolder, False, Encoding.ASCII)
+        CameraHeaderCheck = StringHolder
 
 
-        'Floor
+        'Floor Header
         Dim FloorVar As Integer
         FloorVar = 0
 
@@ -260,12 +385,18 @@ Public Class Form1
         Next i
 
         If FloorVar > 1 Then
-            My.Computer.FileSystem.WriteAllText(".\txt\FloorHeader.txt", "Floor Directors:", False, Encoding.ASCII)
+            StringHolder = "Floor Directors:"
         Else
-            My.Computer.FileSystem.WriteAllText(".\txt\FloorHeader.txt", "Floor Director:", False, Encoding.ASCII)
+            StringHolder = "Floor Director:"
         End If
+        If FloorVar = 0 Then
+            StringHolder = "   "
+        End If
+        My.Computer.FileSystem.WriteAllText(".\txt\FloorHeader.txt", StringHolder, False, Encoding.ASCII)
+        FloorHeaderCheck = StringHolder
 
 
+        'Guest Header
         Dim NameVar As Integer
         NameVar = 0
 
@@ -275,12 +406,20 @@ Public Class Form1
             End If
         Next i
 
-
         If NameVar > 1 Then
-            My.Computer.FileSystem.WriteAllText(".\txt\GuestHeader.txt", "Guests:", False, Encoding.ASCII)
+            StringHolder = "Guests:"
         Else
-            My.Computer.FileSystem.WriteAllText(".\txt\GuestHeader.txt", "Guest:", False, Encoding.ASCII)
+            StringHolder = "Guest:"
         End If
+        If NameVar = 0 Then
+            StringHolder = "   "
+        End If
+        My.Computer.FileSystem.WriteAllText(".\txt\GuestHeader.txt", StringHolder, False, Encoding.ASCII)
+        GuestHeaderCheck = StringHolder
+
+
+
+
 
 
 
@@ -301,79 +440,80 @@ Public Class Form1
         Bug()
 
         'Host Names
-        If My.Computer.FileSystem.ReadAllText(".\txt\Host1.txt") <> "   " Then
-            LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\Host1.txt"), "Host of " & My.Computer.FileSystem.ReadAllText(".\txt\ShowName.txt"), "Blank.tga", "04Host1")
-        End If
-
-        If My.Computer.FileSystem.ReadAllText(".\txt\Host2.txt") <> "   " Then
-            LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\Host2.txt"), "Host of " & My.Computer.FileSystem.ReadAllText(".\txt\ShowName.txt"), "Blank.tga", "05Host2")
-        End If
+        For i = 1 To 2
+            If CStr(HostCheck(i)) <> "   " Then
+                LowerThird(CStr(HostCheck(i)), "Host of " & CStr(ShowNameCheck(1)), "Blank.tga", "0" & i + 3 & "Host" & i)
+            End If
+        Next i
 
         'Show Phone
-        If My.Computer.FileSystem.ReadAllText(".\txt\ShowPhone.txt") <> "   " Then
-            LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\ShowPhone.txt"), My.Computer.FileSystem.ReadAllText(".\txt\ShowName.txt") & " Phone", "Blank.tga", "06ShowPhone")
+        If CStr(ShowPhoneCheck(1)) <> "   " Then
+            LowerThird(CStr(ShowPhoneCheck(1)), CStr(ShowNameCheck(1)) & " Phone", "Blank.tga", "06ShowPhone")
         End If
 
         'Comment Line
-        If My.Computer.FileSystem.ReadAllText(".\txt\CommentLine.txt") <> "   " Then
-            LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\CommentLine.txt"), "Comment Line", "Blank.tga", "07CommentLine")
+        If CStr(CommentLineCheck(1)) <> "   " Then
+            LowerThird(CStr(CommentLineCheck(1)), "Comment Line", "Blank.tga", "07CommentLine")
         End If
 
         'Show YouTube
-        If My.Computer.FileSystem.ReadAllText(".\txt\ShowYouTube.txt") <> "   " Then
-            LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\ShowYouTube.txt"), "", "YouTube.tga", "08ShowYouTube")
+        If CStr(ShowYouTubeCheck(1)) <> "   " Then
+            LowerThird(CStr(ShowYouTubeCheck(1)), "", "YouTube.tga", "08ShowYouTube")
         End If
 
         'Show Twitter
-        If My.Computer.FileSystem.ReadAllText(".\txt\ShowTwitter.txt") <> "   " Then
-            LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\ShowTwitter.txt"), "", "Twitter.tga", "09ShowTwitter")
+        If CStr(ShowTwitterCheck(1)) <> "   " Then
+            LowerThird(CStr(ShowTwitterCheck(1)), "", "Twitter.tga", "09ShowTwitter")
         End If
 
         'Show Facebook
-        If My.Computer.FileSystem.ReadAllText(".\txt\ShowFacebook.txt") <> "   " Then
-            LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\ShowFacebook.txt"), "", "Facebook.tga", "10ShowFacebook")
+        If CStr(ShowFacebookCheck(1)) <> "   " Then
+            LowerThird(CStr(ShowFacebookCheck(1)), "", "Facebook.tga", "10ShowFacebook")
         End If
 
         'Show Website
-        If My.Computer.FileSystem.ReadAllText(".\txt\ShowWebsite.txt") <> "   " Then
-            LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\ShowWebsite.txt"), "", "Blank.tga", "11ShowWebsite")
+        If CStr(ShowWebsiteCheck(1)) <> "   " Then
+            LowerThird(CStr(ShowWebsiteCheck(1)), "", "Blank.tga", "11ShowWebsite")
         End If
 
         'Show email
-        If My.Computer.FileSystem.ReadAllText(".\txt\Showemail.txt") <> "   " Then
-            LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\Showemail.txt"), "", "Blank.tga", "12Showemail")
+        If CStr(ShowemailCheck(1)) <> "   " Then
+            LowerThird(CStr(ShowemailCheck(1)), "", "Blank.tga", "12Showemail")
         End If
 
         'Guests
         For i = 1 To 6
-            If My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt") <> "   " Then
-                'Name
-                LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt"), My.Computer.FileSystem.ReadAllText(".\txt\Title" & i & ".txt"), "Blank.tga", 09 + (i * 4) & "Guest" & i)
+            'If NameCheck(i) <> "   " Then
+            'Name
+            If CStr(NameCheck(i)) <> "   " Then
+                    LowerThird(CStr(NameCheck(i)), CStr(TitleCheck(i)), "Blank.tga", 09 + (i * 4) & "Guest" & i)
+                End If
 
 
                 'Contact
-                If My.Computer.FileSystem.ReadAllText(".\txt\Phone" & i & ".txt") <> "   " Or My.Computer.FileSystem.ReadAllText(".\txt\email" & i & ".txt") <> "   " Then
-                    LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\Phone" & i & ".txt"), My.Computer.FileSystem.ReadAllText(".\txt\email" & i & ".txt"), "Blank.tga", 10 + (i * 4) & "Contact" & i)
+                If PhoneCheck(i) <> "   " Or emailCheck(i) <> "   " Then
+                    LowerThird(CStr(PhoneCheck(i)), CStr(emailCheck(i)), "Blank.tga", 10 + (i * 4) & "Contact" & i)
                 End If
-                If My.Computer.FileSystem.ReadAllText(".\txt\Phone" & i & ".txt") = "   " And My.Computer.FileSystem.ReadAllText(".\txt\email" & i & ".txt") <> "   " Then
-                    LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\email" & i & ".txt"), "", "Blank.tga", 11 + (i * 4) & "Contact" & i)
+                If PhoneCheck(i) = "   " And emailCheck(i) <> "   " Then
+                    LowerThird(CStr(emailCheck(i)), "", "Blank.tga", 10 + (i * 4) & "Contact" & i)
                 End If
 
+
                 'Website
-                If My.Computer.FileSystem.ReadAllText(".\txt\Website" & i & ".txt") <> "   " Then
-                    LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\Website" & i & ".txt"), "", "Blank.tga", 12 + (i * 4) & "Website" & i)
+                If CStr(WebsiteCheck(i)) <> "   " Then
+                    LowerThird(CStr(WebsiteCheck(i)), "", "Blank.tga", 11 + (i * 4) & "Website" & i)
                 End If
 
                 'City
-                If My.Computer.FileSystem.ReadAllText(".\txt\CityPhone" & i & ".txt") <> "   " Or My.Computer.FileSystem.ReadAllText(".\txt\CityWebsite" & i & ".txt") <> "   " Then
-                    LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\CityPhone" & i & ".txt"), My.Computer.FileSystem.ReadAllText(".\txt\CityWebsite" & i & ".txt"), "Blank.tga", 13 + (i * 4) & "City" & i)
+                If CityPhoneCheck(i) <> "   " Or CityWebsiteCheck(i) <> "   " Then
+                    LowerThird(CStr(CityPhoneCheck(i)), CStr(CityWebsiteCheck(i)), "Blank.tga", 12 + (i * 4) & "City" & i)
                 End If
-                If My.Computer.FileSystem.ReadAllText(".\txt\CityPhone" & i & ".txt") = "   " And My.Computer.FileSystem.ReadAllText(".\txt\CityWebsite" & i & ".txt") <> "   " Then
-                    LowerThird(My.Computer.FileSystem.ReadAllText(".\txt\CityWebsite" & i & ".txt"), "", "Blank.tga", 14 + (i * 4) & "City" & i)
+                If PhoneCheck(i) = "   " And CityWebsiteCheck(i) <> "   " Then
+                    LowerThird(CStr(CityWebsiteCheck(i)), "", "Blank.tga", 12 + (i * 4) & "City" & i)
                 End If
 
+            'End If
 
-            End If
         Next i
 
 
@@ -935,12 +1075,12 @@ Public Class Form1
             Output = Output.Replace(ChrW(4) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace("Open"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(FileName))
 
             'Show Title
-            Dim ShowTitleString As String = My.Computer.FileSystem.ReadAllText(".\txt\ShowTitle.txt")
+            Dim ShowTitleString As String = ShowTitleCheck(1)
             CharCountNew = ShowTitleString.Length
             Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Show Title"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(ShowTitleString))
 
             'Guest Header
-            Dim GuestHeaderString As String = My.Computer.FileSystem.ReadAllText(".\txt\GuestHeader.txt")
+            Dim GuestHeaderString As String = GuestHeaderCheck
             CharCountNew = GuestHeaderString.Length
             Output = Output.Replace(ChrW(12) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Guest Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GuestHeaderString))
 
@@ -949,54 +1089,49 @@ Public Class Form1
             Dim TitleString As String
             For i = 1 To 6
                 'Name
-                NameString = My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt")
+                NameString = NameCheck(i)
                 CharCountNew = NameString.Length
                 Output = Output.Replace(ChrW(7) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Guest ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(NameString))
 
-                NameString = My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt")
+                NameString = NameCheck(i)
                 CharCountNew = NameString.Length
                 Output = Output.Replace(ChrW(6) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Name ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(NameString))
 
                 'Title
-                TitleString = My.Computer.FileSystem.ReadAllText(".\txt\Title" & i & ".txt")
+                TitleString = TitleCheck(i)
                 CharCountNew = TitleString.Length
                 Output = Output.Replace(ChrW(7) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Title ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(TitleString))
             Next i
 
 
             'Record Date
-            Dim RecordDateString As String = My.Computer.FileSystem.ReadAllText(".\txt\RecordDate.txt")
+            Dim RecordDateString As String = RecordDateCheck(1)
             CharCountNew = RecordDateString.Length
             Output = Output.Replace(ChrW(11) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Record Date"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(RecordDateString))
 
             'Producer Header
-            Dim ProducerHeaderString As String = My.Computer.FileSystem.ReadAllText(".\txt\ProducerHeader.txt")
+            Dim ProducerHeaderString As String = ProducerHeaderCheck
             CharCountNew = ProducerHeaderString.Length
             Output = Output.Replace(ChrW(15) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Producer Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(ProducerHeaderString))
 
-            'Producers
-            Dim Producer1String As String = My.Computer.FileSystem.ReadAllText(".\txt\Producer1.txt")
-            CharCountNew = Producer1String.Length
-            Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Producer 1"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(Producer1String))
-
-            Dim Producer2String As String = My.Computer.FileSystem.ReadAllText(".\txt\Producer2.txt")
-            CharCountNew = Producer1String.Length
-            Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Producer 2"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(Producer2String))
-
+            For i = 1 To 2
+                'Producers
+                Dim ProducerString As String = ProducerCheck(i)
+                CharCountNew = ProducerString.Length
+                Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Producer " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(ProducerString))
+            Next i
 
             'Host Header
-            Dim HostHeaderString As String = My.Computer.FileSystem.ReadAllText(".\txt\HostHeader.txt")
+            Dim HostHeaderString As String = HostHeaderCheck
             CharCountNew = HostHeaderString.Length
             Output = Output.Replace(ChrW(11) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Host Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(HostHeaderString))
 
-            'Hosts
-            Dim Host1String As String = My.Computer.FileSystem.ReadAllText(".\txt\Host1.txt")
-            CharCountNew = Host1String.Length
-            Output = Output.Replace(ChrW(6) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Host 1"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(Host1String))
-
-            Dim Host2String As String = My.Computer.FileSystem.ReadAllText(".\txt\Host2.txt")
-            CharCountNew = Host2String.Length
-            Output = Output.Replace(ChrW(6) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Host 2"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(Host2String))
+            For i = 1 To 2
+                'Hosts
+                Dim HostString As String = HostCheck(i)
+                CharCountNew = HostString.Length
+                Output = Output.Replace(ChrW(6) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Host " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(HostString))
+            Next i
 
             My.Computer.FileSystem.WriteAllText(".\CutFiles\01Open.tcf", Output, False, Encoding.GetEncoding("IBM861"))
 
@@ -1023,13 +1158,13 @@ Public Class Form1
 
 
             'Show Title
-            Dim ShowTitleString As String = My.Computer.FileSystem.ReadAllText(".\txt\ShowTitle.txt")
+            Dim ShowTitleString As String = ShowTitleCheck(1)
             CharCountNew = ShowTitleString.Length
             Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Show Title"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(ShowTitleString))
 
 
             'Guest Header
-            Dim GuestHeaderString As String = My.Computer.FileSystem.ReadAllText(".\txt\GuestHeader.txt")
+            Dim GuestHeaderString As String = GuestHeaderCheck
             CharCountNew = GuestHeaderString.Length
             Output = Output.Replace(ChrW(12) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Guest Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GuestHeaderString))
 
@@ -1038,121 +1173,116 @@ Public Class Form1
             Dim TitleString As String
             For i = 1 To 6
                 'Name
-                NameString = My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt")
+                NameString = NameCheck(i)
                 CharCountNew = NameString.Length
                 Output = Output.Replace(ChrW(7) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Guest ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(NameString))
 
                 Output = Output.Replace(ChrW(6) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Name ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(NameString))
 
                 'Title
-                TitleString = My.Computer.FileSystem.ReadAllText(".\txt\Title" & i & ".txt")
+                TitleString = TitleCheck(i)
                 CharCountNew = TitleString.Length
                 Output = Output.Replace(ChrW(7) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Title ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(TitleString))
             Next i
 
 
             'Producer Header
-            Dim ProducerHeaderString As String = My.Computer.FileSystem.ReadAllText(".\txt\ProducerHeader.txt")
+            Dim ProducerHeaderString As String = ProducerHeaderCheck
             CharCountNew = ProducerHeaderString.Length
             Output = Output.Replace(ChrW(15) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Producer Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(ProducerHeaderString))
 
-            'Producers
-            Dim Producer1String As String = My.Computer.FileSystem.ReadAllText(".\txt\Producer1.txt")
-            CharCountNew = Producer1String.Length
-            Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Producer 1"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(Producer1String))
-
-            Dim Producer2String As String = My.Computer.FileSystem.ReadAllText(".\txt\Producer2.txt")
-            CharCountNew = Producer1String.Length
-            Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Producer 2"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(Producer2String))
-
+            For i = 1 To 2
+                'Producers
+                Dim ProducerString As String = ProducerCheck(i)
+                CharCountNew = ProducerString.Length
+                Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Producer " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(ProducerString))
+            Next i
 
             'Host Header
-            Dim HostHeaderString As String = My.Computer.FileSystem.ReadAllText(".\txt\HostHeader.txt")
+            Dim HostHeaderString As String = HostHeaderCheck
             CharCountNew = HostHeaderString.Length
             Output = Output.Replace(ChrW(11) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Host Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(HostHeaderString))
 
-            'Hosts
-            Dim Host1String As String = My.Computer.FileSystem.ReadAllText(".\txt\Host1.txt")
-            CharCountNew = Host1String.Length
-            Output = Output.Replace(ChrW(6) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Host 1"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(Host1String))
-
-            Dim Host2String As String = My.Computer.FileSystem.ReadAllText(".\txt\Host2.txt")
-            CharCountNew = Host2String.Length
-            Output = Output.Replace(ChrW(6) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Host 2"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(Host2String))
+            For i = 1 To 2
+                'Hosts
+                Dim HostString As String = HostCheck(i)
+                CharCountNew = HostString.Length
+                Output = Output.Replace(ChrW(6) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Host " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(HostString))
+            Next i
 
 
             'Director Header
-            Dim DirectorHeaderString As String = My.Computer.FileSystem.ReadAllText(".\txt\DirectorHeader.txt")
+            Dim DirectorHeaderString As String = DirectorHeaderCheck
             CharCountNew = DirectorHeaderString.Length
             Output = Output.Replace(ChrW(15) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Director Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(DirectorHeaderString))
 
             'Directors
             Dim DirectorString As String
             For i = 1 To 2
-                DirectorString = My.Computer.FileSystem.ReadAllText(".\txt\Director" & i & ".txt")
+                DirectorString = DirectorCheck(i)
                 CharCountNew = DirectorString.Length
-                Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Director ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(DirectorString))
+                Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Director " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(DirectorString))
             Next i
 
 
             'Graphics Header
-            Dim GraphicsHeaderString As String = My.Computer.FileSystem.ReadAllText(".\txt\GraphicsHeader.txt")
+            Dim GraphicsHeaderString As String = GraphicsHeaderCheck
             CharCountNew = GraphicsHeaderString.Length
             Output = Output.Replace(ChrW(15) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Graphics Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GraphicsHeaderString))
 
             'Graphics
             Dim GraphicsString As String
             For i = 1 To 2
-                GraphicsString = My.Computer.FileSystem.ReadAllText(".\txt\Graphics" & i & ".txt")
+                GraphicsString = GraphicsCheck(i)
                 CharCountNew = GraphicsString.Length
-                Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Graphics ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GraphicsString))
+                Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Graphics " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GraphicsString))
             Next i
 
 
             'Audio Header
-            Dim AudioHeaderString As String = My.Computer.FileSystem.ReadAllText(".\txt\AudioHeader.txt")
+            Dim AudioHeaderString As String = AudioHeaderCheck
             CharCountNew = AudioHeaderString.Length
             Output = Output.Replace(ChrW(12) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Audio Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(AudioHeaderString))
 
             'Audio
             Dim AudioString As String
             For i = 1 To 2
-                AudioString = My.Computer.FileSystem.ReadAllText(".\txt\Audio" & i & ".txt")
+                AudioString = AudioCheck(i)
                 CharCountNew = AudioString.Length
-                Output = Output.Replace(ChrW(7) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Audio ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(AudioString))
+                Output = Output.Replace(ChrW(7) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Audio " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(AudioString))
             Next i
 
 
             'Camera Header
-            Dim CameraHeaderString As String = My.Computer.FileSystem.ReadAllText(".\txt\CameraHeader.txt")
+            Dim CameraHeaderString As String = CameraHeaderCheck
             CharCountNew = CameraHeaderString.Length
             Output = Output.Replace(ChrW(13) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Camera Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(CameraHeaderString))
 
             'Camera
             Dim CameraString As String
             For i = 1 To 3
-                CameraString = My.Computer.FileSystem.ReadAllText(".\txt\Camera" & i & ".txt")
+                CameraString = CameraCheck(i)
                 CharCountNew = CameraString.Length
-                Output = Output.Replace(ChrW(8) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Camera ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(CameraString))
+                Output = Output.Replace(ChrW(8) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Camera " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(CameraString))
             Next i
 
 
             'Floor Header
-            Dim FloorHeaderString As String = My.Computer.FileSystem.ReadAllText(".\txt\FloorHeader.txt")
+            Dim FloorHeaderString As String = FloorHeaderCheck
             CharCountNew = FloorHeaderString.Length
             Output = Output.Replace(ChrW(12) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Floor Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(FloorHeaderString))
 
             'Floor
             Dim FloorString As String
             For i = 1 To 3
-                FloorString = My.Computer.FileSystem.ReadAllText(".\txt\Floor" & i & ".txt")
+                FloorString = FloorCheck(i)
                 CharCountNew = FloorString.Length
-                Output = Output.Replace(ChrW(7) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Floor ") & i & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0) & ChrW(0), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(FloorString))
+                Output = Output.Replace(ChrW(7) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Floor " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(FloorString))
             Next i
 
 
             'Record Date
-            Dim RecordDateString As String = My.Computer.FileSystem.ReadAllText(".\txt\RecordDate.txt")
+            Dim RecordDateString As String = RecordDateCheck(1)
             CharCountNew = RecordDateString.Length
             Output = Output.Replace(ChrW(11) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Record Date"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(RecordDateString))
 
