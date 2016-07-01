@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.21  6/29/2016
+    'Version 1.22  7/1/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -592,10 +592,22 @@ Public Class Form1
     End Sub
 
     Private Sub TextFileCheckTime_Tick(sender As Object, e As EventArgs) Handles TextFileCheckTime.Tick
-        'Checks For Changes in txt Files Every 5 Secounds
+        'Checks For Changes in txt Files Every 15 Secounds
         FileCheck()
 
     End Sub
+
+    Public Function FileCompair(FileName As String, VariableValue As String)
+
+        If System.IO.File.Exists(".\txt\" & FileName & ".txt") Then
+            If VariableValue <> My.Computer.FileSystem.ReadAllText(".\txt\" & FileName & ".txt") Then
+                VariableValue = My.Computer.FileSystem.ReadAllText(".\txt\" & FileName & ".txt")
+                Me.Controls(FileName).Text = Trim(VariableValue)
+            End If
+        End If
+
+        Return VariableValue
+    End Function
 
     Public Sub FileCheck()
         'Compair txt Files to the Variable Values
@@ -605,192 +617,64 @@ Public Class Form1
 
         'Guests
         For i = 1 To 6
+            NameCheck(i) = FileCompair("Name" & i, NameCheck(i))
 
-            If System.IO.File.Exists(".\txt\Name" & i & ".txt") Then
-                If NameCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt") Then
-                    NameCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Name" & i & ".txt")
-                    Me.Controls("Name" & i).Text = Trim(NameCheck(i))
-                End If
-            End If
+            TitleCheck(i) = FileCompair("Title" & i, TitleCheck(i))
 
-            If System.IO.File.Exists(".\txt\Title" & i & ".txt") Then
-                If TitleCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Title" & i & ".txt") Then
-                    TitleCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Title" & i & ".txt")
-                    Me.Controls("Title" & i).Text = Trim(TitleCheck(i))
-                End If
-            End If
+            PhoneCheck(i) = FileCompair("Phone" & i, PhoneCheck(i))
 
-            If System.IO.File.Exists(".\txt\Phone" & i & ".txt") Then
-                If PhoneCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Phone" & i & ".txt") Then
-                    PhoneCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Phone" & i & ".txt")
-                    Me.Controls("Phone" & i).Text = Trim(PhoneCheck(i))
-                End If
-            End If
+            emailCheck(i) = FileCompair("email" & i, emailCheck(i))
 
-            If System.IO.File.Exists(".\txt\email" & i & ".txt") Then
-                If emailCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\email" & i & ".txt") Then
-                    emailCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\email" & i & ".txt")
-                    Me.Controls("email" & i).Text = Trim(emailCheck(i))
-                End If
-            End If
+            WebsiteCheck(i) = FileCompair("Website" & i, WebsiteCheck(i))
 
-            If System.IO.File.Exists(".\txt\Website" & i & ".txt") Then
-                If WebsiteCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Website" & i & ".txt") Then
-                    WebsiteCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Website" & i & ".txt")
-                    Me.Controls("Website" & i).Text = Trim(WebsiteCheck(i))
-                End If
-            End If
+            CityPhoneCheck(i) = FileCompair("CityPhone" & i, CityPhoneCheck(i))
 
-            If System.IO.File.Exists(".\txt\CityPhone" & i & ".txt") Then
-                If CityPhoneCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\CityPhone" & i & ".txt") Then
-                    CityPhoneCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\CityPhone" & i & ".txt")
-                    Me.Controls("CityPhone" & i).Text = Trim(CityPhoneCheck(i))
-                End If
-            End If
-
-            If System.IO.File.Exists(".\txt\CityWebsite" & i & ".txt") Then
-                If CityWebsiteCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\CityWebsite" & i & ".txt") Then
-                    CityWebsiteCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\CityWebsite" & i & ".txt")
-                    Me.Controls("CityWebsite" & i).Text = Trim(CityWebsiteCheck(i))
-                End If
-            End If
-
+            CityWebsiteCheck(i) = FileCompair("CityWebsite" & i, CityWebsiteCheck(i))
         Next i
 
 
         'Crew
         For i = 1 To 2
-            If System.IO.File.Exists(".\txt\Producer" & i & ".txt") Then
-                If ProducerCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Producer" & i & ".txt") Then
-                    ProducerCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Producer" & i & ".txt")
-                    Me.Controls("Producer" & i).Text = Trim(ProducerCheck(i))
-                End If
-            End If
+            ProducerCheck(i) = FileCompair("Producer" & i, ProducerCheck(i))
 
-            If System.IO.File.Exists(".\txt\Host" & i & ".txt") Then
-                If HostCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Host" & i & ".txt") Then
-                    HostCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Host" & i & ".txt")
-                    Me.Controls("Host" & i).Text = Trim(HostCheck(i))
-                End If
-            End If
+            HostCheck(i) = FileCompair("Host" & i, HostCheck(i))
 
+            DirectorCheck(i) = FileCompair("Director" & i, DirectorCheck(i))
 
-            If System.IO.File.Exists(".\txt\Director" & i & ".txt") Then
-                If DirectorCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Director" & i & ".txt") Then
-                    DirectorCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Director" & i & ".txt")
-                    Me.Controls("Director" & i).Text = Trim(DirectorCheck(i))
-                End If
-            End If
+            GraphicsCheck(i) = FileCompair("Graphics" & i, GraphicsCheck(i))
 
-            If System.IO.File.Exists(".\txt\Graphics" & i & ".txt") Then
-                If GraphicsCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Graphics" & i & ".txt") Then
-                    GraphicsCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Graphics" & i & ".txt")
-                    Me.Controls("Graphics" & i).Text = Trim(GraphicsCheck(i))
-                End If
-            End If
-
-            If System.IO.File.Exists(".\txt\Audio" & i & ".txt") Then
-                If AudioCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Audio" & i & ".txt") Then
-                    AudioCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Audio" & i & ".txt")
-                    Me.Controls("Audio" & i).Text = Trim(AudioCheck(i))
-                End If
-            End If
-
+            AudioCheck(i) = FileCompair("Audio" & i, AudioCheck(i))
         Next i
 
 
 
         For i = 1 To 3
+            CameraCheck(i) = FileCompair("Camera" & i, CameraCheck(i))
 
-            If System.IO.File.Exists(".\txt\Camera" & i & ".txt") Then
-                If CameraCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Camera" & i & ".txt") Then
-                    CameraCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Camera" & i & ".txt")
-                    Me.Controls("Camera" & i).Text = Trim(CameraCheck(i))
-                End If
-            End If
-
-            If System.IO.File.Exists(".\txt\Floor" & i & ".txt") Then
-                If FloorCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Floor" & i & ".txt") Then
-                    FloorCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Floor" & i & ".txt")
-                    Me.Controls("Floor" & i).Text = Trim(FloorCheck(i))
-                End If
-            End If
-
+            FloorCheck(i) = FileCompair("Floor" & i, FloorCheck(i))
         Next i
 
         'Show Info
         For i = 1 To 1
+            ShowPhoneCheck(i) = FileCompair("ShowPhone", ShowPhoneCheck(i))
 
-            If System.IO.File.Exists(".\txt\ShowPhone.txt") Then
-                If ShowPhoneCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\ShowPhone.txt") Then
-                    ShowPhoneCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\ShowPhone.txt")
-                    ShowPhone.Text = Trim(ShowPhoneCheck(i))
-                End If
-            End If
+            CommentLineCheck(i) = FileCompair("CommentLine", CommentLineCheck(i))
 
-            If System.IO.File.Exists(".\txt\CommentLine.txt") Then
-                If CommentLineCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\CommentLine.txt") Then
-                    CommentLineCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\CommentLine.txt")
-                    CommentLine.Text = Trim(CommentLineCheck(i))
-                End If
-            End If
+            ShowYouTubeCheck(i) = FileCompair("ShowYouTube", ShowYouTubeCheck(i))
 
-            If System.IO.File.Exists(".\txt\ShowYouTube.txt") Then
-                If ShowYouTubeCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\ShowYouTube.txt") Then
-                    ShowYouTubeCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\ShowYouTube.txt")
-                    ShowYouTube.Text = Trim(ShowYouTubeCheck(i))
-                End If
-            End If
+            ShowTwitterCheck(i) = FileCompair("ShowTwitter", ShowTwitterCheck(i))
 
-            If System.IO.File.Exists(".\txt\ShowTwitter.txt") Then
-                If ShowTwitterCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\ShowTwitter.txt") Then
-                    ShowTwitterCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\ShowTwitter.txt")
-                    ShowTwitter.Text = Trim(ShowTwitterCheck(i))
-                End If
-            End If
+            ShowFacebookCheck(i) = FileCompair("ShowFacebook", ShowFacebookCheck(i))
 
-            If System.IO.File.Exists(".\txt\ShowFacebook.txt") Then
-                If ShowFacebookCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\ShowFacebook.txt") Then
-                    ShowFacebookCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\ShowFacebook.txt")
-                    ShowFacebook.Text = Trim(ShowFacebookCheck(i))
-                End If
-            End If
+            ShowWebsiteCheck(i) = FileCompair("ShowWebsite", ShowWebsiteCheck(i))
 
-            If System.IO.File.Exists(".\txt\ShowWebsite.txt") Then
-                If ShowWebsiteCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\ShowWebsite.txt") Then
-                    ShowWebsiteCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\ShowWebsite.txt")
-                    ShowWebsite.Text = Trim(ShowWebsiteCheck(i))
-                End If
-            End If
+            ShowemailCheck(i) = FileCompair("Showemail", ShowemailCheck(i))
 
-            If System.IO.File.Exists(".\txt\Showemail.txt") Then
-                If ShowemailCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\Showemail.txt") Then
-                    ShowemailCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\Showemail.txt")
-                    Showemail.Text = Trim(ShowemailCheck(i))
-                End If
-            End If
+            RecordDateCheck(i) = FileCompair("RecordDate", RecordDateCheck(i))
 
-            If System.IO.File.Exists(".\txt\RecordDate.txt") Then
-                If RecordDateCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\RecordDate.txt") Then
-                    RecordDateCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\RecordDate.txt")
-                    RecordDate.Text = Trim(RecordDateCheck(i))
-                End If
-            End If
+            ShowNameCheck(i) = FileCompair("ShowName", ShowNameCheck(i))
 
-            If System.IO.File.Exists(".\txt\ShowName.txt") Then
-                If ShowNameCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\ShowName.txt") Then
-                    ShowNameCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\ShowName.txt")
-                    ShowName.Text = Trim(ShowNameCheck(i))
-                End If
-            End If
-
-            If System.IO.File.Exists(".\txt\ShowTitle.txt") Then
-                If ShowTitleCheck(i) <> My.Computer.FileSystem.ReadAllText(".\txt\ShowTitle.txt") Then
-                    ShowTitleCheck(i) = My.Computer.FileSystem.ReadAllText(".\txt\ShowTitle.txt")
-                    ShowTitle.Text = Trim(ShowTitleCheck(i))
-                End If
-            End If
-
+            ShowTitleCheck(i) = FileCompair("ShowTitle", ShowTitleCheck(i))
         Next i
 
 
@@ -830,7 +714,6 @@ Public Class Form1
             i = i + 1
         Next
 
-
         Return SpaceString
     End Function
 
@@ -846,44 +729,57 @@ Public Class Form1
             i = i + 1
         Next
 
-
         Return SpaceString
     End Function
+
+
+    Public Function CutFileTitle(ByVal CutFileString As String, OldText As String, NewText As String)
+
+        CutFileString = CutFileString.Replace(ChrW(OldText.Length) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(OldText), ChrW(NewText.Length) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(NewText))
+
+        Return CutFileString
+    End Function
+
+
+    Public Function CutFileText(ByVal CutFileString As String, OldText As String, NewText As String)
+
+        If NewText = "" Then
+            NewText = "   "
+        End If
+
+        CutFileString = CutFileString.Replace(ChrW(OldText.Length) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(OldText), ChrW(NewText.Length) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(NewText))
+
+        Return CutFileString
+    End Function
+
+
+    Public Function CutFilePicture(ByVal CutFileString As String, OldText As String, NewText As String)
+
+        CutFileString = CutFileString.Replace(ChrW(OldText.Length) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(OldText), ChrW(NewText.Length) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(NewText))
+
+        Return CutFileString
+    End Function
+
 
 
     Public Sub LowerThird(ByVal TopLine As String, ByVal BottomLine As String, ByVal Pic As String, ByVal FileName As String)
 
         If System.IO.File.Exists(".\Templates\Lower.tcf") Then
-            Dim Template As String = My.Computer.FileSystem.ReadAllText(".\Templates\Lower.tcf", Encoding.GetEncoding("IBM861"))
-
-            Dim Output As String
-            Output = Template
+            Dim Output As String = My.Computer.FileSystem.ReadAllText(".\Templates\Lower.tcf", Encoding.GetEncoding("IBM861"))
 
             Dim Path As String = "C:\Users\MyComputer\Desktop\Images\"
-            Dim CharCountOld As Integer
-            Dim CharCountNew As Integer
-
 
             'Page Name
-            CharCountNew = FileName.Length
-            Output = Output.Replace(ChrW(5) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace("Lower"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(FileName))
+            Output = CutFileTitle(Output, "Lower", FileName)
 
             'Top Line
-            CharCountNew = TopLine.Length
-            Output = Output.Replace(ChrW(4) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Name"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(TopLine))
+            Output = CutFileText(Output, "Name", TopLine)
 
             'Botton Line
-            If BottomLine = "" Then
-                BottomLine = "   "
-            End If
-            CharCountNew = BottomLine.Length
-            Output = Output.Replace(ChrW(5) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Title"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(BottomLine))
+            Output = CutFileText(Output, "Title", BottomLine)
 
             'Pic
-            CharCountOld = Path.Length + 11
-            CharCountNew = Path.Length + Pic.Length
-            Output = Output.Replace(ChrW(CharCountOld) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(Path) & AddOneSpace("Picture.tga"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(Path) & AddOneSpace(Pic))
-
+            Output = CutFilePicture(Output, Path & "Picture.tga", Path & Pic)
 
             My.Computer.FileSystem.WriteAllText(".\CutFiles\" & FileName & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
         End If
@@ -894,75 +790,47 @@ Public Class Form1
 
         If System.IO.File.Exists(".\Templates\Open.tcf") Then
 
-            Dim Template As String = My.Computer.FileSystem.ReadAllText(".\Templates\Open.tcf", Encoding.GetEncoding("IBM861"))
+            Dim Output As String = My.Computer.FileSystem.ReadAllText(".\Templates\Open.tcf", Encoding.GetEncoding("IBM861"))
 
-            Dim Output As String
-            Output = Template
-
-            Dim CharCountNew As Integer
 
             'Page Name
-            Dim FileName As String = "01Open"
-            CharCountNew = FileName.Length
-            Output = Output.Replace(ChrW(4) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace("Open"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(FileName))
+            Output = CutFileTitle(Output, "Open", "01Open")
 
             'Show Title
-            Dim ShowTitleString As String = ShowTitleCheck(1)
-            CharCountNew = ShowTitleString.Length
-            Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Show Title"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(ShowTitleString))
+            Output = CutFileText(Output, "Show Title", ShowTitleCheck(1))
 
             'Guest Header
-            Dim GuestHeaderString As String = GuestHeaderCheck
-            CharCountNew = GuestHeaderString.Length
-            Output = Output.Replace(ChrW(12) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Guest Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GuestHeaderString))
+            Output = CutFileText(Output, "Guest Header", GuestHeaderCheck)
 
             'Guests
-            Dim NameString As String
-            Dim TitleString As String
             For i = 1 To 6
                 'Name
-                NameString = NameCheck(i)
-                CharCountNew = NameString.Length
-                Output = Output.Replace(ChrW(7) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Guest " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(NameString))
+                Output = CutFileText(Output, "Guest " & i, NameCheck(i))
 
-                NameString = NameCheck(i)
-                CharCountNew = NameString.Length
-                Output = Output.Replace(ChrW(6) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Name " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(NameString))
+                Output = CutFileText(Output, "Name " & i, NameCheck(i))
 
                 'Title
-                TitleString = TitleCheck(i)
-                CharCountNew = TitleString.Length
-                Output = Output.Replace(ChrW(7) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Title " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(TitleString))
+                Output = CutFileText(Output, "Title " & i, TitleCheck(i))
             Next i
 
 
             'Record Date
-            Dim RecordDateString As String = RecordDateCheck(1)
-            CharCountNew = RecordDateString.Length
-            Output = Output.Replace(ChrW(11) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Record Date"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(RecordDateString))
+            Output = CutFileText(Output, "Record Date", RecordDateCheck(1))
 
             'Producer Header
-            Dim ProducerHeaderString As String = ProducerHeaderCheck
-            CharCountNew = ProducerHeaderString.Length
-            Output = Output.Replace(ChrW(15) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Producer Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(ProducerHeaderString))
+            Output = CutFileText(Output, "Producer Header", ProducerHeaderCheck)
 
             For i = 1 To 2
                 'Producers
-                Dim ProducerString As String = ProducerCheck(i)
-                CharCountNew = ProducerString.Length
-                Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Producer " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(ProducerString))
+                Output = CutFileText(Output, "Producer " & i, ProducerCheck(i))
             Next i
 
             'Host Header
-            Dim HostHeaderString As String = HostHeaderCheck
-            CharCountNew = HostHeaderString.Length
-            Output = Output.Replace(ChrW(11) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Host Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(HostHeaderString))
+            Output = CutFileText(Output, "Host Header", HostHeaderCheck)
 
             For i = 1 To 2
                 'Hosts
-                Dim HostString As String = HostCheck(i)
-                CharCountNew = HostString.Length
-                Output = Output.Replace(ChrW(6) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Host " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(HostString))
+                Output = CutFileText(Output, "Host " & i, HostCheck(i))
             Next i
 
             My.Computer.FileSystem.WriteAllText(".\CutFiles\01Open.tcf", Output, False, Encoding.GetEncoding("IBM861"))
@@ -976,148 +844,94 @@ Public Class Form1
         If System.IO.File.Exists(".\Templates\Credits.tcf") Then
 
 
-            Dim Template As String = My.Computer.FileSystem.ReadAllText(".\Templates\Credits.tcf", Encoding.GetEncoding("IBM861"))
+            Dim Output As String = My.Computer.FileSystem.ReadAllText(".\Templates\Credits.tcf", Encoding.GetEncoding("IBM861"))
 
-            Dim Output As String
-            Output = Template
-
-            Dim CharCountNew As Integer
 
             'Page Name
-            Dim FileName As String = "02Credits"
-            CharCountNew = FileName.Length
-            Output = Output.Replace(ChrW(4) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace("Credits"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(FileName))
+            Output = CutFileTitle(Output, "Credits", "02Credits")
 
 
             'Show Title
-            Dim ShowTitleString As String = ShowTitleCheck(1)
-            CharCountNew = ShowTitleString.Length
-            Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Show Title"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(ShowTitleString))
-
+            Output = CutFileText(Output, "Show Title", ShowTitleCheck(1))
 
             'Guest Header
-            Dim GuestHeaderString As String = GuestHeaderCheck
-            CharCountNew = GuestHeaderString.Length
-            Output = Output.Replace(ChrW(12) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Guest Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GuestHeaderString))
+            Output = CutFileText(Output, "Guest Header", GuestHeaderCheck)
 
             'Guests
-            Dim NameString As String
-            Dim TitleString As String
             For i = 1 To 6
                 'Name
-                NameString = NameCheck(i)
-                CharCountNew = NameString.Length
-                Output = Output.Replace(ChrW(7) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Guest " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(NameString))
+                Output = CutFileText(Output, "Guest " & i, NameCheck(i))
 
-                Output = Output.Replace(ChrW(6) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Name " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(NameString))
+                Output = CutFileText(Output, "Name " & i, NameCheck(i))
 
                 'Title
-                TitleString = TitleCheck(i)
-                CharCountNew = TitleString.Length
-                Output = Output.Replace(ChrW(7) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Title " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(TitleString))
+                Output = CutFileText(Output, "Title " & i, TitleCheck(i))
             Next i
 
-
             'Producer Header
-            Dim ProducerHeaderString As String = ProducerHeaderCheck
-            CharCountNew = ProducerHeaderString.Length
-            Output = Output.Replace(ChrW(15) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Producer Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(ProducerHeaderString))
+            Output = CutFileText(Output, "Producer Header", ProducerHeaderCheck)
 
             For i = 1 To 2
                 'Producers
-                Dim ProducerString As String = ProducerCheck(i)
-                CharCountNew = ProducerString.Length
-                Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Producer " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(ProducerString))
+                Output = CutFileText(Output, "Producer " & i, ProducerCheck(i))
             Next i
 
             'Host Header
-            Dim HostHeaderString As String = HostHeaderCheck
-            CharCountNew = HostHeaderString.Length
-            Output = Output.Replace(ChrW(11) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Host Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(HostHeaderString))
+            Output = CutFileText(Output, "Host Header", HostHeaderCheck)
 
             For i = 1 To 2
                 'Hosts
-                Dim HostString As String = HostCheck(i)
-                CharCountNew = HostString.Length
-                Output = Output.Replace(ChrW(6) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Host " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(HostString))
+                Output = CutFileText(Output, "Host " & i, HostCheck(i))
             Next i
 
 
             'Director Header
-            Dim DirectorHeaderString As String = DirectorHeaderCheck
-            CharCountNew = DirectorHeaderString.Length
-            Output = Output.Replace(ChrW(15) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Director Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(DirectorHeaderString))
+            Output = CutFileText(Output, "Director Header", DirectorHeaderCheck)
 
-            'Directors
-            Dim DirectorString As String
             For i = 1 To 2
-                DirectorString = DirectorCheck(i)
-                CharCountNew = DirectorString.Length
-                Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Director " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(DirectorString))
+                'Directors
+                Output = CutFileText(Output, "Director " & i, DirectorCheck(i))
             Next i
 
 
             'Graphics Header
-            Dim GraphicsHeaderString As String = GraphicsHeaderCheck
-            CharCountNew = GraphicsHeaderString.Length
-            Output = Output.Replace(ChrW(15) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Graphics Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GraphicsHeaderString))
+            Output = CutFileText(Output, "Graphics Header", GraphicsHeaderCheck)
 
-            'Graphics
-            Dim GraphicsString As String
             For i = 1 To 2
-                GraphicsString = GraphicsCheck(i)
-                CharCountNew = GraphicsString.Length
-                Output = Output.Replace(ChrW(10) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Graphics " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(GraphicsString))
+                'Graphics
+                Output = CutFileText(Output, "Graphics " & i, GraphicsCheck(i))
             Next i
 
 
             'Audio Header
-            Dim AudioHeaderString As String = AudioHeaderCheck
-            CharCountNew = AudioHeaderString.Length
-            Output = Output.Replace(ChrW(12) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Audio Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(AudioHeaderString))
+            Output = CutFileText(Output, "Audio Header", AudioHeaderCheck)
 
-            'Audio
-            Dim AudioString As String
             For i = 1 To 2
-                AudioString = AudioCheck(i)
-                CharCountNew = AudioString.Length
-                Output = Output.Replace(ChrW(7) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Audio " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(AudioString))
+                'Audio
+                Output = CutFileText(Output, "Audio " & i, AudioCheck(i))
             Next i
 
 
             'Camera Header
-            Dim CameraHeaderString As String = CameraHeaderCheck
-            CharCountNew = CameraHeaderString.Length
-            Output = Output.Replace(ChrW(13) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Camera Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(CameraHeaderString))
+            Output = CutFileText(Output, "Camera Header", CameraHeaderCheck)
 
-            'Camera
-            Dim CameraString As String
             For i = 1 To 3
-                CameraString = CameraCheck(i)
-                CharCountNew = CameraString.Length
-                Output = Output.Replace(ChrW(8) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Camera " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(CameraString))
+                'Camera
+                Output = CutFileText(Output, "Camera " & i, CameraCheck(i))
             Next i
 
 
             'Floor Header
-            Dim FloorHeaderString As String = FloorHeaderCheck
-            CharCountNew = FloorHeaderString.Length
-            Output = Output.Replace(ChrW(12) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Floor Header"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(FloorHeaderString))
+            Output = CutFileText(Output, "Floor Header", FloorHeaderCheck)
 
-            'Floor
-            Dim FloorString As String
             For i = 1 To 3
-                FloorString = FloorCheck(i)
-                CharCountNew = FloorString.Length
-                Output = Output.Replace(ChrW(7) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Floor " & i), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(FloorString))
+                'Floor
+                Output = CutFileText(Output, "Floor " & i, FloorCheck(i))
             Next i
 
 
             'Record Date
-            Dim RecordDateString As String = RecordDateCheck(1)
-            CharCountNew = RecordDateString.Length
-            Output = Output.Replace(ChrW(11) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace("Record Date"), ChrW(CharCountNew) & ChrW(0) & ChrW(0) & ChrW(0) & AddSpace(RecordDateString))
-
+            Output = CutFileText(Output, "Record Date", RecordDateCheck(1))
 
             My.Computer.FileSystem.WriteAllText(".\CutFiles\02Credits.tcf", Output, False, Encoding.GetEncoding("IBM861"))
 
@@ -1129,16 +943,11 @@ Public Class Form1
 
         If System.IO.File.Exists(".\Templates\Bug.tcf") Then
 
+            Dim Output As String = My.Computer.FileSystem.ReadAllText(".\Templates\Bug.tcf", Encoding.GetEncoding("IBM861"))
 
-            Dim Template As String = My.Computer.FileSystem.ReadAllText(".\Templates\Bug.tcf", Encoding.GetEncoding("IBM861"))
-
-            Dim Output As String
-
-            Output = Template
 
             'Page Name
-            Dim FileName As String = "03Bug"
-            Output = Output.Replace(ChrW(3) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace("Bug"), ChrW(FileName.Length) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(FileName))
+            Output = CutFileTitle(Output, "Bug", "03Bug")
 
             My.Computer.FileSystem.WriteAllText(".\CutFiles\03Bug.tcf", Output, False, Encoding.GetEncoding("IBM861"))
 
