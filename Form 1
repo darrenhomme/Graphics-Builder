@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.22  7/1/2016
+    'Version 1.23  7/2/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -45,8 +45,7 @@ Public Class Form1
 
     Dim DBCheck As String
     Dim CDBCheck As String
-    Dim DBCheck2() As String
-    Dim CDBCheck2() As String
+
 
 
 
@@ -123,7 +122,6 @@ Public Class Form1
 
 
     Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
-        Dim StringHolder As String
 
         'Saves All the Fields to txt files
 
@@ -318,31 +316,31 @@ Public Class Form1
             'If NameCheck(i) <> "   " Then
             'Name
             If CStr(NameCheck(i)) <> "   " Then
-                    LowerThird(CStr(NameCheck(i)), CStr(TitleCheck(i)), "Blank.tga", 09 + (i * 4) & "Guest" & i)
-                End If
+                LowerThird(CStr(NameCheck(i)), CStr(TitleCheck(i)), "Blank.tga", 09 + (i * 4) & "Guest" & i)
+            End If
 
 
-                'Contact
-                If PhoneCheck(i) <> "   " Or emailCheck(i) <> "   " Then
-                    LowerThird(CStr(PhoneCheck(i)), CStr(emailCheck(i)), "Blank.tga", 10 + (i * 4) & "Contact" & i)
-                End If
-                If PhoneCheck(i) = "   " And emailCheck(i) <> "   " Then
-                    LowerThird(CStr(emailCheck(i)), "", "Blank.tga", 10 + (i * 4) & "Contact" & i)
-                End If
+            'Contact
+            If PhoneCheck(i) <> "   " Or emailCheck(i) <> "   " Then
+                LowerThird(CStr(PhoneCheck(i)), CStr(emailCheck(i)), "Blank.tga", 10 + (i * 4) & "Contact" & i)
+            End If
+            If PhoneCheck(i) = "   " And emailCheck(i) <> "   " Then
+                LowerThird(CStr(emailCheck(i)), "", "Blank.tga", 10 + (i * 4) & "Contact" & i)
+            End If
 
 
-                'Website
-                If CStr(WebsiteCheck(i)) <> "   " Then
-                    LowerThird(CStr(WebsiteCheck(i)), "", "Blank.tga", 11 + (i * 4) & "Website" & i)
-                End If
+            'Website
+            If CStr(WebsiteCheck(i)) <> "   " Then
+                LowerThird(CStr(WebsiteCheck(i)), "", "Blank.tga", 11 + (i * 4) & "Website" & i)
+            End If
 
-                'City
-                If CityPhoneCheck(i) <> "   " Or CityWebsiteCheck(i) <> "   " Then
-                    LowerThird(CStr(CityPhoneCheck(i)), CStr(CityWebsiteCheck(i)), "Blank.tga", 12 + (i * 4) & "City" & i)
-                End If
-                If PhoneCheck(i) = "   " And CityWebsiteCheck(i) <> "   " Then
-                    LowerThird(CStr(CityWebsiteCheck(i)), "", "Blank.tga", 12 + (i * 4) & "City" & i)
-                End If
+            'City
+            If CityPhoneCheck(i) <> "   " Or CityWebsiteCheck(i) <> "   " Then
+                LowerThird(CStr(CityPhoneCheck(i)), CStr(CityWebsiteCheck(i)), "Blank.tga", 12 + (i * 4) & "City" & i)
+            End If
+            If PhoneCheck(i) = "   " And CityWebsiteCheck(i) <> "   " Then
+                LowerThird(CStr(CityWebsiteCheck(i)), "", "Blank.tga", 12 + (i * 4) & "City" & i)
+            End If
 
             'End If
 
@@ -444,7 +442,7 @@ Public Class Form1
             FileCheck()
 
             'Save MessageBox
-            MessageBox.Show(TextLine(0) & " Saved to Database", "Northwest Community Politics",
+            MessageBox.Show(TextLine(0) & " Saved to Database", "Graphics Builder",
    MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
         End If
 
@@ -455,55 +453,17 @@ Public Class Form1
 
         If CDBbox.SelectedItem <> "" Then
 
-            If CDB1.Checked Then
-                Producer1.Text = CDBbox.SelectedItem
-            End If
-            If CDB2.Checked Then
-                Producer2.Text = CDBbox.SelectedItem
-            End If
-            If CDB3.Checked Then
-                Host1.Text = CDBbox.SelectedItem
-            End If
-            If CDB4.Checked Then
-                Host2.Text = CDBbox.SelectedItem
-            End If
-            If CDB5.Checked Then
-                Director1.Text = CDBbox.SelectedItem
-            End If
-            If CDB6.Checked Then
-                Director2.Text = CDBbox.SelectedItem
-            End If
-            If CDB7.Checked Then
-                Graphics1.Text = CDBbox.SelectedItem
-            End If
-            If CDB8.Checked Then
-                Graphics2.Text = CDBbox.SelectedItem
-            End If
+            Dim CDBitem = New String() {"Producer1", "Producer2", "Host1", "Host2", "Director1", "Director2", "Graphics1", "Graphics2", "Audio1", "Audio2", "Camera1", "Camera2", "Camera3", "Floor1", "Floor2", "Floor3"}
 
-            If CDB9.Checked Then
-                Audio1.Text = CDBbox.SelectedItem
-            End If
-            If CDB10.Checked Then
-                Audio2.Text = CDBbox.SelectedItem
-            End If
-            If CDB11.Checked Then
-                Camera1.Text = CDBbox.SelectedItem
-            End If
-            If CDB12.Checked Then
-                Camera2.Text = CDBbox.SelectedItem
-            End If
-            If CDB13.Checked Then
-                Camera3.Text = CDBbox.SelectedItem
-            End If
-            If CDB14.Checked Then
-                Floor1.Text = CDBbox.SelectedItem
-            End If
-            If CDB15.Checked Then
-                Floor2.Text = CDBbox.SelectedItem
-            End If
-            If CDB16.Checked Then
-                Floor3.Text = CDBbox.SelectedItem
-            End If
+            Dim i As Integer = 0
+            For Each element As Char In CDBitem
+
+                If CType(Me.Controls.Item("CDB" & CDBitem(i)), RadioButton).Checked = True Then
+                    Me.Controls(CDBitem(i)).Text = CDBbox.SelectedItem
+                End If
+
+                i = i + 1
+            Next
 
         End If
     End Sub
@@ -514,71 +474,19 @@ Public Class Form1
         Dim CDBvalue As String
         CDBvalue = ""
 
-        If CDB1.Checked And Producer1.Text <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Producer1.Text & ".txt", "", False)
-            CDBvalue = Producer1.Text
-        End If
-        If CDB2.Checked And Producer2.Text <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Producer2.Text & ".txt", "", False)
-            CDBvalue = Producer2.Text
-        End If
-        If CDB3.Checked And Host1.Text <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Host1.Text & ".txt", "", False)
-            CDBvalue = Host1.Text
-        End If
-        If CDB4.Checked And Host2.Text <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Host2.Text & ".txt", "", False)
-            CDBvalue = Host2.Text
-        End If
-        If CDB5.Checked And Director1.Text <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Director1.Text & ".txt", "", False)
-            CDBvalue = Director1.Text
-        End If
-        If CDB6.Checked And Director2.Text <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Director2.Text & ".txt", "", False)
-            CDBvalue = Director2.Text
-        End If
-        If CDB7.Checked And Graphics1.Text <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Graphics1.Text & ".txt", "", False)
-            CDBvalue = Graphics1.Text
-        End If
-        If CDB8.Checked And Graphics2.Text <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Graphics2.Text & ".txt", "", False)
-            CDBvalue = Graphics2.Text
-        End If
+        Dim CDBitem = New String() {"Producer1", "Producer2", "Host1", "Host2", "Director1", "Director2", "Graphics1", "Graphics2", "Audio1", "Audio2", "Camera1", "Camera2", "Camera3", "Floor1", "Floor2", "Floor3"}
 
-        If CDB9.Checked And Audio1.Text <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Audio1.Text & ".txt", "", False)
-            CDBvalue = Audio1.Text
-        End If
-        If CDB10.Checked And Audio2.Text <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Audio2.Text & ".txt", "", False)
-            CDBvalue = Audio2.Text
-        End If
-        If CDB11.Checked And Camera1.Text <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Camera1.Text & ".txt", "", False)
-            CDBvalue = Camera1.Text
-        End If
-        If CDB12.Checked And Camera2.Text <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Camera2.Text & ".txt", "", False)
-            CDBvalue = Camera2.Text
-        End If
-        If CDB13.Checked And Camera3.Text <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Camera3.Text & ".txt", "", False)
-            CDBvalue = Camera3.Text
-        End If
-        If CDB14.Checked And Floor1.Text <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Floor1.Text & ".txt", "", False)
-            CDBvalue = Floor1.Text
-        End If
-        If CDB15.Checked And Floor2.Text <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Floor2.Text & ".txt", "", False)
-            CDBvalue = Floor2.Text
-        End If
-        If CDB16.Checked And Floor3.Text <> "" Then
-            My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Floor3.Text & ".txt", "", False)
-            CDBvalue = Floor3.Text
-        End If
+        Dim i As Integer = 0
+        For Each element As Char In CDBitem
+
+            If CType(Me.Controls.Item("CDB" & CDBitem(i)), RadioButton).Checked = True And Me.Controls(CDBitem(i)).Text <> "" Then
+                My.Computer.FileSystem.WriteAllText(".\CrewDatabase\" & Me.Controls(CDBitem(i)).Text & ".txt", "", False)
+                CDBvalue = Me.Controls(CDBitem(i)).Text
+            End If
+
+            i = i + 1
+        Next
+
 
         If CDBvalue <> "" Then
 
@@ -586,7 +494,7 @@ Public Class Form1
             FileCheck()
 
             'Save MessageBox
-            MessageBox.Show(CDBvalue & " Saved to Crew Database", "Northwest Community Politics", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+            MessageBox.Show(CDBvalue & " Saved to Crew Database", "Graphics Builder", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
         End If
 
     End Sub
@@ -679,32 +587,45 @@ Public Class Form1
 
 
         'Populate Guest Database Dropdown
+
+        Dim DBCheck2 As String = ""
         Dim dir = ".\Database\"
-        If System.IO.Directory.GetFiles(dir).Length <> DBCheck Then
+        'Gets current file list
+        For Each DBfilelist As String In System.IO.Directory.GetFiles(dir)
+            DBCheck2 = DBCheck2 & System.IO.Path.GetFileNameWithoutExtension(DBfilelist)
+        Next
+        'If the current list differs from the saved list repopulate the dropdown
+        If DBCheck2 <> DBCheck Then
             DBbox.Items.Clear()
             For Each DBfilelist As String In System.IO.Directory.GetFiles(dir)
                 DBbox.Items.Add(System.IO.Path.GetFileNameWithoutExtension(DBfilelist))
             Next
-            DBCheck = System.IO.Directory.GetFiles(dir).Length
+            DBCheck = DBCheck2
         End If
 
 
 
         'Populate Crew Database Dropdown
+        Dim CDBCheck2 As String = ""
         Dim cdir = ".\CrewDatabase\"
-        If System.IO.Directory.GetFiles(cdir).Length <> CDBCheck Then
+        'Gets current file list
+        For Each CDBfilelist As String In System.IO.Directory.GetFiles(cdir)
+            CDBCheck2 = CDBCheck2 & System.IO.Path.GetFileNameWithoutExtension(CDBfilelist)
+        Next
+        'If the current list differs from the saved list repopulate the dropdown
+        If CDBCheck2 <> CDBCheck Then
             CDBbox.Items.Clear()
             For Each CDBfilelist As String In System.IO.Directory.GetFiles(cdir)
                 CDBbox.Items.Add(System.IO.Path.GetFileNameWithoutExtension(CDBfilelist))
             Next
-            CDBCheck = System.IO.Directory.GetFiles(cdir).Length
+            CDBCheck = CDBCheck2
         End If
 
     End Sub
 
 
     Public Function AddSpace(ByVal InputString As String) As String
-
+        'Adds 5 null for text in cut files
         Dim CharArray() As Char = InputString.ToCharArray
         Dim SpaceString As String = ""
 
@@ -719,7 +640,7 @@ Public Class Form1
 
 
     Public Function AddOneSpace(ByVal InputString As String) As String
-
+        'Adds Null for page names and dir in cut files
         Dim CharArray() As Char = InputString.ToCharArray
         Dim SpaceString As String = ""
 
@@ -734,7 +655,7 @@ Public Class Form1
 
 
     Public Function CutFileTitle(ByVal CutFileString As String, OldText As String, NewText As String)
-
+        'Replaces the old cutfile title with a new one and character count
         CutFileString = CutFileString.Replace(ChrW(OldText.Length) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(OldText), ChrW(NewText.Length) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(NewText))
 
         Return CutFileString
@@ -742,7 +663,7 @@ Public Class Form1
 
 
     Public Function CutFileText(ByVal CutFileString As String, OldText As String, NewText As String)
-
+        'Replaces the old cutfile text with new text and character count
         If NewText = "" Then
             NewText = "   "
         End If
@@ -754,7 +675,7 @@ Public Class Form1
 
 
     Public Function CutFilePicture(ByVal CutFileString As String, OldText As String, NewText As String)
-
+        'Replaces the pictures in cut files with a charater count
         CutFileString = CutFileString.Replace(ChrW(OldText.Length) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(OldText), ChrW(NewText.Length) & ChrW(0) & ChrW(0) & ChrW(0) & AddOneSpace(NewText))
 
         Return CutFileString
@@ -955,6 +876,5 @@ Public Class Form1
         End If
 
     End Sub
-
 
 End Class
