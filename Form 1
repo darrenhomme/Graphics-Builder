@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.23  7/2/2016
+    'Version 1.24  7/3/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -12,6 +12,8 @@ Public Class Form1
     Dim PhoneCheck(6) As String
     Dim emailCheck(6) As String
     Dim WebsiteCheck(6) As String
+    Dim FacebookCheck(6) As String
+    Dim TwitterCheck(6) As String
     Dim CityPhoneCheck(6) As String
     Dim CityWebsiteCheck(6) As String
 
@@ -32,19 +34,22 @@ Public Class Form1
     Dim FloorHeaderCheck As String
     Dim FloorCheck(3) As String
 
-    Dim ShowPhoneCheck(1) As String
     Dim CommentLineCheck(1) As String
-    Dim ShowYouTubeCheck(1) As String
-    Dim ShowTwitterCheck(1) As String
-    Dim ShowFacebookCheck(1) As String
-    Dim ShowWebsiteCheck(1) As String
+    Dim ShowPhoneCheck(1) As String
     Dim ShowemailCheck(1) As String
+    Dim ShowWebsiteCheck(1) As String
+    Dim ShowFacebookCheck(1) As String
+    Dim ShowTwitterCheck(1) As String
+    Dim ShowYouTubeCheck(1) As String
+
     Dim RecordDateCheck(1) As String
     Dim ShowNameCheck(1) As String
     Dim ShowTitleCheck(1) As String
 
     Dim DBCheck As String
     Dim CDBCheck As String
+
+    Dim CDBitem = New String() {"Producer1", "Producer2", "Host1", "Host2", "Director1", "Director2", "Graphics1", "Graphics2", "Audio1", "Audio2", "Camera1", "Camera2", "Camera3", "Floor1", "Floor2", "Floor3"}
 
 
 
@@ -62,6 +67,7 @@ Public Class Form1
 
         'Populate the Form Fields
         FileCheck()
+
 
     End Sub
 
@@ -141,6 +147,12 @@ Public Class Form1
 
             'Website
             WebsiteCheck(i) = WriteText("Website", i)
+
+            'Facebook
+            FacebookCheck(i) = WriteText("Facebook", i)
+
+            'Twitter
+            TwitterCheck(i) = WriteText("Twitter", i)
 
             'CityPhone
             CityPhoneCheck(i) = WriteText("CityPhone", i)
@@ -276,24 +288,24 @@ Public Class Form1
             End If
         Next i
 
-        'Show Phone
-        If CStr(ShowPhoneCheck(1)) <> "   " Then
-            LowerThird(CStr(ShowPhoneCheck(1)), CStr(ShowNameCheck(1)) & " Phone", "Blank.tga", "06ShowPhone")
-        End If
-
         'Comment Line
         If CStr(CommentLineCheck(1)) <> "   " Then
-            LowerThird(CStr(CommentLineCheck(1)), "Comment Line", "Blank.tga", "07CommentLine")
+            LowerThird(CStr(CommentLineCheck(1)), "Comment Line", "Blank.tga", "06CommentLine")
         End If
 
-        'Show YouTube
-        If CStr(ShowYouTubeCheck(1)) <> "   " Then
-            LowerThird(CStr(ShowYouTubeCheck(1)), "", "YouTube.tga", "08ShowYouTube")
+        'Show Phone
+        If CStr(ShowPhoneCheck(1)) <> "   " Then
+            LowerThird(CStr(ShowPhoneCheck(1)), CStr(ShowNameCheck(1)) & " Phone", "Blank.tga", "07ShowPhone")
         End If
 
-        'Show Twitter
-        If CStr(ShowTwitterCheck(1)) <> "   " Then
-            LowerThird(CStr(ShowTwitterCheck(1)), "", "Twitter.tga", "09ShowTwitter")
+        'Show email
+        If CStr(ShowemailCheck(1)) <> "   " Then
+            LowerThird(CStr(ShowemailCheck(1)), "", "Blank.tga", "08Showemail")
+        End If
+
+        'Show Website
+        If CStr(ShowWebsiteCheck(1)) <> "   " Then
+            LowerThird(CStr(ShowWebsiteCheck(1)), "", "Blank.tga", "09ShowWebsite")
         End If
 
         'Show Facebook
@@ -301,45 +313,63 @@ Public Class Form1
             LowerThird(CStr(ShowFacebookCheck(1)), "", "Facebook.tga", "10ShowFacebook")
         End If
 
-        'Show Website
-        If CStr(ShowWebsiteCheck(1)) <> "   " Then
-            LowerThird(CStr(ShowWebsiteCheck(1)), "", "Blank.tga", "11ShowWebsite")
+        'Show Twitter
+        If CStr(ShowTwitterCheck(1)) <> "   " Then
+            LowerThird(CStr(ShowTwitterCheck(1)), "", "Twitter.tga", "11ShowTwitter")
         End If
 
-        'Show email
-        If CStr(ShowemailCheck(1)) <> "   " Then
-            LowerThird(CStr(ShowemailCheck(1)), "", "Blank.tga", "12Showemail")
+        'Show YouTube
+        If CStr(ShowYouTubeCheck(1)) <> "   " Then
+            LowerThird(CStr(ShowYouTubeCheck(1)), "", "YouTube.tga", "12ShowYouTube")
         End If
+
+
+
+
+
+
+
+
 
         'Guests
         For i = 1 To 6
             'If NameCheck(i) <> "   " Then
             'Name
             If CStr(NameCheck(i)) <> "   " Then
-                LowerThird(CStr(NameCheck(i)), CStr(TitleCheck(i)), "Blank.tga", 09 + (i * 4) & "Guest" & i)
+                LowerThird(CStr(NameCheck(i)), CStr(TitleCheck(i)), "Blank.tga", 07 + (i * 6) & "Guest" & i)
             End If
 
 
             'Contact
             If PhoneCheck(i) <> "   " Or emailCheck(i) <> "   " Then
-                LowerThird(CStr(PhoneCheck(i)), CStr(emailCheck(i)), "Blank.tga", 10 + (i * 4) & "Contact" & i)
+                LowerThird(CStr(PhoneCheck(i)), CStr(emailCheck(i)), "Blank.tga", 08 + (i * 6) & "Contact" & i)
             End If
             If PhoneCheck(i) = "   " And emailCheck(i) <> "   " Then
-                LowerThird(CStr(emailCheck(i)), "", "Blank.tga", 10 + (i * 4) & "Contact" & i)
+                LowerThird(CStr(emailCheck(i)), "", "Blank.tga", 08 + (i * 6) & "Contact" & i)
             End If
 
 
             'Website
             If CStr(WebsiteCheck(i)) <> "   " Then
-                LowerThird(CStr(WebsiteCheck(i)), "", "Blank.tga", 11 + (i * 4) & "Website" & i)
+                LowerThird(CStr(WebsiteCheck(i)), "", "Blank.tga", 09 + (i * 6) & "Website" & i)
+            End If
+
+            'Facebook
+            If CStr(FacebookCheck(i)) <> "   " Then
+                LowerThird(CStr(FacebookCheck(i)), "", "Facebook.tga", 10 + (i * 6) & "Facebook" & i)
+            End If
+
+            'Twitter
+            If CStr(TwitterCheck(i)) <> "   " Then
+                LowerThird(CStr(TwitterCheck(i)), "", "Twitter.tga", 11 + (i * 6) & "Twitter" & i)
             End If
 
             'City
             If CityPhoneCheck(i) <> "   " Or CityWebsiteCheck(i) <> "   " Then
-                LowerThird(CStr(CityPhoneCheck(i)), CStr(CityWebsiteCheck(i)), "Blank.tga", 12 + (i * 4) & "City" & i)
+                LowerThird(CStr(CityPhoneCheck(i)), CStr(CityWebsiteCheck(i)), "Blank.tga", 12 + (i * 6) & "City" & i)
             End If
-            If PhoneCheck(i) = "   " And CityWebsiteCheck(i) <> "   " Then
-                LowerThird(CStr(CityWebsiteCheck(i)), "", "Blank.tga", 12 + (i * 4) & "City" & i)
+            If CityPhoneCheck(i) = "   " And CityWebsiteCheck(i) <> "   " Then
+                LowerThird(CStr(CityWebsiteCheck(i)), "", "Blank.tga", 12 + (i * 6) & "City" & i)
             End If
 
             'End If
@@ -350,7 +380,7 @@ Public Class Form1
 
         'Message Box Popup to Say the Files are Saved
 
-        MessageBox.Show("Files Saved to Graphics", "Northwest Community Politics",
+        MessageBox.Show("Files Saved to Graphics", "Graphics Builder",
            MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
     End Sub
 
@@ -387,6 +417,8 @@ Public Class Form1
                         Me.Controls("Phone" & i).Text = TextLine(2)
                         Me.Controls("email" & i).Text = TextLine(3)
                         Me.Controls("Website" & i).Text = TextLine(4)
+                        Me.Controls("Facebook" & i).Text = TextLine(5)
+                        Me.Controls("Twitter" & i).Text = TextLine(6)
                         Me.Controls("CityPhone" & i).Text = TextLine(10)
                         Me.Controls("CityWebsite" & i).Text = TextLine(11)
                     End If
@@ -408,6 +440,8 @@ Public Class Form1
                 Me.Controls("Phone" & i).Text = ""
                 Me.Controls("email" & i).Text = ""
                 Me.Controls("Website" & i).Text = ""
+                Me.Controls("Facebook" & i).Text = ""
+                Me.Controls("Twitter" & i).Text = ""
                 Me.Controls("CityPhone" & i).Text = ""
                 Me.Controls("CityWebsite" & i).Text = ""
             End If
@@ -429,6 +463,8 @@ Public Class Form1
                 TextLine(2) = Me.Controls("Phone" & i).Text
                 TextLine(3) = Me.Controls("email" & i).Text
                 TextLine(4) = Me.Controls("Website" & i).Text
+                TextLine(5) = Me.Controls("Facebook" & i).Text
+                TextLine(6) = Me.Controls("Twitter" & i).Text
                 TextLine(10) = Me.Controls("CityPhone" & i).Text
                 TextLine(11) = Me.Controls("CityWebsite" & i).Text
             End If
@@ -453,8 +489,6 @@ Public Class Form1
 
         If CDBbox.SelectedItem <> "" Then
 
-            Dim CDBitem = New String() {"Producer1", "Producer2", "Host1", "Host2", "Director1", "Director2", "Graphics1", "Graphics2", "Audio1", "Audio2", "Camera1", "Camera2", "Camera3", "Floor1", "Floor2", "Floor3"}
-
             Dim i As Integer = 0
             For Each element As Char In CDBitem
 
@@ -473,8 +507,6 @@ Public Class Form1
 
         Dim CDBvalue As String
         CDBvalue = ""
-
-        Dim CDBitem = New String() {"Producer1", "Producer2", "Host1", "Host2", "Director1", "Director2", "Graphics1", "Graphics2", "Audio1", "Audio2", "Camera1", "Camera2", "Camera3", "Floor1", "Floor2", "Floor3"}
 
         Dim i As Integer = 0
         For Each element As Char In CDBitem
@@ -499,10 +531,11 @@ Public Class Form1
 
     End Sub
 
+
+
     Private Sub TextFileCheckTime_Tick(sender As Object, e As EventArgs) Handles TextFileCheckTime.Tick
         'Checks For Changes in txt Files Every 15 Secounds
         FileCheck()
-
     End Sub
 
     Public Function FileCompair(FileName As String, VariableValue As String)
@@ -535,6 +568,10 @@ Public Class Form1
 
             WebsiteCheck(i) = FileCompair("Website" & i, WebsiteCheck(i))
 
+            FacebookCheck(i) = FileCompair("Facebook" & i, FacebookCheck(i))
+
+            TwitterCheck(i) = FileCompair("Twitter" & i, TwitterCheck(i))
+
             CityPhoneCheck(i) = FileCompair("CityPhone" & i, CityPhoneCheck(i))
 
             CityWebsiteCheck(i) = FileCompair("CityWebsite" & i, CityWebsiteCheck(i))
@@ -564,19 +601,19 @@ Public Class Form1
 
         'Show Info
         For i = 1 To 1
-            ShowPhoneCheck(i) = FileCompair("ShowPhone", ShowPhoneCheck(i))
-
             CommentLineCheck(i) = FileCompair("CommentLine", CommentLineCheck(i))
 
-            ShowYouTubeCheck(i) = FileCompair("ShowYouTube", ShowYouTubeCheck(i))
+            ShowPhoneCheck(i) = FileCompair("ShowPhone", ShowPhoneCheck(i))
 
-            ShowTwitterCheck(i) = FileCompair("ShowTwitter", ShowTwitterCheck(i))
-
-            ShowFacebookCheck(i) = FileCompair("ShowFacebook", ShowFacebookCheck(i))
+            ShowemailCheck(i) = FileCompair("Showemail", ShowemailCheck(i))
 
             ShowWebsiteCheck(i) = FileCompair("ShowWebsite", ShowWebsiteCheck(i))
 
-            ShowemailCheck(i) = FileCompair("Showemail", ShowemailCheck(i))
+            ShowFacebookCheck(i) = FileCompair("ShowFacebook", ShowFacebookCheck(i))
+
+            ShowTwitterCheck(i) = FileCompair("ShowTwitter", ShowTwitterCheck(i))
+
+            ShowYouTubeCheck(i) = FileCompair("ShowYouTube", ShowYouTubeCheck(i))
 
             RecordDateCheck(i) = FileCompair("RecordDate", RecordDateCheck(i))
 
@@ -876,5 +913,6 @@ Public Class Form1
         End If
 
     End Sub
+
 
 End Class
