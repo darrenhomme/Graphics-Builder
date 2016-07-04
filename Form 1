@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.24  7/3/2016
+    'Version 1.25  7/4/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -14,6 +14,7 @@ Public Class Form1
     Dim WebsiteCheck(6) As String
     Dim FacebookCheck(6) As String
     Dim TwitterCheck(6) As String
+    Dim YouTubeCheck(6) As String
     Dim CityPhoneCheck(6) As String
     Dim CityWebsiteCheck(6) As String
 
@@ -153,6 +154,9 @@ Public Class Form1
 
             'Twitter
             TwitterCheck(i) = WriteText("Twitter", i)
+
+            'YouTube
+            YouTubeCheck(i) = WriteText("YouTube", i)
 
             'CityPhone
             CityPhoneCheck(i) = WriteText("CityPhone", i)
@@ -333,46 +337,47 @@ Public Class Form1
 
         'Guests
         For i = 1 To 6
-            'If NameCheck(i) <> "   " Then
+
             'Name
             If CStr(NameCheck(i)) <> "   " Then
-                LowerThird(CStr(NameCheck(i)), CStr(TitleCheck(i)), "Blank.tga", 07 + (i * 6) & "Guest" & i)
+                LowerThird(CStr(NameCheck(i)), CStr(TitleCheck(i)), "Blank.tga", 06 + (i * 7) & "Guest" & i)
             End If
 
 
             'Contact
             If PhoneCheck(i) <> "   " Or emailCheck(i) <> "   " Then
-                LowerThird(CStr(PhoneCheck(i)), CStr(emailCheck(i)), "Blank.tga", 08 + (i * 6) & "Contact" & i)
-            End If
-            If PhoneCheck(i) = "   " And emailCheck(i) <> "   " Then
-                LowerThird(CStr(emailCheck(i)), "", "Blank.tga", 08 + (i * 6) & "Contact" & i)
+                LowerThird(CStr(PhoneCheck(i)), CStr(emailCheck(i)), "Blank.tga", 07 + (i * 7) & "Contact" & i)
+            ElseIf PhoneCheck(i) = "   " And emailCheck(i) <> "   " Then
+                LowerThird(CStr(emailCheck(i)), "", "Blank.tga", 07 + (i * 7) & "Contact" & i)
             End If
 
 
             'Website
             If CStr(WebsiteCheck(i)) <> "   " Then
-                LowerThird(CStr(WebsiteCheck(i)), "", "Blank.tga", 09 + (i * 6) & "Website" & i)
+                LowerThird(CStr(WebsiteCheck(i)), "", "Blank.tga", 08 + (i * 7) & "Website" & i)
             End If
 
             'Facebook
             If CStr(FacebookCheck(i)) <> "   " Then
-                LowerThird(CStr(FacebookCheck(i)), "", "Facebook.tga", 10 + (i * 6) & "Facebook" & i)
+                LowerThird(CStr(FacebookCheck(i)), "", "Facebook.tga", 09 + (i * 7) & "Facebook" & i)
             End If
 
             'Twitter
             If CStr(TwitterCheck(i)) <> "   " Then
-                LowerThird(CStr(TwitterCheck(i)), "", "Twitter.tga", 11 + (i * 6) & "Twitter" & i)
+                LowerThird(CStr(TwitterCheck(i)), "", "Twitter.tga", 10 + (i * 7) & "Twitter" & i)
+            End If
+
+            'YouTube
+            If CStr(YouTubeCheck(i)) <> "   " Then
+                LowerThird(CStr(YouTubeCheck(i)), "", "YouTube.tga", 11 + (i * 7) & "YouTube" & i)
             End If
 
             'City
             If CityPhoneCheck(i) <> "   " Or CityWebsiteCheck(i) <> "   " Then
-                LowerThird(CStr(CityPhoneCheck(i)), CStr(CityWebsiteCheck(i)), "Blank.tga", 12 + (i * 6) & "City" & i)
+                LowerThird(CStr(CityPhoneCheck(i)), CStr(CityWebsiteCheck(i)), "Blank.tga", 12 + (i * 7) & "City" & i)
+            ElseIf CityPhoneCheck(i) = "   " And CityWebsiteCheck(i) <> "   " Then
+                LowerThird(CStr(CityWebsiteCheck(i)), "", "Blank.tga", 12 + (i * 7) & "City" & i)
             End If
-            If CityPhoneCheck(i) = "   " And CityWebsiteCheck(i) <> "   " Then
-                LowerThird(CStr(CityWebsiteCheck(i)), "", "Blank.tga", 12 + (i * 6) & "City" & i)
-            End If
-
-            'End If
 
         Next i
 
@@ -419,6 +424,7 @@ Public Class Form1
                         Me.Controls("Website" & i).Text = TextLine(4)
                         Me.Controls("Facebook" & i).Text = TextLine(5)
                         Me.Controls("Twitter" & i).Text = TextLine(6)
+                        Me.Controls("YouTube" & i).Text = TextLine(7)
                         Me.Controls("CityPhone" & i).Text = TextLine(10)
                         Me.Controls("CityWebsite" & i).Text = TextLine(11)
                     End If
@@ -442,6 +448,7 @@ Public Class Form1
                 Me.Controls("Website" & i).Text = ""
                 Me.Controls("Facebook" & i).Text = ""
                 Me.Controls("Twitter" & i).Text = ""
+                Me.Controls("YouTube" & i).Text = ""
                 Me.Controls("CityPhone" & i).Text = ""
                 Me.Controls("CityWebsite" & i).Text = ""
             End If
@@ -465,6 +472,7 @@ Public Class Form1
                 TextLine(4) = Me.Controls("Website" & i).Text
                 TextLine(5) = Me.Controls("Facebook" & i).Text
                 TextLine(6) = Me.Controls("Twitter" & i).Text
+                TextLine(7) = Me.Controls("YouTube" & i).Text
                 TextLine(10) = Me.Controls("CityPhone" & i).Text
                 TextLine(11) = Me.Controls("CityWebsite" & i).Text
             End If
@@ -571,6 +579,8 @@ Public Class Form1
             FacebookCheck(i) = FileCompair("Facebook" & i, FacebookCheck(i))
 
             TwitterCheck(i) = FileCompair("Twitter" & i, TwitterCheck(i))
+
+            YouTubeCheck(i) = FileCompair("YouTube" & i, YouTubeCheck(i))
 
             CityPhoneCheck(i) = FileCompair("CityPhone" & i, CityPhoneCheck(i))
 
