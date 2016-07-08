@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.27  7/8/2016
+    'Version 1.28  7/8/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -841,8 +841,6 @@ Public Class Form1
             End If
         Next
 
-        FileCount = 0
-
         For Each item As String In FileNameList
 
             If System.IO.File.Exists(".\Templates\" & FileNameList.Item(FileCount) & ".tcf") Then
@@ -947,18 +945,35 @@ Public Class Form1
 
     Public Sub Bug()
 
-        If System.IO.File.Exists(".\Templates\Bug.tcf") Then
+        Dim FileName As String
+        Dim FileNameList As New List(Of String)
+        Dim FileCount As Integer = 0
 
-            Dim Output As String = My.Computer.FileSystem.ReadAllText(".\Templates\Bug.tcf", Encoding.GetEncoding("IBM861"))
+        Dim dir = ".\Templates\"
+        'Gets current file list
+        For Each filelist As String In System.IO.Directory.GetFiles(dir)
+            FileName = System.IO.Path.GetFileNameWithoutExtension(filelist)
+            If FileName.Contains("Bug") = True Then
+                FileNameList.Add(FileName)
+            End If
+        Next
+
+        For Each item As String In FileNameList
+
+            If System.IO.File.Exists(".\Templates\" & FileNameList.Item(FileCount) & ".tcf") Then
+
+                Dim Output As String = My.Computer.FileSystem.ReadAllText(".\Templates\" & FileNameList.Item(FileCount) & ".tcf", Encoding.GetEncoding("IBM861"))
 
 
-            'Page Name
-            Output = CutFileTitle(Output, "Bug", "03Bug")
+                'Page Name
+                Output = CutFileTitle(Output, "Bug", 80 + FileCount & "Bug" & FileCount + 1)
 
-            My.Computer.FileSystem.WriteAllText(".\CutFiles\80Bug.tcf", Output, False, Encoding.GetEncoding("IBM861"))
+                My.Computer.FileSystem.WriteAllText(".\CutFiles\" & 80 + FileCount & "Bug" & FileCount + 1 & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
 
+            End If
 
-        End If
+            FileCount = FileCount + 1
+        Next
 
     End Sub
 
