@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.25  7/4/2016
+    'Version 1.26  7/8/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -756,71 +756,109 @@ Public Class Form1
 
     Public Sub OpenSlate()
 
-        If System.IO.File.Exists(".\Templates\Open.tcf") Then
+        Dim FileName As String
+        Dim FileNameArray(30) As String
+        Dim FileCount As Integer = 0
 
-            Dim Output As String = My.Computer.FileSystem.ReadAllText(".\Templates\Open.tcf", Encoding.GetEncoding("IBM861"))
+        Dim dir = ".\Templates\"
+        'Gets current file list
+        For Each filelist As String In System.IO.Directory.GetFiles(dir)
+            FileName = System.IO.Path.GetFileNameWithoutExtension(filelist)
+            If FileName.Contains("Open") = True Then
+                FileNameArray(FileCount) = FileName
+                FileCount = FileCount + 1
+            End If
+        Next
 
+        FileCount = 0
 
-            'Page Name
-            Output = CutFileTitle(Output, "Open", "01Open")
+        For Each element As String In FileNameArray
 
-            'Show Title
-            Output = CutFileText(Output, "Show Title", ShowTitleCheck(1))
+            If System.IO.File.Exists(".\Templates\" & FileNameArray(FileCount) & ".tcf") Then
 
-            'Guest Header
-            Output = CutFileText(Output, "Guest Header", GuestHeaderCheck)
-
-            'Guests
-            For i = 1 To 6
-                'Name
-                Output = CutFileText(Output, "Guest " & i, NameCheck(i))
-
-                Output = CutFileText(Output, "Name " & i, NameCheck(i))
-
-                'Title
-                Output = CutFileText(Output, "Title " & i, TitleCheck(i))
-            Next i
+                Dim Output As String = My.Computer.FileSystem.ReadAllText(".\Templates\" & FileNameArray(FileCount) & ".tcf", Encoding.GetEncoding("IBM861"))
 
 
-            'Record Date
-            Output = CutFileText(Output, "Record Date", RecordDateCheck(1))
+                'Page Name
+                Output = CutFileTitle(Output, "Open", "01Open" & FileCount + 1)
 
-            'Producer Header
-            Output = CutFileText(Output, "Producer Header", ProducerHeaderCheck)
+                'Show Title
+                Output = CutFileText(Output, "Show Title", ShowTitleCheck(1))
 
-            For i = 1 To 2
-                'Producers
-                Output = CutFileText(Output, "Producer " & i, ProducerCheck(i))
-            Next i
+                'Guest Header
+                Output = CutFileText(Output, "Guest Header", GuestHeaderCheck)
 
-            'Host Header
-            Output = CutFileText(Output, "Host Header", HostHeaderCheck)
+                'Guests
+                For i = 1 To 6
+                    'Name
+                    Output = CutFileText(Output, "Guest " & i, NameCheck(i))
 
-            For i = 1 To 2
-                'Hosts
-                Output = CutFileText(Output, "Host " & i, HostCheck(i))
-            Next i
+                    Output = CutFileText(Output, "Name " & i, NameCheck(i))
 
-            My.Computer.FileSystem.WriteAllText(".\CutFiles\01Open.tcf", Output, False, Encoding.GetEncoding("IBM861"))
+                    'Title
+                    Output = CutFileText(Output, "Title " & i, TitleCheck(i))
+                Next i
 
-        End If
+
+                'Record Date
+                Output = CutFileText(Output, "Record Date", RecordDateCheck(1))
+
+                'Producer Header
+                Output = CutFileText(Output, "Producer Header", ProducerHeaderCheck)
+
+                For i = 1 To 2
+                    'Producers
+                    Output = CutFileText(Output, "Producer " & i, ProducerCheck(i))
+                Next i
+
+                'Host Header
+                Output = CutFileText(Output, "Host Header", HostHeaderCheck)
+
+                For i = 1 To 2
+                    'Hosts
+                    Output = CutFileText(Output, "Host " & i, HostCheck(i))
+                Next i
+
+                My.Computer.FileSystem.WriteAllText(".\CutFiles\01Open" & FileCount + 1 & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
+
+            End If
+
+            FileCount = FileCount + 1
+        Next
     End Sub
 
 
     Public Sub Credits()
 
-        If System.IO.File.Exists(".\Templates\Credits.tcf") Then
+        Dim FileName As String
+        Dim FileNameArray(30) As String
+        Dim FileCount As Integer = 0
+
+        Dim dir = ".\Templates\"
+        'Gets current file list
+        For Each filelist As String In System.IO.Directory.GetFiles(dir)
+            FileName = System.IO.Path.GetFileNameWithoutExtension(filelist)
+            If FileName.Contains("Credits") = True Then
+                FileNameArray(FileCount) = FileName
+                FileCount = FileCount + 1
+            End If
+        Next
+
+        FileCount = 0
+
+        For Each element As String In FileNameArray
+
+            If System.IO.File.Exists(".\Templates\" & FileNameArray(FileCount) & ".tcf") Then
+
+                Dim Output As String = My.Computer.FileSystem.ReadAllText(".\Templates\" & FileNameArray(FileCount) & ".tcf", Encoding.GetEncoding("IBM861"))
 
 
-            Dim Output As String = My.Computer.FileSystem.ReadAllText(".\Templates\Credits.tcf", Encoding.GetEncoding("IBM861"))
+                'Page Name
+                Output = CutFileTitle(Output, "Credits", "02Credits" & FileCount + 1)
 
 
-            'Page Name
-            Output = CutFileTitle(Output, "Credits", "02Credits")
-
-
-            'Show Title
-            Output = CutFileText(Output, "Show Title", ShowTitleCheck(1))
+                'Show Title
+                Output = CutFileText(Output, "Show Title", ShowTitleCheck(1))
 
             'Guest Header
             Output = CutFileText(Output, "Guest Header", GuestHeaderCheck)
@@ -901,9 +939,12 @@ Public Class Form1
             'Record Date
             Output = CutFileText(Output, "Record Date", RecordDateCheck(1))
 
-            My.Computer.FileSystem.WriteAllText(".\CutFiles\02Credits.tcf", Output, False, Encoding.GetEncoding("IBM861"))
+                My.Computer.FileSystem.WriteAllText(".\CutFiles\02Credits" & FileCount + 1 & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
 
-        End If
+            End If
+
+            FileCount = FileCount + 1
+        Next
 
     End Sub
 
