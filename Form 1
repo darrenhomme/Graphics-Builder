@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.26  7/8/2016
+    'Version 1.27  7/8/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -288,43 +288,43 @@ Public Class Form1
         'Host Names
         For i = 1 To 2
             If CStr(HostCheck(i)) <> "   " Then
-                LowerThird(CStr(HostCheck(i)), "Host of " & CStr(ShowNameCheck(1)), "Blank.tga", "0" & i + 3 & "Host" & i)
+                LowerThird(CStr(HostCheck(i)), "Host of " & CStr(ShowNameCheck(1)), "Blank.tga", i + 89 & "Host" & i)
             End If
         Next i
 
         'Comment Line
         If CStr(CommentLineCheck(1)) <> "   " Then
-            LowerThird(CStr(CommentLineCheck(1)), "Comment Line", "Blank.tga", "06CommentLine")
+            LowerThird(CStr(CommentLineCheck(1)), "Comment Line", "Blank.tga", "92CommentLine")
         End If
 
         'Show Phone
         If CStr(ShowPhoneCheck(1)) <> "   " Then
-            LowerThird(CStr(ShowPhoneCheck(1)), CStr(ShowNameCheck(1)) & " Phone", "Blank.tga", "07ShowPhone")
+            LowerThird(CStr(ShowPhoneCheck(1)), CStr(ShowNameCheck(1)) & " Phone", "Blank.tga", "93ShowPhone")
         End If
 
         'Show email
         If CStr(ShowemailCheck(1)) <> "   " Then
-            LowerThird(CStr(ShowemailCheck(1)), "", "Blank.tga", "08Showemail")
+            LowerThird(CStr(ShowemailCheck(1)), "", "Blank.tga", "94Showemail")
         End If
 
         'Show Website
         If CStr(ShowWebsiteCheck(1)) <> "   " Then
-            LowerThird(CStr(ShowWebsiteCheck(1)), "", "Blank.tga", "09ShowWebsite")
+            LowerThird(CStr(ShowWebsiteCheck(1)), "", "Blank.tga", "95ShowWebsite")
         End If
 
         'Show Facebook
         If CStr(ShowFacebookCheck(1)) <> "   " Then
-            LowerThird(CStr(ShowFacebookCheck(1)), "", "Facebook.tga", "10ShowFacebook")
+            LowerThird(CStr(ShowFacebookCheck(1)), "", "Facebook.tga", "96ShowFacebook")
         End If
 
         'Show Twitter
         If CStr(ShowTwitterCheck(1)) <> "   " Then
-            LowerThird(CStr(ShowTwitterCheck(1)), "", "Twitter.tga", "11ShowTwitter")
+            LowerThird(CStr(ShowTwitterCheck(1)), "", "Twitter.tga", "97ShowTwitter")
         End If
 
         'Show YouTube
         If CStr(ShowYouTubeCheck(1)) <> "   " Then
-            LowerThird(CStr(ShowYouTubeCheck(1)), "", "YouTube.tga", "12ShowYouTube")
+            LowerThird(CStr(ShowYouTubeCheck(1)), "", "YouTube.tga", "98ShowYouTube")
         End If
 
 
@@ -340,43 +340,43 @@ Public Class Form1
 
             'Name
             If CStr(NameCheck(i)) <> "   " Then
-                LowerThird(CStr(NameCheck(i)), CStr(TitleCheck(i)), "Blank.tga", 06 + (i * 7) & "Guest" & i)
+                LowerThird(CStr(NameCheck(i)), CStr(TitleCheck(i)), "Blank.tga", 93 + (i * 7) & "Guest" & i)
             End If
 
 
             'Contact
             If PhoneCheck(i) <> "   " Or emailCheck(i) <> "   " Then
-                LowerThird(CStr(PhoneCheck(i)), CStr(emailCheck(i)), "Blank.tga", 07 + (i * 7) & "Contact" & i)
+                LowerThird(CStr(PhoneCheck(i)), CStr(emailCheck(i)), "Blank.tga", 94 + (i * 7) & "Contact" & i)
             ElseIf PhoneCheck(i) = "   " And emailCheck(i) <> "   " Then
-                LowerThird(CStr(emailCheck(i)), "", "Blank.tga", 07 + (i * 7) & "Contact" & i)
+                LowerThird(CStr(emailCheck(i)), "", "Blank.tga", 94 + (i * 7) & "Contact" & i)
             End If
 
 
             'Website
             If CStr(WebsiteCheck(i)) <> "   " Then
-                LowerThird(CStr(WebsiteCheck(i)), "", "Blank.tga", 08 + (i * 7) & "Website" & i)
+                LowerThird(CStr(WebsiteCheck(i)), "", "Blank.tga", 95 + (i * 7) & "Website" & i)
             End If
 
             'Facebook
             If CStr(FacebookCheck(i)) <> "   " Then
-                LowerThird(CStr(FacebookCheck(i)), "", "Facebook.tga", 09 + (i * 7) & "Facebook" & i)
+                LowerThird(CStr(FacebookCheck(i)), "", "Facebook.tga", 96 + (i * 7) & "Facebook" & i)
             End If
 
             'Twitter
             If CStr(TwitterCheck(i)) <> "   " Then
-                LowerThird(CStr(TwitterCheck(i)), "", "Twitter.tga", 10 + (i * 7) & "Twitter" & i)
+                LowerThird(CStr(TwitterCheck(i)), "", "Twitter.tga", 97 + (i * 7) & "Twitter" & i)
             End If
 
             'YouTube
             If CStr(YouTubeCheck(i)) <> "   " Then
-                LowerThird(CStr(YouTubeCheck(i)), "", "YouTube.tga", 11 + (i * 7) & "YouTube" & i)
+                LowerThird(CStr(YouTubeCheck(i)), "", "YouTube.tga", 98 + (i * 7) & "YouTube" & i)
             End If
 
             'City
             If CityPhoneCheck(i) <> "   " Or CityWebsiteCheck(i) <> "   " Then
-                LowerThird(CStr(CityPhoneCheck(i)), CStr(CityWebsiteCheck(i)), "Blank.tga", 12 + (i * 7) & "City" & i)
+                LowerThird(CStr(CityPhoneCheck(i)), CStr(CityWebsiteCheck(i)), "Blank.tga", 99 + (i * 7) & "City" & i)
             ElseIf CityPhoneCheck(i) = "   " And CityWebsiteCheck(i) <> "   " Then
-                LowerThird(CStr(CityWebsiteCheck(i)), "", "Blank.tga", 12 + (i * 7) & "City" & i)
+                LowerThird(CStr(CityWebsiteCheck(i)), "", "Blank.tga", 99 + (i * 7) & "City" & i)
             End If
 
         Next i
@@ -757,7 +757,7 @@ Public Class Form1
     Public Sub OpenSlate()
 
         Dim FileName As String
-        Dim FileNameArray(30) As String
+        Dim FileNameList As New List(Of String)
         Dim FileCount As Integer = 0
 
         Dim dir = ".\Templates\"
@@ -765,22 +765,20 @@ Public Class Form1
         For Each filelist As String In System.IO.Directory.GetFiles(dir)
             FileName = System.IO.Path.GetFileNameWithoutExtension(filelist)
             If FileName.Contains("Open") = True Then
-                FileNameArray(FileCount) = FileName
-                FileCount = FileCount + 1
+                FileNameList.Add(FileName)
             End If
         Next
 
-        FileCount = 0
 
-        For Each element As String In FileNameArray
+        For Each item As String In FileNameList
 
-            If System.IO.File.Exists(".\Templates\" & FileNameArray(FileCount) & ".tcf") Then
+            If System.IO.File.Exists(".\Templates\" & FileNameList.Item(FileCount) & ".tcf") Then
 
-                Dim Output As String = My.Computer.FileSystem.ReadAllText(".\Templates\" & FileNameArray(FileCount) & ".tcf", Encoding.GetEncoding("IBM861"))
+                Dim Output As String = My.Computer.FileSystem.ReadAllText(".\Templates\" & FileNameList.Item(FileCount) & ".tcf", Encoding.GetEncoding("IBM861"))
 
 
                 'Page Name
-                Output = CutFileTitle(Output, "Open", "01Open" & FileCount + 1)
+                Output = CutFileTitle(Output, "Open", 10 + FileCount & "Open" & FileCount + 1)
 
                 'Show Title
                 Output = CutFileText(Output, "Show Title", ShowTitleCheck(1))
@@ -819,7 +817,7 @@ Public Class Form1
                     Output = CutFileText(Output, "Host " & i, HostCheck(i))
                 Next i
 
-                My.Computer.FileSystem.WriteAllText(".\CutFiles\01Open" & FileCount + 1 & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
+                My.Computer.FileSystem.WriteAllText(".\CutFiles\" & 10 + FileCount & "Open" & FileCount + 1 & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
 
             End If
 
@@ -831,7 +829,7 @@ Public Class Form1
     Public Sub Credits()
 
         Dim FileName As String
-        Dim FileNameArray(30) As String
+        Dim FileNameList As New List(Of String)
         Dim FileCount As Integer = 0
 
         Dim dir = ".\Templates\"
@@ -839,107 +837,106 @@ Public Class Form1
         For Each filelist As String In System.IO.Directory.GetFiles(dir)
             FileName = System.IO.Path.GetFileNameWithoutExtension(filelist)
             If FileName.Contains("Credits") = True Then
-                FileNameArray(FileCount) = FileName
-                FileCount = FileCount + 1
+                FileNameList.Add(FileName)
             End If
         Next
 
         FileCount = 0
 
-        For Each element As String In FileNameArray
+        For Each item As String In FileNameList
 
-            If System.IO.File.Exists(".\Templates\" & FileNameArray(FileCount) & ".tcf") Then
+            If System.IO.File.Exists(".\Templates\" & FileNameList.Item(FileCount) & ".tcf") Then
 
-                Dim Output As String = My.Computer.FileSystem.ReadAllText(".\Templates\" & FileNameArray(FileCount) & ".tcf", Encoding.GetEncoding("IBM861"))
+                Dim Output As String = My.Computer.FileSystem.ReadAllText(".\Templates\" & FileNameList.Item(FileCount) & ".tcf", Encoding.GetEncoding("IBM861"))
 
 
                 'Page Name
-                Output = CutFileTitle(Output, "Credits", "02Credits" & FileCount + 1)
+                Output = CutFileTitle(Output, "Credits", 50 + FileCount & "Credits" & FileCount + 1)
 
 
                 'Show Title
                 Output = CutFileText(Output, "Show Title", ShowTitleCheck(1))
 
-            'Guest Header
-            Output = CutFileText(Output, "Guest Header", GuestHeaderCheck)
+                'Guest Header
+                Output = CutFileText(Output, "Guest Header", GuestHeaderCheck)
 
-            'Guests
-            For i = 1 To 6
-                'Name
-                Output = CutFileText(Output, "Guest " & i, NameCheck(i))
+                'Guests
+                For i = 1 To 6
+                    'Name
+                    Output = CutFileText(Output, "Guest " & i, NameCheck(i))
 
-                Output = CutFileText(Output, "Name " & i, NameCheck(i))
+                    Output = CutFileText(Output, "Name " & i, NameCheck(i))
 
-                'Title
-                Output = CutFileText(Output, "Title " & i, TitleCheck(i))
-            Next i
+                    'Title
+                    Output = CutFileText(Output, "Title " & i, TitleCheck(i))
+                Next i
 
-            'Producer Header
-            Output = CutFileText(Output, "Producer Header", ProducerHeaderCheck)
+                'Producer Header
+                Output = CutFileText(Output, "Producer Header", ProducerHeaderCheck)
 
-            For i = 1 To 2
-                'Producers
-                Output = CutFileText(Output, "Producer " & i, ProducerCheck(i))
-            Next i
+                For i = 1 To 2
+                    'Producers
+                    Output = CutFileText(Output, "Producer " & i, ProducerCheck(i))
+                Next i
 
-            'Host Header
-            Output = CutFileText(Output, "Host Header", HostHeaderCheck)
+                'Host Header
+                Output = CutFileText(Output, "Host Header", HostHeaderCheck)
 
-            For i = 1 To 2
-                'Hosts
-                Output = CutFileText(Output, "Host " & i, HostCheck(i))
-            Next i
-
-
-            'Director Header
-            Output = CutFileText(Output, "Director Header", DirectorHeaderCheck)
-
-            For i = 1 To 2
-                'Directors
-                Output = CutFileText(Output, "Director " & i, DirectorCheck(i))
-            Next i
+                For i = 1 To 2
+                    'Hosts
+                    Output = CutFileText(Output, "Host " & i, HostCheck(i))
+                Next i
 
 
-            'Graphics Header
-            Output = CutFileText(Output, "Graphics Header", GraphicsHeaderCheck)
+                'Director Header
+                Output = CutFileText(Output, "Director Header", DirectorHeaderCheck)
 
-            For i = 1 To 2
-                'Graphics
-                Output = CutFileText(Output, "Graphics " & i, GraphicsCheck(i))
-            Next i
-
-
-            'Audio Header
-            Output = CutFileText(Output, "Audio Header", AudioHeaderCheck)
-
-            For i = 1 To 2
-                'Audio
-                Output = CutFileText(Output, "Audio " & i, AudioCheck(i))
-            Next i
+                For i = 1 To 2
+                    'Directors
+                    Output = CutFileText(Output, "Director " & i, DirectorCheck(i))
+                Next i
 
 
-            'Camera Header
-            Output = CutFileText(Output, "Camera Header", CameraHeaderCheck)
+                'Graphics Header
+                Output = CutFileText(Output, "Graphics Header", GraphicsHeaderCheck)
 
-            For i = 1 To 3
-                'Camera
-                Output = CutFileText(Output, "Camera " & i, CameraCheck(i))
-            Next i
-
-
-            'Floor Header
-            Output = CutFileText(Output, "Floor Header", FloorHeaderCheck)
-
-            For i = 1 To 3
-                'Floor
-                Output = CutFileText(Output, "Floor " & i, FloorCheck(i))
-            Next i
+                For i = 1 To 2
+                    'Graphics
+                    Output = CutFileText(Output, "Graphics " & i, GraphicsCheck(i))
+                Next i
 
 
-            'Record Date
-            Output = CutFileText(Output, "Record Date", RecordDateCheck(1))
+                'Audio Header
+                Output = CutFileText(Output, "Audio Header", AudioHeaderCheck)
 
-                My.Computer.FileSystem.WriteAllText(".\CutFiles\02Credits" & FileCount + 1 & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
+                For i = 1 To 2
+                    'Audio
+                    Output = CutFileText(Output, "Audio " & i, AudioCheck(i))
+                Next i
+
+
+                'Camera Header
+                Output = CutFileText(Output, "Camera Header", CameraHeaderCheck)
+
+                For i = 1 To 3
+                    'Camera
+                    Output = CutFileText(Output, "Camera " & i, CameraCheck(i))
+                Next i
+
+
+                'Floor Header
+                Output = CutFileText(Output, "Floor Header", FloorHeaderCheck)
+
+                For i = 1 To 3
+                    'Floor
+                    Output = CutFileText(Output, "Floor " & i, FloorCheck(i))
+                Next i
+
+
+                'Record Date
+                Output = CutFileText(Output, "Record Date", RecordDateCheck(1))
+
+                My.Computer.FileSystem.WriteAllText(".\CutFiles\" & 50 + FileCount & "Credits" & FileCount + 1 & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
 
             End If
 
@@ -958,7 +955,7 @@ Public Class Form1
             'Page Name
             Output = CutFileTitle(Output, "Bug", "03Bug")
 
-            My.Computer.FileSystem.WriteAllText(".\CutFiles\03Bug.tcf", Output, False, Encoding.GetEncoding("IBM861"))
+            My.Computer.FileSystem.WriteAllText(".\CutFiles\80Bug.tcf", Output, False, Encoding.GetEncoding("IBM861"))
 
 
         End If
