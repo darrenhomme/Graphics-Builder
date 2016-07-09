@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.28  7/8/2016
+    'Version 1.29  7/9/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -276,55 +276,59 @@ Public Class Form1
             System.IO.File.Delete(DeleteCutFiles)
         Next DeleteCutFiles
 
+
+        'Number Cut Files
+        Dim CutFileCount As Integer = 100
+
         'Open
-        OpenSlate()
+        CutFileCount = OpenSlate(CutFileCount)
 
         'Credits
-        Credits()
+        CutFileCount = Credits(CutFileCount)
 
         'NWCP
-        Bug()
+        CutFileCount = Bug(CutFileCount)
 
         'Host Names
         For i = 1 To 2
             If CStr(HostCheck(i)) <> "   " Then
-                LowerThird(CStr(HostCheck(i)), "Host of " & CStr(ShowNameCheck(1)), "Blank.tga", i + 89 & "Host" & i)
+                CutFileCount = LowerThird(CStr(HostCheck(i)), "Host of " & CStr(ShowNameCheck(1)), "Blank.tga", CutFileCount & "Host" & i, CutFileCount)
             End If
         Next i
 
         'Comment Line
         If CStr(CommentLineCheck(1)) <> "   " Then
-            LowerThird(CStr(CommentLineCheck(1)), "Comment Line", "Blank.tga", "92CommentLine")
+            CutFileCount = LowerThird(CStr(CommentLineCheck(1)), "Comment Line", "Blank.tga", CutFileCount & "CommentLine", CutFileCount)
         End If
 
         'Show Phone
         If CStr(ShowPhoneCheck(1)) <> "   " Then
-            LowerThird(CStr(ShowPhoneCheck(1)), CStr(ShowNameCheck(1)) & " Phone", "Blank.tga", "93ShowPhone")
+            CutFileCount = LowerThird(CStr(ShowPhoneCheck(1)), CStr(ShowNameCheck(1)) & " Phone", "Blank.tga", CutFileCount & "ShowPhone", CutFileCount)
         End If
 
         'Show email
         If CStr(ShowemailCheck(1)) <> "   " Then
-            LowerThird(CStr(ShowemailCheck(1)), "", "Blank.tga", "94Showemail")
+            CutFileCount = LowerThird(CStr(ShowemailCheck(1)), "", "Blank.tga", CutFileCount & "Showemail", CutFileCount)
         End If
 
         'Show Website
         If CStr(ShowWebsiteCheck(1)) <> "   " Then
-            LowerThird(CStr(ShowWebsiteCheck(1)), "", "Blank.tga", "95ShowWebsite")
+            CutFileCount = LowerThird(CStr(ShowWebsiteCheck(1)), "", "Blank.tga", CutFileCount & "ShowWebsite", CutFileCount)
         End If
 
         'Show Facebook
         If CStr(ShowFacebookCheck(1)) <> "   " Then
-            LowerThird(CStr(ShowFacebookCheck(1)), "", "Facebook.tga", "96ShowFacebook")
+            CutFileCount = LowerThird(CStr(ShowFacebookCheck(1)), "", "Facebook.tga", CutFileCount & "ShowFacebook", CutFileCount)
         End If
 
         'Show Twitter
         If CStr(ShowTwitterCheck(1)) <> "   " Then
-            LowerThird(CStr(ShowTwitterCheck(1)), "", "Twitter.tga", "97ShowTwitter")
+            CutFileCount = LowerThird(CStr(ShowTwitterCheck(1)), "", "Twitter.tga", CutFileCount & "ShowTwitter", CutFileCount)
         End If
 
         'Show YouTube
         If CStr(ShowYouTubeCheck(1)) <> "   " Then
-            LowerThird(CStr(ShowYouTubeCheck(1)), "", "YouTube.tga", "98ShowYouTube")
+            CutFileCount = LowerThird(CStr(ShowYouTubeCheck(1)), "", "YouTube.tga", CutFileCount & "ShowYouTube", CutFileCount)
         End If
 
 
@@ -340,43 +344,43 @@ Public Class Form1
 
             'Name
             If CStr(NameCheck(i)) <> "   " Then
-                LowerThird(CStr(NameCheck(i)), CStr(TitleCheck(i)), "Blank.tga", 93 + (i * 7) & "Guest" & i)
+                CutFileCount = LowerThird(CStr(NameCheck(i)), CStr(TitleCheck(i)), "Blank.tga", CutFileCount & "Guest" & i, CutFileCount)
             End If
 
 
             'Contact
             If PhoneCheck(i) <> "   " Or emailCheck(i) <> "   " Then
-                LowerThird(CStr(PhoneCheck(i)), CStr(emailCheck(i)), "Blank.tga", 94 + (i * 7) & "Contact" & i)
+                CutFileCount = LowerThird(CStr(PhoneCheck(i)), CStr(emailCheck(i)), "Blank.tga", CutFileCount & "Contact" & i, CutFileCount)
             ElseIf PhoneCheck(i) = "   " And emailCheck(i) <> "   " Then
-                LowerThird(CStr(emailCheck(i)), "", "Blank.tga", 94 + (i * 7) & "Contact" & i)
+                CutFileCount = LowerThird(CStr(emailCheck(i)), "", "Blank.tga", CutFileCount & "Contact" & i, CutFileCount)
             End If
 
 
             'Website
             If CStr(WebsiteCheck(i)) <> "   " Then
-                LowerThird(CStr(WebsiteCheck(i)), "", "Blank.tga", 95 + (i * 7) & "Website" & i)
+                CutFileCount = LowerThird(CStr(WebsiteCheck(i)), "", "Blank.tga", CutFileCount & "Website" & i, CutFileCount)
             End If
 
             'Facebook
             If CStr(FacebookCheck(i)) <> "   " Then
-                LowerThird(CStr(FacebookCheck(i)), "", "Facebook.tga", 96 + (i * 7) & "Facebook" & i)
+                CutFileCount = LowerThird(CStr(FacebookCheck(i)), "", "Facebook.tga", CutFileCount & "Facebook" & i, CutFileCount)
             End If
 
             'Twitter
             If CStr(TwitterCheck(i)) <> "   " Then
-                LowerThird(CStr(TwitterCheck(i)), "", "Twitter.tga", 97 + (i * 7) & "Twitter" & i)
+                CutFileCount = LowerThird(CStr(TwitterCheck(i)), "", "Twitter.tga", CutFileCount & "Twitter" & i, CutFileCount)
             End If
 
             'YouTube
             If CStr(YouTubeCheck(i)) <> "   " Then
-                LowerThird(CStr(YouTubeCheck(i)), "", "YouTube.tga", 98 + (i * 7) & "YouTube" & i)
+                CutFileCount = LowerThird(CStr(YouTubeCheck(i)), "", "YouTube.tga", CutFileCount & "YouTube" & i, CutFileCount)
             End If
 
             'City
             If CityPhoneCheck(i) <> "   " Or CityWebsiteCheck(i) <> "   " Then
-                LowerThird(CStr(CityPhoneCheck(i)), CStr(CityWebsiteCheck(i)), "Blank.tga", 99 + (i * 7) & "City" & i)
+                CutFileCount = LowerThird(CStr(CityPhoneCheck(i)), CStr(CityWebsiteCheck(i)), "Blank.tga", CutFileCount & "City" & i, CutFileCount)
             ElseIf CityPhoneCheck(i) = "   " And CityWebsiteCheck(i) <> "   " Then
-                LowerThird(CStr(CityWebsiteCheck(i)), "", "Blank.tga", 99 + (i * 7) & "City" & i)
+                CutFileCount = LowerThird(CStr(CityWebsiteCheck(i)), "", "Blank.tga", CutFileCount & "City" & i, CutFileCount)
             End If
 
         Next i
@@ -730,7 +734,7 @@ Public Class Form1
 
 
 
-    Public Sub LowerThird(ByVal TopLine As String, ByVal BottomLine As String, ByVal Pic As String, ByVal FileName As String)
+    Public Function LowerThird(ByVal TopLine As String, ByVal BottomLine As String, ByVal Pic As String, ByVal FileName As String, ByVal CutFileCount As Integer)
 
         If System.IO.File.Exists(".\Templates\Lower.tcf") Then
             Dim Output As String = My.Computer.FileSystem.ReadAllText(".\Templates\Lower.tcf", Encoding.GetEncoding("IBM861"))
@@ -750,24 +754,37 @@ Public Class Form1
             Output = CutFilePicture(Output, Path & "Picture.tga", Path & Pic)
 
             My.Computer.FileSystem.WriteAllText(".\CutFiles\" & FileName & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
+
+            CutFileCount = CutFileCount + 1
         End If
-    End Sub
+        Return CutFileCount
+    End Function
 
 
-    Public Sub OpenSlate()
+
+    Public Function GetCutFileList(ByVal SearchString As String)
 
         Dim FileName As String
         Dim FileNameList As New List(Of String)
-        Dim FileCount As Integer = 0
 
         Dim dir = ".\Templates\"
         'Gets current file list
         For Each filelist As String In System.IO.Directory.GetFiles(dir)
             FileName = System.IO.Path.GetFileNameWithoutExtension(filelist)
-            If FileName.Contains("Open") = True Then
+            If FileName.Contains(SearchString) = True Then
                 FileNameList.Add(FileName)
             End If
         Next
+
+        Return FileNameList
+    End Function
+
+
+    Public Function OpenSlate(ByVal CutFileCount As Integer)
+        Dim FileCount As Integer = 0
+
+        Dim FileNameList As New List(Of String)
+        FileNameList = GetCutFileList("Open")
 
 
         For Each item As String In FileNameList
@@ -778,7 +795,7 @@ Public Class Form1
 
 
                 'Page Name
-                Output = CutFileTitle(Output, "Open", 10 + FileCount & "Open" & FileCount + 1)
+                Output = CutFileTitle(Output, "Open", CutFileCount & "Open" & FileCount + 1)
 
                 'Show Title
                 Output = CutFileText(Output, "Show Title", ShowTitleCheck(1))
@@ -817,29 +834,22 @@ Public Class Form1
                     Output = CutFileText(Output, "Host " & i, HostCheck(i))
                 Next i
 
-                My.Computer.FileSystem.WriteAllText(".\CutFiles\" & 10 + FileCount & "Open" & FileCount + 1 & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
-
+                My.Computer.FileSystem.WriteAllText(".\CutFiles\" & CutFileCount & "Open" & FileCount + 1 & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
+                CutFileCount = CutFileCount + 1
             End If
 
             FileCount = FileCount + 1
         Next
-    End Sub
+        Return CutFileCount
+    End Function
 
 
-    Public Sub Credits()
+    Public Function Credits(ByVal CutFileCount As Integer)
 
-        Dim FileName As String
-        Dim FileNameList As New List(Of String)
         Dim FileCount As Integer = 0
 
-        Dim dir = ".\Templates\"
-        'Gets current file list
-        For Each filelist As String In System.IO.Directory.GetFiles(dir)
-            FileName = System.IO.Path.GetFileNameWithoutExtension(filelist)
-            If FileName.Contains("Credits") = True Then
-                FileNameList.Add(FileName)
-            End If
-        Next
+        Dim FileNameList As New List(Of String)
+        FileNameList = GetCutFileList("Credits")
 
         For Each item As String In FileNameList
 
@@ -849,7 +859,7 @@ Public Class Form1
 
 
                 'Page Name
-                Output = CutFileTitle(Output, "Credits", 50 + FileCount & "Credits" & FileCount + 1)
+                Output = CutFileTitle(Output, "Credits", CutFileCount & "Credits" & FileCount + 1)
 
 
                 'Show Title
@@ -934,29 +944,21 @@ Public Class Form1
                 'Record Date
                 Output = CutFileText(Output, "Record Date", RecordDateCheck(1))
 
-                My.Computer.FileSystem.WriteAllText(".\CutFiles\" & 50 + FileCount & "Credits" & FileCount + 1 & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
-
+                My.Computer.FileSystem.WriteAllText(".\CutFiles\" & CutFileCount & "Credits" & FileCount + 1 & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
+                CutFileCount = CutFileCount + 1
             End If
 
             FileCount = FileCount + 1
         Next
+        Return CutFileCount
+    End Function
 
-    End Sub
+    Public Function Bug(ByVal CutFileCount As Integer)
 
-    Public Sub Bug()
-
-        Dim FileName As String
-        Dim FileNameList As New List(Of String)
         Dim FileCount As Integer = 0
 
-        Dim dir = ".\Templates\"
-        'Gets current file list
-        For Each filelist As String In System.IO.Directory.GetFiles(dir)
-            FileName = System.IO.Path.GetFileNameWithoutExtension(filelist)
-            If FileName.Contains("Bug") = True Then
-                FileNameList.Add(FileName)
-            End If
-        Next
+        Dim FileNameList As New List(Of String)
+        FileNameList = GetCutFileList("Bug")
 
         For Each item As String In FileNameList
 
@@ -966,16 +968,17 @@ Public Class Form1
 
 
                 'Page Name
-                Output = CutFileTitle(Output, "Bug", 80 + FileCount & "Bug" & FileCount + 1)
+                Output = CutFileTitle(Output, "Bug", CutFileCount & "Bug" & FileCount + 1)
 
-                My.Computer.FileSystem.WriteAllText(".\CutFiles\" & 80 + FileCount & "Bug" & FileCount + 1 & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
-
+                My.Computer.FileSystem.WriteAllText(".\CutFiles\" & CutFileCount & "Bug" & FileCount + 1 & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
+                CutFileCount = CutFileCount + 1
             End If
 
             FileCount = FileCount + 1
         Next
 
-    End Sub
+        Return CutFileCount
+    End Function
 
 
 End Class
