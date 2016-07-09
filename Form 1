@@ -292,43 +292,43 @@ Public Class Form1
         'Host Names
         For i = 1 To 2
             If CStr(HostCheck(i)) <> "   " Then
-                CutFileCount = LowerThird(CStr(HostCheck(i)), "Host of " & CStr(ShowNameCheck(1)), "Blank.tga", CutFileCount & "Host" & i, CutFileCount)
+                CutFileCount = LowerThird(CStr(HostCheck(i)), "Host of " & CStr(ShowNameCheck(1)), "Blank.tga", "Host" & i, CutFileCount)
             End If
         Next i
 
         'Comment Line
         If CStr(CommentLineCheck(1)) <> "   " Then
-            CutFileCount = LowerThird(CStr(CommentLineCheck(1)), "Comment Line", "Blank.tga", CutFileCount & "CommentLine", CutFileCount)
+            CutFileCount = LowerThird(CStr(CommentLineCheck(1)), "Comment Line", "Blank.tga", "CommentLine", CutFileCount)
         End If
 
         'Show Phone
         If CStr(ShowPhoneCheck(1)) <> "   " Then
-            CutFileCount = LowerThird(CStr(ShowPhoneCheck(1)), CStr(ShowNameCheck(1)) & " Phone", "Blank.tga", CutFileCount & "ShowPhone", CutFileCount)
+            CutFileCount = LowerThird(CStr(ShowPhoneCheck(1)), CStr(ShowNameCheck(1)) & " Phone", "Blank.tga", "ShowPhone", CutFileCount)
         End If
 
         'Show email
         If CStr(ShowemailCheck(1)) <> "   " Then
-            CutFileCount = LowerThird(CStr(ShowemailCheck(1)), "", "Blank.tga", CutFileCount & "Showemail", CutFileCount)
+            CutFileCount = LowerThird(CStr(ShowemailCheck(1)), "", "Blank.tga", "Showemail", CutFileCount)
         End If
 
         'Show Website
         If CStr(ShowWebsiteCheck(1)) <> "   " Then
-            CutFileCount = LowerThird(CStr(ShowWebsiteCheck(1)), "", "Blank.tga", CutFileCount & "ShowWebsite", CutFileCount)
+            CutFileCount = LowerThird(CStr(ShowWebsiteCheck(1)), "", "Blank.tga", "ShowWebsite", CutFileCount)
         End If
 
         'Show Facebook
         If CStr(ShowFacebookCheck(1)) <> "   " Then
-            CutFileCount = LowerThird(CStr(ShowFacebookCheck(1)), "", "Facebook.tga", CutFileCount & "ShowFacebook", CutFileCount)
+            CutFileCount = LowerThird(CStr(ShowFacebookCheck(1)), "", "Facebook.tga", "ShowFacebook", CutFileCount)
         End If
 
         'Show Twitter
         If CStr(ShowTwitterCheck(1)) <> "   " Then
-            CutFileCount = LowerThird(CStr(ShowTwitterCheck(1)), "", "Twitter.tga", CutFileCount & "ShowTwitter", CutFileCount)
+            CutFileCount = LowerThird(CStr(ShowTwitterCheck(1)), "", "Twitter.tga", "ShowTwitter", CutFileCount)
         End If
 
         'Show YouTube
         If CStr(ShowYouTubeCheck(1)) <> "   " Then
-            CutFileCount = LowerThird(CStr(ShowYouTubeCheck(1)), "", "YouTube.tga", CutFileCount & "ShowYouTube", CutFileCount)
+            CutFileCount = LowerThird(CStr(ShowYouTubeCheck(1)), "", "YouTube.tga", "ShowYouTube", CutFileCount)
         End If
 
 
@@ -344,43 +344,43 @@ Public Class Form1
 
             'Name
             If CStr(NameCheck(i)) <> "   " Then
-                CutFileCount = LowerThird(CStr(NameCheck(i)), CStr(TitleCheck(i)), "Blank.tga", CutFileCount & "Guest" & i, CutFileCount)
+                CutFileCount = LowerThird(CStr(NameCheck(i)), CStr(TitleCheck(i)), "Blank.tga", "Guest" & i, CutFileCount)
             End If
 
 
             'Contact
             If PhoneCheck(i) <> "   " Or emailCheck(i) <> "   " Then
-                CutFileCount = LowerThird(CStr(PhoneCheck(i)), CStr(emailCheck(i)), "Blank.tga", CutFileCount & "Contact" & i, CutFileCount)
+                CutFileCount = LowerThird(CStr(PhoneCheck(i)), CStr(emailCheck(i)), "Blank.tga", "Contact" & i, CutFileCount)
             ElseIf PhoneCheck(i) = "   " And emailCheck(i) <> "   " Then
-                CutFileCount = LowerThird(CStr(emailCheck(i)), "", "Blank.tga", CutFileCount & "Contact" & i, CutFileCount)
+                CutFileCount = LowerThird(CStr(emailCheck(i)), "", "Blank.tga", "Contact" & i, CutFileCount)
             End If
 
 
             'Website
             If CStr(WebsiteCheck(i)) <> "   " Then
-                CutFileCount = LowerThird(CStr(WebsiteCheck(i)), "", "Blank.tga", CutFileCount & "Website" & i, CutFileCount)
+                CutFileCount = LowerThird(CStr(WebsiteCheck(i)), "", "Blank.tga", "Website" & i, CutFileCount)
             End If
 
             'Facebook
             If CStr(FacebookCheck(i)) <> "   " Then
-                CutFileCount = LowerThird(CStr(FacebookCheck(i)), "", "Facebook.tga", CutFileCount & "Facebook" & i, CutFileCount)
+                CutFileCount = LowerThird(CStr(FacebookCheck(i)), "", "Facebook.tga", "Facebook" & i, CutFileCount)
             End If
 
             'Twitter
             If CStr(TwitterCheck(i)) <> "   " Then
-                CutFileCount = LowerThird(CStr(TwitterCheck(i)), "", "Twitter.tga", CutFileCount & "Twitter" & i, CutFileCount)
+                CutFileCount = LowerThird(CStr(TwitterCheck(i)), "", "Twitter.tga", "Twitter" & i, CutFileCount)
             End If
 
             'YouTube
             If CStr(YouTubeCheck(i)) <> "   " Then
-                CutFileCount = LowerThird(CStr(YouTubeCheck(i)), "", "YouTube.tga", CutFileCount & "YouTube" & i, CutFileCount)
+                CutFileCount = LowerThird(CStr(YouTubeCheck(i)), "", "YouTube.tga", "YouTube" & i, CutFileCount)
             End If
 
             'City
             If CityPhoneCheck(i) <> "   " Or CityWebsiteCheck(i) <> "   " Then
-                CutFileCount = LowerThird(CStr(CityPhoneCheck(i)), CStr(CityWebsiteCheck(i)), "Blank.tga", CutFileCount & "City" & i, CutFileCount)
+                CutFileCount = LowerThird(CStr(CityPhoneCheck(i)), CStr(CityWebsiteCheck(i)), "Blank.tga", "City" & i, CutFileCount)
             ElseIf CityPhoneCheck(i) = "   " And CityWebsiteCheck(i) <> "   " Then
-                CutFileCount = LowerThird(CStr(CityWebsiteCheck(i)), "", "Blank.tga", CutFileCount & "City" & i, CutFileCount)
+                CutFileCount = LowerThird(CStr(CityWebsiteCheck(i)), "", "Blank.tga", "City" & i, CutFileCount)
             End If
 
         Next i
@@ -742,7 +742,7 @@ Public Class Form1
             Dim Path As String = "C:\Users\MyComputer\Desktop\Images\"
 
             'Page Name
-            Output = CutFileTitle(Output, "Lower", FileName)
+            Output = CutFileTitle(Output, "Lower", CutFileCount & FileName)
 
             'Top Line
             Output = CutFileText(Output, "Name", TopLine)
@@ -753,7 +753,7 @@ Public Class Form1
             'Pic
             Output = CutFilePicture(Output, Path & "Picture.tga", Path & Pic)
 
-            My.Computer.FileSystem.WriteAllText(".\CutFiles\" & FileName & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
+            My.Computer.FileSystem.WriteAllText(".\CutFiles\" & CutFileCount & FileName & ".tcf", Output, False, Encoding.GetEncoding("IBM861"))
 
             CutFileCount = CutFileCount + 1
         End If
