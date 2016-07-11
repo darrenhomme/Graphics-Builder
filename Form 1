@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.29  7/9/2016
+    'Version 1.30  7/11/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -60,6 +60,12 @@ Public Class Form1
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Check Directories
+        CheckDir("txt")
+        CheckDir("Database")
+        CheckDir("CrewDatabase")
+        CheckDir("Templates")
+        CheckDir("CutFiles")
 
         'Write the Current Date to ShowDate.txt
         Dim thisDate As Date
@@ -68,11 +74,13 @@ Public Class Form1
 
         'Populate the Form Fields
         FileCheck()
-
-
     End Sub
 
-
+    Public Sub CheckDir(ByVal dir As String)
+        If (Not System.IO.Directory.Exists(dir)) Then
+            System.IO.Directory.CreateDirectory(dir)
+        End If
+    End Sub
 
     Public Function WriteText(ByVal WriteTextName As String, ByVal WriteTextLoop As Integer)
         Dim WriteTextContent As String
