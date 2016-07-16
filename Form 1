@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.31  7/14/2016
+    'Version 1.32  7/16/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -50,6 +50,8 @@ Public Class Form1
     Dim DBCheck As String
     Dim CDBCheck As String
 
+    Dim Fields = New String() {"Guest1", "Guest2", "Guest3", "Guest4", "Guest5", "Guest6", "Name", "Title", "Phone", "email", "Website", "Facebook", "Twitter", "YouTube", "CityPhone", "CityWebsite", "Producer1", "Producer2", "Host1", "Host2", "Director1", "Director2", "Graphics1", "Graphics2", "Audio1", "Audio2", "Camera1", "Camera2", "Camera3", "Floor1", "Floor2", "Floor3", "CommentLine", "ShowPhone", "Showemail", "ShowWebsite", "ShowFacebook", "ShowTwitter", "ShowYouTube", "RecordDate", "ShowTitle"}
+
     Dim CDBitem = New String() {"Producer1", "Producer2", "Host1", "Host2", "Director1", "Director2", "Graphics1", "Graphics2", "Audio1", "Audio2", "Camera1", "Camera2", "Camera3", "Floor1", "Floor2", "Floor3"}
 
 
@@ -81,14 +83,131 @@ Public Class Form1
         End If
     End Sub
 
-    Public Sub FileCheck()
-        'Compair txt Files to the Variable Values
-        'Overwrires Form Field if txt File is Changed
-        'No Check Against Form Value is Used
+    Public Sub HideGuest(ByVal Number As String)
+        Me.Controls("LBGuest" & Number).Visible = False
+        Me.Controls("DB" & Number).Visible = False
+        HideTextLabel("Name" & Number)
+        HideTextLabel("Title" & Number)
+        HideTextLabel("Phone" & Number)
+        HideTextLabel("email" & Number)
+        HideTextLabel("Website" & Number)
+        HideTextLabel("Facebook" & Number)
+        HideTextLabel("Twitter" & Number)
+        HideTextLabel("YouTube" & Number)
+        HideTextLabel("CityPhone" & Number)
+        HideTextLabel("CityWebsite" & Number)
+    End Sub
 
+    Public Sub ShowGuest(ByVal Number As String)
+        Me.Controls("LBGuest" & Number).Visible = True
+        Me.Controls("DB" & Number).Visible = True
+        ShowTextLabel("Name" & Number)
+        ShowTextLabel("Title" & Number)
+        ShowTextLabel("Phone" & Number)
+        ShowTextLabel("email" & Number)
+        ShowTextLabel("Website" & Number)
+        ShowTextLabel("Facebook" & Number)
+        ShowTextLabel("Twitter" & Number)
+        ShowTextLabel("YouTube" & Number)
+        ShowTextLabel("CityPhone" & Number)
+        ShowTextLabel("CityWebsite" & Number)
+    End Sub
 
-        'Guests
+    Public Sub HideGuestField(ByVal Field As String)
         For i = 1 To 6
+            HideTextLabel(Field & i)
+        Next
+    End Sub
+
+    Public Sub ShowGuestField(ByVal Field As String)
+        For i = 1 To 6
+            If Me.Controls("LBGuest" & i).Visible = True Then
+                ShowTextLabel(Field & i)
+            End If
+        Next
+    End Sub
+
+    Public Sub HideCrew(ByVal Field As String)
+        Me.Controls("CDB" & Field).Visible = False
+        HideTextLabel(Field)
+    End Sub
+
+    Public Sub ShowCrew(ByVal Field As String)
+        Me.Controls("CDB" & Field).Visible = True
+        ShowTextLabel(Field)
+    End Sub
+
+    Public Sub HideTextLabel(ByVal Field As String)
+        Me.Controls("LB" & Field).Visible = False
+        Me.Controls(Field).Text = ""
+        WriteText(Field, 0)
+        Me.Controls(Field).Visible = False
+    End Sub
+
+    Public Sub ShowTextLabel(ByVal Field As String)
+        Me.Controls("LB" & Field).Visible = True
+        Me.Controls(Field).Visible = True
+    End Sub
+
+    Public Sub FileCheck()
+        'Show or Hide Fields based on Settings.txt in the txt dir
+        Dim TextLine(50) As String
+        Dim FileCount As Integer
+        Dim FILE_NAME As String = ".\txt\Settings.txt"
+        If System.IO.File.Exists(FILE_NAME) = True Then
+            Dim objReader As New System.IO.StreamReader(FILE_NAME)
+            Do While objReader.Peek() <> -1
+                TextLine(FileCount) = objReader.ReadLine()
+                FileCount = FileCount + 1
+            Loop
+            objReader.Close()
+
+            'Hide ur Show Guests
+            For i = 0 To 5
+                If TextLine(i) = "0" Then
+                    HideGuest(i + 1)
+                ElseIf TextLine(i) = "1" Then
+                    ShowGuest(i + 1)
+                End If
+            Next i
+
+            'Hide or Show Guest Fields
+            For i = 6 To 15
+                If TextLine(i) = "0" Then
+                    HideGuestField(Fields(i))
+                ElseIf TextLine(i) = "1" Then
+                    ShowGuestField(Fields(i))
+                End If
+            Next i
+
+            'Hide or Show Crew Fields
+            For i = 16 To 31
+                        If TextLine(i) = "0" Then
+                            HideCrew(Fields(i))
+                        ElseIf TextLine(i) = "1" Then
+                            ShowCrew(Fields(i))
+                        End If
+                    Next i
+
+                    'Hide Or Show() the Show Fields
+                    For i = 32 To Fields.Length - 1
+                        If TextLine(i) = "0" Then
+                            HideTextLabel(Fields(i))
+                        ElseIf TextLine(i) = "1" Then
+                            ShowTextLabel(Fields(i))
+                        End If
+                    Next i
+
+
+                End If
+
+                'Compair txt Files to the Variable Values
+                'Overwrires Form Field if txt File is Changed
+                'No Check Against Form Value is Used
+
+
+                'Guests
+                For i = 1 To 6
             NameCheck(i) = FileCompair("Name" & i, NameCheck(i))
 
             TitleCheck(i) = FileCompair("Title" & i, TitleCheck(i))
@@ -956,5 +1075,11 @@ Public Class Form1
         Next
         Return CutFileCount
     End Function
+
+    Private Sub ButtonSettings_Click(sender As Object, e As EventArgs) Handles ButtonSettings.Click
+        Settings.Show()
+
+    End Sub
+
 
 End Class
