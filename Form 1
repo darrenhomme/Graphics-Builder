@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.32  7/16/2016
+    'Version 1.33  7/16/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -50,7 +50,9 @@ Public Class Form1
     Dim DBCheck As String
     Dim CDBCheck As String
 
-    Dim Fields = New String() {"Guest1", "Guest2", "Guest3", "Guest4", "Guest5", "Guest6", "Name", "Title", "Phone", "email", "Website", "Facebook", "Twitter", "YouTube", "CityPhone", "CityWebsite", "Producer1", "Producer2", "Host1", "Host2", "Director1", "Director2", "Graphics1", "Graphics2", "Audio1", "Audio2", "Camera1", "Camera2", "Camera3", "Floor1", "Floor2", "Floor3", "CommentLine", "ShowPhone", "Showemail", "ShowWebsite", "ShowFacebook", "ShowTwitter", "ShowYouTube", "RecordDate", "ShowTitle"}
+    Dim SettingsCheck As String
+
+    Dim Fields = New String() {"Guest1", "Guest2", "Guest3", "Guest4", "Guest5", "Guest6", "Name", "Title", "Phone", "email", "Website", "Facebook", "Twitter", "YouTube", "CityPhone", "CityWebsite", "Producer1", "Producer2", "Host1", "Host2", "Director1", "Director2", "Graphics1", "Graphics2", "Audio1", "Audio2", "Camera1", "Camera2", "Camera3", "Floor1", "Floor2", "Floor3", "CommentLine", "ShowPhone", "Showemail", "ShowWebsite", "ShowFacebook", "ShowTwitter", "ShowYouTube", "RecordDate", "ShowTitle", "ShowName"}
 
     Dim CDBitem = New String() {"Producer1", "Producer2", "Host1", "Host2", "Director1", "Director2", "Graphics1", "Graphics2", "Audio1", "Audio2", "Camera1", "Camera2", "Camera3", "Floor1", "Floor2", "Floor3"}
 
@@ -151,6 +153,7 @@ Public Class Form1
 
     Public Sub FileCheck()
         'Show or Hide Fields based on Settings.txt in the txt dir
+        Dim SettingsCheck2 As String = ""
         Dim TextLine(50) As String
         Dim FileCount As Integer
         Dim FILE_NAME As String = ".\txt\Settings.txt"
@@ -158,56 +161,113 @@ Public Class Form1
             Dim objReader As New System.IO.StreamReader(FILE_NAME)
             Do While objReader.Peek() <> -1
                 TextLine(FileCount) = objReader.ReadLine()
+                SettingsCheck2 = SettingsCheck2 & TextLine(FileCount)
                 FileCount = FileCount + 1
             Loop
             objReader.Close()
 
-            'Hide ur Show Guests
-            For i = 0 To 5
-                If TextLine(i) = "0" Then
-                    HideGuest(i + 1)
-                ElseIf TextLine(i) = "1" Then
-                    ShowGuest(i + 1)
-                End If
-            Next i
+            If SettingsCheck <> SettingsCheck2 Then
+                Dim GuestTopY As Integer = 12
+                Dim GuestBottomY As Integer = 251
 
-            'Hide or Show Guest Fields
-            For i = 6 To 15
-                If TextLine(i) = "0" Then
-                    HideGuestField(Fields(i))
-                ElseIf TextLine(i) = "1" Then
-                    ShowGuestField(Fields(i))
-                End If
-            Next i
+                Dim CrewY As Integer = 536
+                Dim YHolder As Integer = 0
 
-            'Hide or Show Crew Fields
-            For i = 16 To 31
-                        If TextLine(i) = "0" Then
-                            HideCrew(Fields(i))
-                        ElseIf TextLine(i) = "1" Then
-                            ShowCrew(Fields(i))
+                'Hide or Show Guests
+                For i = 0 To 5
+                    If TextLine(i) = "0" Then
+                        HideGuest(i + 1)
+                    ElseIf TextLine(i) = "1" Then
+                        ShowGuest(i + 1)
+                    End If
+                Next i
+
+
+                'Hide or Show Guest Fields
+                For i = 6 To 15
+                    If TextLine(i) = "0" Then
+                        HideGuestField(Fields(i))
+                    ElseIf TextLine(i) = "1" Then
+                        ShowGuestField(Fields(i))
+                    End If
+                Next i
+
+                'Hide or Show Crew Fields
+                For i = 16 To 31
+                    If TextLine(i) = "0" Then
+                        HideCrew(Fields(i))
+                    ElseIf TextLine(i) = "1" Then
+                        ShowCrew(Fields(i))
+                    End If
+                Next i
+
+                'Hide Or Show() the Show Fields
+                For i = 32 To 40
+                    If TextLine(i) = "0" Then
+                        HideTextLabel(Fields(i))
+                    ElseIf TextLine(i) = "1" Then
+                        ShowTextLabel(Fields(i))
+                    End If
+                Next i
+
+
+
+                'Arrange fields
+                'Guest Fields
+                For n = 1 To 6
+                    If n < 4 Then
+                        YHolder = GuestTopY
+                    ElseIf n > 3 Then
+                        YHolder = GuestBottomY
+                    End If
+                    For i = 6 To 15
+
+                        If Me.Controls("LB" & Fields(i) & n).visible = True Then
+                            Me.Controls("LB" & Fields(i) & n).Top = YHolder + 3
+                            Me.Controls(Fields(i) & n).Top = YHolder
+                            YHolder = YHolder + 22
                         End If
+
                     Next i
-
-                    'Hide Or Show() the Show Fields
-                    For i = 32 To Fields.Length - 1
-                        If TextLine(i) = "0" Then
-                            HideTextLabel(Fields(i))
-                        ElseIf TextLine(i) = "1" Then
-                            ShowTextLabel(Fields(i))
-                        End If
-                    Next i
+                Next n
 
 
-                End If
+                'Crew Fields
+                For i = 16 To 31
+                    If i = 16 Or i = 24 Then
+                        YHolder = CrewY
+                    End If
+                    If Me.Controls("LB" & Fields(i)).Visible = True Then
+                        Me.Controls("CDB" & Fields(i)).Top = YHolder + 3
+                        Me.Controls("LB" & Fields(i)).Top = YHolder + 3
+                        Me.Controls(Fields(i)).Top = YHolder
+                        YHolder = YHolder + 22
+                    End If
+                Next i
 
-                'Compair txt Files to the Variable Values
-                'Overwrires Form Field if txt File is Changed
-                'No Check Against Form Value is Used
+
+                'Show Fields
+                YHolder = CrewY
+                For i = 32 To 41
+                    If Me.Controls("LB" & Fields(i)).Visible = True Then
+                        Me.Controls("LB" & Fields(i)).Top = YHolder + 3
+                        Me.Controls(Fields(i)).Top = YHolder + 3
+                        YHolder = YHolder + 22
+                    End If
+                Next i
+            End If
 
 
-                'Guests
-                For i = 1 To 6
+            SettingsCheck = SettingsCheck2
+        End If
+
+            'Compair txt Files to the Variable Values
+            'Overwrires Form Field if txt File is Changed
+            'No Check Against Form Value is Used
+
+
+            'Guests
+            For i = 1 To 6
             NameCheck(i) = FileCompair("Name" & i, NameCheck(i))
 
             TitleCheck(i) = FileCompair("Title" & i, TitleCheck(i))
@@ -351,16 +411,16 @@ Public Class Form1
 
                 For i = 1 To 6
                     If CType(Me.Controls.Item("DB" & i), RadioButton).Checked = True Then
-                        Me.Controls("Name" & i).Text = TextLine(0)
-                        Me.Controls("Title" & i).Text = TextLine(1)
-                        Me.Controls("Phone" & i).Text = TextLine(2)
-                        Me.Controls("email" & i).Text = TextLine(3)
-                        Me.Controls("Website" & i).Text = TextLine(4)
-                        Me.Controls("Facebook" & i).Text = TextLine(5)
-                        Me.Controls("Twitter" & i).Text = TextLine(6)
-                        Me.Controls("YouTube" & i).Text = TextLine(7)
-                        Me.Controls("CityPhone" & i).Text = TextLine(10)
-                        Me.Controls("CityWebsite" & i).Text = TextLine(11)
+                        If Me.Controls("Name" & i).Visible = True Then Me.Controls("Name" & i).Text = TextLine(0)
+                        If Me.Controls("Title" & i).Visible = True Then Me.Controls("Title" & i).Text = TextLine(1)
+                        If Me.Controls("Phone" & i).Visible = True Then Me.Controls("Phone" & i).Text = TextLine(2)
+                        If Me.Controls("email" & i).Visible = True Then Me.Controls("email" & i).Text = TextLine(3)
+                        If Me.Controls("Website" & i).Visible = True Then Me.Controls("Website" & i).Text = TextLine(4)
+                        If Me.Controls("Facebook" & i).Visible = True Then Me.Controls("Facebook" & i).Text = TextLine(5)
+                        If Me.Controls("Twitter" & i).Visible = True Then Me.Controls("Twitter" & i).Text = TextLine(6)
+                        If Me.Controls("YouTube" & i).Visible = True Then Me.Controls("YouTube" & i).Text = TextLine(7)
+                        If Me.Controls("CityPhone" & i).Visible = True Then Me.Controls("CityPhone" & i).Text = TextLine(10)
+                        If Me.Controls("CityWebsite" & i).Visible = True Then Me.Controls("CityWebsite" & i).Text = TextLine(11)
                     End If
                 Next i
 
