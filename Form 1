@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.34  7/17/2016
+    'Version 1.35  7/17/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -232,7 +232,11 @@ Public Class Form1
                 'Arrange fields
                 'Guest Fields
                 Dim DBY As Integer = 0
+
                 For n = 1 To 6
+                    If n = 4 Then
+                        GuestBottomY = DBY + 20
+                    End If
                     If n < 4 Then
                         YHolder = GuestTopY
                     ElseIf n > 3 Then
@@ -256,7 +260,6 @@ Public Class Form1
                 Next n
 
                 DBY = DBY + 20
-
                 'Datebase Fields
                 LBGuestDB.Top = DBY + 2
                 DBbox.Top = DBY
@@ -280,35 +283,36 @@ Public Class Form1
 
 
                 'Crew Fields
+                CrewY = DBY + 40
                 Dim CrewViz As Integer = 0
                 Dim CDBY As Integer = 0
                 For i = 16 To 31
-                        If i = 16 Or i = 24 Then
-                            YHolder = CrewY
-                        End If
-                        If Me.Controls("LB" & Fields(i)).Visible = True Then
-                            Me.Controls("CDB" & Fields(i)).Top = YHolder + 3
-                            Me.Controls("LB" & Fields(i)).Top = YHolder + 3
-                            Me.Controls(Fields(i)).Top = YHolder
+                    If i = 16 Or i = 24 Then
+                        YHolder = CrewY
+                    End If
+                    If Me.Controls("LB" & Fields(i)).Visible = True Then
+                        Me.Controls("CDB" & Fields(i)).Top = YHolder + 3
+                        Me.Controls("LB" & Fields(i)).Top = YHolder + 3
+                        Me.Controls(Fields(i)).Top = YHolder
                         YHolder = YHolder + 22
                         CrewViz = CrewViz + 1
                         If YHolder > CDBY Then
                             CDBY = YHolder
                         End If
                     End If
-                    Next i
+                Next i
 
                 'Show Fields
                 YHolder = CrewY
                 For i = 32 To 41
                     If Me.Controls("LB" & Fields(i)).Visible = True Then
                         Me.Controls("LB" & Fields(i)).Top = YHolder + 3
-                        Me.Controls(Fields(i)).Top = YHolder + 3
+                        Me.Controls(Fields(i)).Top = YHolder
                         YHolder = YHolder + 22
                     End If
                 Next i
 
-
+                'Hide Crew DB if there are no crew fields
                 If CrewViz = 0 Then
                     LBCDB.Visible = False
                     CDBbox.Visible = False
@@ -320,12 +324,24 @@ Public Class Form1
                     CDBload.Visible = True
                     CDBSave.Visible = True
                 End If
-
+                'Position crew fields
                 CDBY = CDBY + 12
                 LBCDB.Top = CDBY
                 CDBbox.Top = CDBY
                 CDBload.Top = CDBY
                 CDBSave.Top = CDBY
+
+                'Position Save and settings buttons
+                CDBY = CDBY + 35
+                YHolder = YHolder + 5
+                If CDBY > YHolder Then
+                    YHolder = CDBY
+                End If
+                ButtonSettings.Top = YHolder
+                ButtonSave.Top = YHolder
+
+                'Size the window
+                Me.Height = YHolder + 60
 
             End If
                 SettingsCheck = SettingsCheck2
