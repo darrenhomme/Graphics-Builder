@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.35  7/17/2016
+    'Version 1.36  7/18/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -155,13 +155,13 @@ Public Class Form1
     Public Sub FileCheck()
         'Show or Hide Fields based on Settings.txt in the txt dir
         Dim SettingsCheck2 As String = ""
-        Dim TextLine(50) As String
+        Dim TextLine As New List(Of String)
         Dim FileCount As Integer
         Dim FILE_NAME As String = ".\txt\Settings.txt"
         If System.IO.File.Exists(FILE_NAME) = True Then
             Dim objReader As New System.IO.StreamReader(FILE_NAME)
             Do While objReader.Peek() <> -1
-                TextLine(FileCount) = objReader.ReadLine()
+                TextLine.Add(objReader.ReadLine())
                 SettingsCheck2 = SettingsCheck2 & TextLine(FileCount)
                 FileCount = FileCount + 1
             Loop
@@ -445,12 +445,12 @@ Public Class Form1
         If DBbox.SelectedIndex > -1 Then
             Dim FileCount As Integer
             Dim FILE_NAME As String = ".\Database\" & DBbox.SelectedItem & ".txt"
-            Dim TextLine(20) As String
+            Dim TextLine As New List(Of String)
             If System.IO.File.Exists(FILE_NAME) = True Then
                 Dim objReader As New System.IO.StreamReader(FILE_NAME)
 
                 Do While objReader.Peek() <> -1
-                    TextLine(FileCount) = objReader.ReadLine()
+                    TextLine.Add(objReader.ReadLine())
                     FileCount = FileCount + 1
                 Loop
 
