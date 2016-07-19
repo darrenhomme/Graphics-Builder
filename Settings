@@ -1,4 +1,4 @@
-'Version 1.02  7/18/2016
+'Version 1.03  7/18/2016
 
 Public Class Settings
 
@@ -17,14 +17,20 @@ Public Class Settings
             Loop
             objReader.Close()
 
-            For i = 0 To Fields.Length - 1
+            If FileCount < Fields.Length Then
+                For i = FileCount To Fields.Length - 1
+                    TextLine.Add(1)
+                Next i
+            End If
+
+            For i = 0 To Fields.length - 1
                 If TextLine(i) = "1" Then
                     CType(Me.Controls.Item("Check" & Fields(i)), CheckBox).Checked = True
                 End If
             Next i
 
         Else
-            For i = 0 To Fields.Length - 1
+                For i = 0 To Fields.Length - 1
                 CType(Me.Controls.Item("Check" & Fields(i)), CheckBox).Checked = True
             Next i
         End If
