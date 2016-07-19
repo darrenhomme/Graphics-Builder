@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.36  7/18/2016
+    'Version 1.37  7/19/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -162,10 +162,16 @@ Public Class Form1
             Dim objReader As New System.IO.StreamReader(FILE_NAME)
             Do While objReader.Peek() <> -1
                 TextLine.Add(objReader.ReadLine())
-                SettingsCheck2 = SettingsCheck2 & TextLine(FileCount)
+                    SettingsCheck2 = SettingsCheck2 & TextLine(FileCount)
                 FileCount = FileCount + 1
             Loop
             objReader.Close()
+
+            If FileCount < Fields.Length Then
+                For i = FileCount To Fields.Length - 1
+                    TextLine.Add(1)
+                Next i
+            End If
 
             If SettingsCheck <> SettingsCheck2 Then
                 Dim GuestTopY As Integer = 12
@@ -176,38 +182,38 @@ Public Class Form1
 
                 'Hide or Show Guests
                 For i = 0 To 5
-                    If TextLine(i) = "0" Then
-                        HideGuest(i + 1)
-                    ElseIf TextLine(i) = "1" Then
+                    If TextLine(i) = "1" Then
                         ShowGuest(i + 1)
+                    Else
+                        HideGuest(i + 1)
                     End If
                 Next i
 
 
                 'Hide or Show Guest Fields
                 For i = 6 To 15
-                    If TextLine(i) = "0" Then
-                        HideGuestField(Fields(i))
-                    ElseIf TextLine(i) = "1" Then
+                    If TextLine(i) = "1" Then
                         ShowGuestField(Fields(i))
+                    Else
+                        HideGuestField(Fields(i))
                     End If
                 Next i
 
                 'Hide or Show Crew Fields
                 For i = 16 To 31
-                    If TextLine(i) = "0" Then
-                        HideCrew(Fields(i))
-                    ElseIf TextLine(i) = "1" Then
+                    If TextLine(i) = "1" Then
                         ShowCrew(Fields(i))
+                    Else
+                        HideCrew(Fields(i))
                     End If
                 Next i
 
                 'Hide Or Show() the Show Fields
                 For i = 32 To 40
-                    If TextLine(i) = "0" Then
-                        HideTextLabel(Fields(i))
-                    ElseIf TextLine(i) = "1" Then
+                    If TextLine(i) = "1" Then
                         ShowTextLabel(Fields(i))
+                    Else
+                        HideTextLabel(Fields(i))
                     End If
                 Next i
 
@@ -453,6 +459,12 @@ Public Class Form1
                     TextLine.Add(objReader.ReadLine())
                     FileCount = FileCount + 1
                 Loop
+
+                If FileCount < 20 Then
+                    For i = FileCount To 19
+                        TextLine.Add("")
+                    Next i
+                End If
 
                 For i = 1 To 6
                     If CType(Me.Controls.Item("DB" & i), RadioButton).Checked = True Then
@@ -755,6 +767,9 @@ Public Class Form1
             End If
 
             WriteTextContent = Me.Controls(WriteTextName & WriteTextLoop).Text
+            WriteTextContent = WriteTextContent.Replace(ChrW(0), "")
+            WriteTextContent = WriteTextContent.Replace(ChrW(10), "")
+            WriteTextContent = WriteTextContent.Replace(ChrW(13), "")
             If Me.Controls(WriteTextName & WriteTextLoop).Text = "" Then
                 WriteTextContent = "   "
             End If
@@ -766,6 +781,9 @@ Public Class Form1
             End If
 
             WriteTextContent = Me.Controls(WriteTextName).Text
+            WriteTextContent = WriteTextContent.Replace(ChrW(0), "")
+            WriteTextContent = WriteTextContent.Replace(ChrW(10), "")
+            WriteTextContent = WriteTextContent.Replace(ChrW(13), "")
             If Me.Controls(WriteTextName).Text = "" Then
                 WriteTextContent = "   "
             End If
