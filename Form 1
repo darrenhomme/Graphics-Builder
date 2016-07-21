@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.37  7/19/2016
+    'Version 1.38  7/21/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -73,6 +73,8 @@ Public Class Form1
         'Populate the Form Fields
         FileCheck()
     End Sub
+
+
 
     Private Sub TextFileCheckTime_Tick(sender As Object, e As EventArgs) Handles TextFileCheckTime.Tick
         'Checks For Changes in txt Files Every 15 Secounds
@@ -148,7 +150,6 @@ Public Class Form1
 
     Public Sub ShowTextLabel(ByVal Field As String)
         Me.Controls("LB" & Field).Visible = True
-        Me.Controls(Field).Text = ""
         Me.Controls(Field).Visible = True
     End Sub
 
@@ -162,7 +163,7 @@ Public Class Form1
             Dim objReader As New System.IO.StreamReader(FILE_NAME)
             Do While objReader.Peek() <> -1
                 TextLine.Add(objReader.ReadLine())
-                    SettingsCheck2 = SettingsCheck2 & TextLine(FileCount)
+                SettingsCheck2 = SettingsCheck2 & TextLine(FileCount)
                 FileCount = FileCount + 1
             Loop
             objReader.Close()
@@ -350,7 +351,7 @@ Public Class Form1
                 Me.Height = YHolder + 60
 
             End If
-                SettingsCheck = SettingsCheck2
+            SettingsCheck = SettingsCheck2
         End If
 
         'Compair txt Files to the Variable Values
@@ -436,9 +437,12 @@ Public Class Form1
 
     Public Function FileCompair(FileName As String, VariableValue As String)
 
-        If System.IO.File.Exists(".\txt\" & FileName & ".txt") Then
+        If System.IO.File.Exists(".\txt\" & FileName & ".txt") And Me.Controls(FileName).Visible = True Then
             If VariableValue <> My.Computer.FileSystem.ReadAllText(".\txt\" & FileName & ".txt") Then
                 VariableValue = My.Computer.FileSystem.ReadAllText(".\txt\" & FileName & ".txt")
+                VariableValue = VariableValue.Replace(ChrW(0), "")
+                VariableValue = VariableValue.Replace(ChrW(10), "")
+                VariableValue = VariableValue.Replace(ChrW(13), "")
                 Me.Controls(FileName).Text = Trim(VariableValue)
             End If
         End If
@@ -576,6 +580,17 @@ Public Class Form1
 
     Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
 
+        SaveAllText()
+
+        SaveAllCut()
+
+
+        'Message Box Popup to Say the Files are Saved
+        MessageBox.Show("Files Saved to Graphics", "Graphics Builder",
+           MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+    End Sub
+
+    Public Sub SaveAllText()
         'Saves All the Fields to txt files
 
         'Guest Info
@@ -663,8 +678,9 @@ Public Class Form1
         CameraHeaderCheck = WriteTextHeader("Camera", "CameraHeader", "Camera Operator:", "Camera Operators:", 3)
         'Floor Header
         FloorHeaderCheck = WriteTextHeader("Floor", "FloorHeader", "Floor Director:", "Floor Directors:", 3)
+    End Sub
 
-
+    Public Sub SaveAllCut()
         'Cut Files
         'Delete Old Cut Files
         Dim DeleteCutFiles As String
@@ -752,10 +768,6 @@ Public Class Form1
 
         'Credits
         CutFileCount = Credits(CutFileCount)
-
-        'Message Box Popup to Say the Files are Saved
-        MessageBox.Show("Files Saved to Graphics", "Graphics Builder",
-           MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
     End Sub
 
     Public Function WriteText(ByVal WriteTextName As String, ByVal WriteTextLoop As Integer)
@@ -1044,6 +1056,10 @@ Public Class Form1
         Next
         Return CutFileCount
     End Function
+
+    Public Sub ResetChecks()
+
+    End Sub
 
     Private Sub ButtonSettings_Click(sender As Object, e As EventArgs) Handles ButtonSettings.Click
         Settings.Show()
