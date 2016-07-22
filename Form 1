@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.40  7/21/2016
+    'Version 1.41  7/22/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -181,6 +181,17 @@ Public Class Form1
                 Dim CrewY As Integer = 536
                 Dim YHolder As Integer = 0
 
+                'If all guest fields are blank hide guests
+                Dim GuestFieldsCheck As Integer = 0
+                For i = 6 To 15
+                    If TextLine(i) Then GuestFieldsCheck = GuestFieldsCheck + 1
+                Next i
+                If GuestFieldsCheck = 0 Then
+                    For i = 0 To 5
+                        TextLine(i) = "0"
+                    Next i
+                End If
+
                 'Hide or Show Guests
                 For i = 0 To 5
                     If TextLine(i) = "1" Then
@@ -190,168 +201,167 @@ Public Class Form1
                     End If
                 Next i
 
-
                 'Hide or Show Guest Fields
                 For i = 6 To 15
-                    If TextLine(i) = "1" Then
-                        ShowGuestField(Fields(i))
+                        If TextLine(i) = "1" Then
+                            ShowGuestField(Fields(i))
+                        Else
+                            HideGuestField(Fields(i))
+                        End If
+                    Next i
+
+                    'Hide or Show Crew Fields
+                    For i = 16 To 31
+                        If TextLine(i) = "1" Then
+                            ShowCrew(Fields(i))
+                        Else
+                            HideCrew(Fields(i))
+                        End If
+                    Next i
+
+                    'Hide Or Show() the Show Fields
+                    For i = 32 To 40
+                        If TextLine(i) = "1" Then
+                            ShowTextLabel(Fields(i))
+                        Else
+                            HideTextLabel(Fields(i))
+                        End If
+                    Next i
+
+                    'Move guests up if not visable
+                    Dim GuestViz As Integer = 0
+                    Dim GuestViz2 As Integer = 0
+                    For i = 1 To 3
+                        If Me.Controls("LBGuest" & i).Visible = True Then
+                            GuestViz = GuestViz + 1
+                        End If
+                    Next i
+                    For i = 4 To 6
+                        If Me.Controls("LBGuest" & i).Visible = True Then
+                            GuestViz2 = GuestViz2 + 1
+                        End If
+                    Next i
+                    If GuestViz = 0 Then
+                        GuestBottomY = GuestTopY
+                    End If
+
+
+                    'Arrange fields
+                    'Guest Fields
+                    Dim DBY As Integer = 0
+
+                    For n = 1 To 6
+                        If n = 4 Then
+                            GuestBottomY = DBY + 20
+                        End If
+                        If n < 4 Then
+                            YHolder = GuestTopY
+                        ElseIf n > 3 Then
+                            YHolder = GuestBottomY
+                        End If
+
+                        Me.Controls("LBGuest" & n).Top = YHolder
+                        Me.Controls("DB" & n).Top = YHolder + 22
+
+                        For i = 6 To 15
+                            If Me.Controls("LB" & Fields(i) & n).visible = True Then
+                                Me.Controls("LB" & Fields(i) & n).Top = YHolder + 3
+                                Me.Controls(Fields(i) & n).Top = YHolder
+                                YHolder = YHolder + 22
+                                If YHolder > DBY Then
+                                    DBY = YHolder
+                                End If
+                            End If
+
+                        Next i
+                    Next n
+
+                    DBY = DBY + 20
+                    'Datebase Fields
+                    LBGuestDB.Top = DBY + 2
+                    DBbox.Top = DBY
+                    DBload.Top = DBY
+                    Clear.Top = DBY
+                    SaveDB.Top = DBY
+
+                    If GuestViz = 0 And GuestViz2 = 0 Then
+                        LBGuestDB.Visible = False
+                        DBbox.Visible = False
+                        DBload.Visible = False
+                        Clear.Visible = False
+                        SaveDB.Visible = False
                     Else
-                        HideGuestField(Fields(i))
-                    End If
-                Next i
-
-                'Hide or Show Crew Fields
-                For i = 16 To 31
-                    If TextLine(i) = "1" Then
-                        ShowCrew(Fields(i))
-                    Else
-                        HideCrew(Fields(i))
-                    End If
-                Next i
-
-                'Hide Or Show() the Show Fields
-                For i = 32 To 40
-                    If TextLine(i) = "1" Then
-                        ShowTextLabel(Fields(i))
-                    Else
-                        HideTextLabel(Fields(i))
-                    End If
-                Next i
-
-                'Move guests up if not visable
-                Dim GuestViz As Integer = 0
-                Dim GuestViz2 As Integer = 0
-                For i = 1 To 3
-                    If Me.Controls("LBGuest" & i).Visible = True Then
-                        GuestViz = GuestViz + 1
-                    End If
-                Next i
-                For i = 4 To 6
-                    If Me.Controls("LBGuest" & i).Visible = True Then
-                        GuestViz2 = GuestViz2 + 1
-                    End If
-                Next i
-                If GuestViz = 0 Then
-                    GuestBottomY = GuestTopY
-                End If
-
-
-                'Arrange fields
-                'Guest Fields
-                Dim DBY As Integer = 0
-
-                For n = 1 To 6
-                    If n = 4 Then
-                        GuestBottomY = DBY + 20
-                    End If
-                    If n < 4 Then
-                        YHolder = GuestTopY
-                    ElseIf n > 3 Then
-                        YHolder = GuestBottomY
+                        LBGuestDB.Visible = True
+                        DBbox.Visible = True
+                        DBload.Visible = True
+                        Clear.Visible = True
+                        SaveDB.Visible = True
                     End If
 
-                    Me.Controls("LBGuest" & n).Top = YHolder
-                    Me.Controls("DB" & n).Top = YHolder + 22
 
-                    For i = 6 To 15
-                        If Me.Controls("LB" & Fields(i) & n).visible = True Then
-                            Me.Controls("LB" & Fields(i) & n).Top = YHolder + 3
-                            Me.Controls(Fields(i) & n).Top = YHolder
+                    'Crew Fields
+                    CrewY = DBY + 40
+                    Dim CrewViz As Integer = 0
+                    Dim CDBY As Integer = 0
+                    For i = 16 To 31
+                        If i = 16 Or i = 24 Then
+                            YHolder = CrewY
+                        End If
+                        If Me.Controls("LB" & Fields(i)).Visible = True Then
+                            Me.Controls("CDB" & Fields(i)).Top = YHolder + 3
+                            Me.Controls("LB" & Fields(i)).Top = YHolder + 3
+                            Me.Controls(Fields(i)).Top = YHolder
                             YHolder = YHolder + 22
-                            If YHolder > DBY Then
-                                DBY = YHolder
+                            CrewViz = CrewViz + 1
+                            If YHolder > CDBY Then
+                                CDBY = YHolder
                             End If
                         End If
-
                     Next i
-                Next n
 
-                DBY = DBY + 20
-                'Datebase Fields
-                LBGuestDB.Top = DBY + 2
-                DBbox.Top = DBY
-                DBload.Top = DBY
-                Clear.Top = DBY
-                SaveDB.Top = DBY
-
-                If GuestViz = 0 And GuestViz2 = 0 Then
-                    LBGuestDB.Visible = False
-                    DBbox.Visible = False
-                    DBload.Visible = False
-                    Clear.Visible = False
-                    SaveDB.Visible = False
-                Else
-                    LBGuestDB.Visible = True
-                    DBbox.Visible = True
-                    DBload.Visible = True
-                    Clear.Visible = True
-                    SaveDB.Visible = True
-                End If
-
-
-                'Crew Fields
-                CrewY = DBY + 40
-                Dim CrewViz As Integer = 0
-                Dim CDBY As Integer = 0
-                For i = 16 To 31
-                    If i = 16 Or i = 24 Then
-                        YHolder = CrewY
-                    End If
-                    If Me.Controls("LB" & Fields(i)).Visible = True Then
-                        Me.Controls("CDB" & Fields(i)).Top = YHolder + 3
-                        Me.Controls("LB" & Fields(i)).Top = YHolder + 3
-                        Me.Controls(Fields(i)).Top = YHolder
-                        YHolder = YHolder + 22
-                        CrewViz = CrewViz + 1
-                        If YHolder > CDBY Then
-                            CDBY = YHolder
+                    'Show Fields
+                    YHolder = CrewY
+                    For i = 32 To 41
+                        If Me.Controls("LB" & Fields(i)).Visible = True Then
+                            Me.Controls("LB" & Fields(i)).Top = YHolder + 3
+                            Me.Controls(Fields(i)).Top = YHolder
+                            YHolder = YHolder + 22
                         End If
+                    Next i
+
+                    'Hide Crew DB if there are no crew fields
+                    If CrewViz = 0 Then
+                        LBCDB.Visible = False
+                        CDBbox.Visible = False
+                        CDBload.Visible = False
+                        CDBSave.Visible = False
+                    Else
+                        LBCDB.Visible = True
+                        CDBbox.Visible = True
+                        CDBload.Visible = True
+                        CDBSave.Visible = True
                     End If
-                Next i
+                    'Position crew fields
+                    CDBY = CDBY + 12
+                    LBCDB.Top = CDBY
+                    CDBbox.Top = CDBY
+                    CDBload.Top = CDBY
+                    CDBSave.Top = CDBY
 
-                'Show Fields
-                YHolder = CrewY
-                For i = 32 To 41
-                    If Me.Controls("LB" & Fields(i)).Visible = True Then
-                        Me.Controls("LB" & Fields(i)).Top = YHolder + 3
-                        Me.Controls(Fields(i)).Top = YHolder
-                        YHolder = YHolder + 22
+                    'Position Save and settings buttons
+                    CDBY = CDBY + 35
+                    YHolder = YHolder + 5
+                    If CDBY > YHolder Then
+                        YHolder = CDBY
                     End If
-                Next i
+                    ButtonSettings.Top = YHolder
+                    ButtonSave.Top = YHolder
 
-                'Hide Crew DB if there are no crew fields
-                If CrewViz = 0 Then
-                    LBCDB.Visible = False
-                    CDBbox.Visible = False
-                    CDBload.Visible = False
-                    CDBSave.Visible = False
-                Else
-                    LBCDB.Visible = True
-                    CDBbox.Visible = True
-                    CDBload.Visible = True
-                    CDBSave.Visible = True
+                    'Size the window
+                    Me.Height = YHolder + 60
+
                 End If
-                'Position crew fields
-                CDBY = CDBY + 12
-                LBCDB.Top = CDBY
-                CDBbox.Top = CDBY
-                CDBload.Top = CDBY
-                CDBSave.Top = CDBY
-
-                'Position Save and settings buttons
-                CDBY = CDBY + 35
-                YHolder = YHolder + 5
-                If CDBY > YHolder Then
-                    YHolder = CDBY
-                End If
-                ButtonSettings.Top = YHolder
-                ButtonSave.Top = YHolder
-
-                'Size the window
-                Me.Height = YHolder + 60
-
-            End If
-            SettingsCheck = SettingsCheck2
+                SettingsCheck = SettingsCheck2
         End If
 
         'Compair txt Files to the Variable Values
