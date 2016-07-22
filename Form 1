@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.39  7/21/2016
+    'Version 1.40  7/21/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -440,11 +440,12 @@ Public Class Form1
         If System.IO.File.Exists(".\txt\" & FileName & ".txt") And Me.Controls(FileName).Visible = True Then
             If VariableValue <> My.Computer.FileSystem.ReadAllText(".\txt\" & FileName & ".txt") Then
                 VariableValue = My.Computer.FileSystem.ReadAllText(".\txt\" & FileName & ".txt")
+                Dim VariableValue2 As String = VariableValue
                 VariableValue = VariableValue.Replace(ChrW(0), "")
                 VariableValue = VariableValue.Replace(ChrW(10), "")
                 VariableValue = VariableValue.Replace(ChrW(13), "")
                 Me.Controls(FileName).Text = Trim(VariableValue)
-                WriteText(FileName, 0)
+                If VariableValue2 <> VariableValue Then WriteText(FileName, 0)
             End If
         End If
 
