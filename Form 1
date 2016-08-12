@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.41  7/22/2016
+    'Version 1.42  8/11/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -928,6 +928,22 @@ Public Class Form1
                     Output = CutFileText(Output, "Name " & i, NameCheck(i))
                     'Title
                     Output = CutFileText(Output, "Title " & i, TitleCheck(i))
+                    'Phone
+                    Output = CutFileText(Output, "Phone " & i, PhoneCheck(i))
+                    'email
+                    Output = CutFileText(Output, "email " & i, emailCheck(i))
+                    'Website
+                    Output = CutFileText(Output, "Website " & i, WebsiteCheck(i))
+                    'Facebook
+                    Output = CutFileText(Output, "Facebook " & i, FacebookCheck(i))
+                    'Twitter
+                    Output = CutFileText(Output, "Twitter " & i, TwitterCheck(i))
+                    'YouTube
+                    Output = CutFileText(Output, "YouTube " & i, YouTubeCheck(i))
+                    'CityPhone
+                    Output = CutFileText(Output, "CityPhone " & i, CityPhoneCheck(i))
+                    'CityWebsite
+                    Output = CutFileText(Output, "CityWebsite " & i, CityWebsiteCheck(i))
                 Next i
 
                 'Record Date
@@ -1015,6 +1031,22 @@ Public Class Form1
                     Output = CutFileText(Output, "Name " & i, NameCheck(i))
                     'Title
                     Output = CutFileText(Output, "Title " & i, TitleCheck(i))
+                    'Phone
+                    Output = CutFileText(Output, "Phone " & i, PhoneCheck(i))
+                    'email
+                    Output = CutFileText(Output, "email " & i, emailCheck(i))
+                    'Website
+                    Output = CutFileText(Output, "Website " & i, WebsiteCheck(i))
+                    'Facebook
+                    Output = CutFileText(Output, "Facebook " & i, FacebookCheck(i))
+                    'Twitter
+                    Output = CutFileText(Output, "Twitter " & i, TwitterCheck(i))
+                    'YouTube
+                    Output = CutFileText(Output, "YouTube " & i, YouTubeCheck(i))
+                    'CityPhone
+                    Output = CutFileText(Output, "CityPhone " & i, CityPhoneCheck(i))
+                    'CityWebsite
+                    Output = CutFileText(Output, "CityWebsite " & i, CityWebsiteCheck(i))
                 Next i
                 'Producer Header
                 Output = CutFileText(Output, "Producer Header", ProducerHeaderCheck)
