@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.42  8/11/2016
+    'Version 1.43  8/13/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -910,6 +910,8 @@ Public Class Form1
         Dim FileCount As Integer = 0
         Dim FileNameList As New List(Of String)
         FileNameList = GetCutFileList("Open")
+        Dim NameTitle As String = ""
+        Dim CityPhoneCityWebsite As String = ""
 
         For Each item As String In FileNameList
             If System.IO.File.Exists(".\Templates\" & FileNameList.Item(FileCount) & ".tcf") Then
@@ -928,6 +930,16 @@ Public Class Form1
                     Output = CutFileText(Output, "Name " & i, NameCheck(i))
                     'Title
                     Output = CutFileText(Output, "Title " & i, TitleCheck(i))
+                    'Name - Title
+                    If Trim(NameCheck(i)) = "" And Trim(TitleCheck(i)) = "" Then
+                        NameTitle = "   "
+                    ElseIf Trim(NameCheck(i)) <> "" And Trim(TitleCheck(i)) = "" Then
+                        NameTitle = NameCheck(i)
+                    ElseIf Trim(NameCheck(i)) <> "" And Trim(TitleCheck(i)) <> "" Then
+                        NameTitle = NameCheck(i) & " - " & TitleCheck(i)
+                    End If
+                    Output = CutFileText(Output, "Name Title " & i, NameTitle)
+                    NameTitle = ""
                     'Phone
                     Output = CutFileText(Output, "Phone " & i, PhoneCheck(i))
                     'email
@@ -944,6 +956,18 @@ Public Class Form1
                     Output = CutFileText(Output, "CityPhone " & i, CityPhoneCheck(i))
                     'CityWebsite
                     Output = CutFileText(Output, "CityWebsite " & i, CityWebsiteCheck(i))
+                    'CityPhone - CityWebsite
+                    If Trim(CityPhoneCheck(i)) = "" And Trim(CityWebsiteCheck(i)) = "" Then
+                        CityPhoneCityWebsite = "   "
+                    ElseIf Trim(CityPhoneCheck(i)) <> "" And Trim(CityWebsiteCheck(i)) = "" Then
+                        CityPhoneCityWebsite = CityPhoneCheck(i)
+                    ElseIf Trim(CityPhoneCheck(i)) = "" And Trim(CityWebsiteCheck(i)) <> "" Then
+                        CityPhoneCityWebsite = CityWebsiteCheck(i)
+                    ElseIf Trim(CityPhoneCheck(i)) <> "" And Trim(CityWebsiteCheck(i)) <> "" Then
+                        CityPhoneCityWebsite = CityPhoneCheck(i) & " - " & CityWebsiteCheck(i)
+                    End If
+                    Output = CutFileText(Output, "CityPhone CityWebsite " & i, CityPhoneCityWebsite)
+                    CityPhoneCityWebsite = ""
                 Next i
 
                 'Record Date
@@ -1013,6 +1037,8 @@ Public Class Form1
         Dim FileCount As Integer = 0
         Dim FileNameList As New List(Of String)
         FileNameList = GetCutFileList("Credits")
+        Dim NameTitle As String = ""
+        Dim CityPhoneCityWebsite As String = ""
 
         For Each item As String In FileNameList
             If System.IO.File.Exists(".\Templates\" & FileNameList.Item(FileCount) & ".tcf") Then
@@ -1031,6 +1057,16 @@ Public Class Form1
                     Output = CutFileText(Output, "Name " & i, NameCheck(i))
                     'Title
                     Output = CutFileText(Output, "Title " & i, TitleCheck(i))
+                    'Name - Title
+                    If Trim(NameCheck(i)) = "" And Trim(TitleCheck(i)) = "" Then
+                        NameTitle = "   "
+                    ElseIf Trim(NameCheck(i)) <> "" And Trim(TitleCheck(i)) = "" Then
+                        NameTitle = NameCheck(i)
+                    ElseIf Trim(NameCheck(i)) <> "" And Trim(TitleCheck(i)) <> "" Then
+                        NameTitle = NameCheck(i) & " - " & TitleCheck(i)
+                    End If
+                    Output = CutFileText(Output, "Name Title " & i, NameTitle)
+                    NameTitle = ""
                     'Phone
                     Output = CutFileText(Output, "Phone " & i, PhoneCheck(i))
                     'email
@@ -1047,6 +1083,18 @@ Public Class Form1
                     Output = CutFileText(Output, "CityPhone " & i, CityPhoneCheck(i))
                     'CityWebsite
                     Output = CutFileText(Output, "CityWebsite " & i, CityWebsiteCheck(i))
+                    'CityPhone - CityWebsite
+                    If Trim(CityPhoneCheck(i)) = "" And Trim(CityWebsiteCheck(i)) = "" Then
+                        CityPhoneCityWebsite = "   "
+                    ElseIf Trim(CityPhoneCheck(i)) <> "" And Trim(CityWebsiteCheck(i)) = "" Then
+                        CityPhoneCityWebsite = CityPhoneCheck(i)
+                    ElseIf Trim(CityPhoneCheck(i)) = "" And Trim(CityWebsiteCheck(i)) <> "" Then
+                        CityPhoneCityWebsite = CityWebsiteCheck(i)
+                    ElseIf Trim(CityPhoneCheck(i)) <> "" And Trim(CityWebsiteCheck(i)) <> "" Then
+                        CityPhoneCityWebsite = CityPhoneCheck(i) & " - " & CityWebsiteCheck(i)
+                    End If
+                    Output = CutFileText(Output, "CityPhone CityWebsite " & i, CityPhoneCityWebsite)
+                    CityPhoneCityWebsite = ""
                 Next i
                 'Producer Header
                 Output = CutFileText(Output, "Producer Header", ProducerHeaderCheck)
