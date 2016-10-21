@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.43  8/13/2016
+    'Version 1.44  10/20/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -64,6 +64,7 @@ Public Class Form1
         CheckDir("CrewDatabase")
         CheckDir("Templates")
         CheckDir("CutFiles")
+        CheckDir("Project")
 
         'Write the Current Date to ShowDate.txt
         Dim thisDate As Date
@@ -696,7 +697,10 @@ Public Class Form1
         'Cut Files
         'Delete Old Cut Files
         Dim DeleteCutFiles As String
-        For Each DeleteCutFiles In System.IO.Directory.GetFiles(".\CutFiles\")
+        For Each DeleteCutFiles In System.IO.Directory.GetFiles(".\CutFiles\", "*.tcf")
+            System.IO.File.Delete(DeleteCutFiles)
+        Next DeleteCutFiles
+        For Each DeleteCutFiles In System.IO.Directory.GetFiles(".\Project\", "*.tcf")
             System.IO.File.Delete(DeleteCutFiles)
         Next DeleteCutFiles
 
