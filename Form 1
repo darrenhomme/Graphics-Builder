@@ -1049,7 +1049,7 @@ Public Class Form1
 
         If System.IO.File.Exists(".\Templates\Lower.tcf") Then
             Dim Output As String = My.Computer.FileSystem.ReadAllText(".\Templates\Lower.tcf", Encoding.GetEncoding("IBM861"))
-            Dim Path As String = "C: \Users\MyComputer\Desktop\Images\"
+            Dim Path As String = "C:\Users\MyComputer\Desktop\Images\"
 
             'Page Name
             Output = CutFileTitle(Output, "Lower", CutFileCount & FileName)
