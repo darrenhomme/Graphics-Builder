@@ -1,7 +1,7 @@
 Imports System.Text
 
 Public Class Form1
-    'Version 1.44  10/20/2016
+    'Version 1.45  12/28/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -56,6 +56,11 @@ Public Class Form1
 
     Dim CDBitem = New String() {"Producer1", "Producer2", "Host1", "Host2", "Director1", "Director2", "Graphics1", "Graphics2", "Audio1", "Audio2", "Camera1", "Camera2", "Camera3", "Floor1", "Floor2", "Floor3"}
 
+    'Dim SaveToGraphicsLog(150) As String
+    'Dim SaveToGraphicsLogCount As Integer
+
+    Dim SaveToGraphicsLog As New List(Of String)
+
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Check Directories
@@ -65,6 +70,7 @@ Public Class Form1
         CheckDir("Templates")
         CheckDir("CutFiles")
         CheckDir("Project")
+        CheckDir("Logs")
 
         'Write the Current Date to ShowDate.txt
         Dim thisDate As Date
@@ -606,8 +612,12 @@ Public Class Form1
     Public Sub SaveAllText()
         'Saves All the Fields to txt files
 
-        'Guest Info
-        For i = 1 To 6
+        'Reset Log
+        SaveToGraphicsLog.Clear()
+
+
+            'Guest Info
+            For i = 1 To 6
             'Name
             NameCheck(i) = WriteText("Name", i)
             'Title
@@ -691,6 +701,18 @@ Public Class Form1
         CameraHeaderCheck = WriteTextHeader("Camera", "CameraHeader", "Camera Operator:", "Camera Operators:", 3)
         'Floor Header
         FloorHeaderCheck = WriteTextHeader("Floor", "FloorHeader", "Floor Director:", "Floor Directors:", 3)
+
+
+        'Save Log File
+        Dim LogFileName As String
+        LogFileName = CStr(Now())
+        LogFileName = LogFileName.Replace("/", "-")
+        LogFileName = LogFileName.Replace(":", "-")
+        Dim SaveToGraphicsLogArray As String() = SaveToGraphicsLog.ToArray
+        System.IO.File.WriteAllLines(".\Logs\" & LogFileName & ".txt", SaveToGraphicsLogArray)
+
+
+
     End Sub
 
     Public Sub SaveAllCut()
@@ -815,8 +837,14 @@ Public Class Form1
             If Me.Controls(WriteTextName).Text = "" Then
                 WriteTextContent = "   "
             End If
-            My.Computer.FileSystem.WriteAllText(".\txt\" & WriteTextName & ".txt", WriteTextContent, False, Encoding.ASCII)
+            My.Computer.FileSystem.WriteAllText(".\txt\" & WriteTextName & ".txt", WriteTextContent, False, Encoding.Default)
         End If
+
+        'Add to Log
+        If Trim(WriteTextContent) <> "" Then
+            SaveToGraphicsLog.Add(WriteTextName & WriteTextLoop & " " & WriteTextContent)
+        End If
+
         Return WriteTextContent
     End Function
 
@@ -1021,7 +1049,7 @@ Public Class Form1
 
         If System.IO.File.Exists(".\Templates\Lower.tcf") Then
             Dim Output As String = My.Computer.FileSystem.ReadAllText(".\Templates\Lower.tcf", Encoding.GetEncoding("IBM861"))
-            Dim Path As String = "C:\Users\MyComputer\Desktop\Images\"
+            Dim Path As String = "C: \Users\MyComputer\Desktop\Images\"
 
             'Page Name
             Output = CutFileTitle(Output, "Lower", CutFileCount & FileName)
