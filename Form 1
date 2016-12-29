@@ -1,7 +1,8 @@
 Imports System.Text
+Imports System.Net.Mail
 
 Public Class Form1
-    'Version 1.45  12/28/2016
+    'Version 1.46  12/29/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -711,6 +712,40 @@ Public Class Form1
         Dim SaveToGraphicsLogArray As String() = SaveToGraphicsLog.ToArray
         System.IO.File.WriteAllLines(".\Logs\" & LogFileName & ".txt", SaveToGraphicsLogArray)
 
+        Dim SaveToGraphicsLogString As String
+        SaveToGraphicsLogString = ""
+
+        For i = 0 To SaveToGraphicsLogArray.Length - 1
+            SaveToGraphicsLogString = SaveToGraphicsLogString & ChrW(10) & SaveToGraphicsLogArray(i)
+        Next i
+
+
+        Dim GBeFILE_NAME As String = ".\txt\GraphicsBuilderemail.txt"
+        Dim GBeTextLine As New List(Of String)
+        Dim GBeCOUNT As Integer
+        GBeCOUNT = 0
+        If System.IO.File.Exists(GBeFILE_NAME) = True Then
+            Dim GBeobjReader As New System.IO.StreamReader(GBeFILE_NAME)
+            Do While GBeobjReader.Peek() <> -1
+                GBeTextLine.Add(GBeobjReader.ReadLine())
+                GBeCOUNT = GBeCOUNT + 1
+            Loop
+            GBeobjReader.Close()
+
+            If GBeCOUNT = 4 Then
+                Dim Mail As New MailMessage
+                Mail.Subject = "Graphics Builder Log " & LogFileName
+                Mail.To.Add(GBeTextLine(0))
+                Mail.From = New MailAddress(GBeTextLine(1))
+                Mail.Body = SaveToGraphicsLogString
+
+                Dim SMTP As New SmtpClient("smtp.gmail.com")
+                SMTP.EnableSsl = True
+                SMTP.Credentials = New System.Net.NetworkCredential(GBeTextLine(2), GBeTextLine(3))
+                SMTP.Port = "587"
+                SMTP.Send(Mail)
+            End If
+        End If
 
 
     End Sub
@@ -842,7 +877,7 @@ Public Class Form1
 
         'Add to Log
         If Trim(WriteTextContent) <> "" Then
-            SaveToGraphicsLog.Add(WriteTextName & WriteTextLoop & " " & WriteTextContent)
+            SaveToGraphicsLog.Add(WriteTextName & WriteTextLoop & "     " & WriteTextContent)
         End If
 
         Return WriteTextContent
