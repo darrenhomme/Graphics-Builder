@@ -2,7 +2,7 @@ Imports System.Text
 Imports System.Net.Mail
 
 Public Class Form1
-    'Version 1.46  12/29/2016
+    'Version 1.47  12/31/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -57,10 +57,12 @@ Public Class Form1
 
     Dim CDBitem = New String() {"Producer1", "Producer2", "Host1", "Host2", "Director1", "Director2", "Graphics1", "Graphics2", "Audio1", "Audio2", "Camera1", "Camera2", "Camera3", "Floor1", "Floor2", "Floor3"}
 
-    'Dim SaveToGraphicsLog(150) As String
-    'Dim SaveToGraphicsLogCount As Integer
 
     Dim SaveToGraphicsLog As New List(Of String)
+
+    Dim SaveToGraphicsLogString As String
+
+    Dim LogFileName As String
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -608,6 +610,9 @@ Public Class Form1
         'Message Box Popup to Say the Files are Saved
         MessageBox.Show("Files Saved to Graphics", "Graphics Builder",
            MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+
+
+
     End Sub
 
     Public Sub SaveAllText()
@@ -705,20 +710,33 @@ Public Class Form1
 
 
         'Save Log File
-        Dim LogFileName As String
+        SaveLog()
+
+        'email Log
+        emailLog()
+
+    End Sub
+
+
+    Public Sub SaveLog()
+        'Save Log File
         LogFileName = CStr(Now())
         LogFileName = LogFileName.Replace("/", "-")
         LogFileName = LogFileName.Replace(":", "-")
         Dim SaveToGraphicsLogArray As String() = SaveToGraphicsLog.ToArray
         System.IO.File.WriteAllLines(".\Logs\" & LogFileName & ".txt", SaveToGraphicsLogArray)
 
-        Dim SaveToGraphicsLogString As String
+        'Reset Log
         SaveToGraphicsLogString = ""
 
         For i = 0 To SaveToGraphicsLogArray.Length - 1
             SaveToGraphicsLogString = SaveToGraphicsLogString & ChrW(10) & SaveToGraphicsLogArray(i)
         Next i
 
+    End Sub
+
+
+    Public Sub emailLog()
 
         Dim GBeFILE_NAME As String = ".\txt\GraphicsBuilderemail.txt"
         Dim GBeTextLine As New List(Of String)
@@ -732,23 +750,51 @@ Public Class Form1
             Loop
             GBeobjReader.Close()
 
-            If GBeCOUNT = 4 Then
+            If GBeCOUNT > 5 Then
+
+                For i = 0 To 5
+                    GBeTextLine(i) = Decryptemail(GBeTextLine(i))
+                Next i
+
+                'MessageBox.Show(GBeTextLine(0) & GBeTextLine(1) & GBeTextLine(2) & GBeTextLine(3) & GBeTextLine(4) & GBeTextLine(5), "Graphics Builder", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+
+
                 Dim Mail As New MailMessage
                 Mail.Subject = "Graphics Builder Log " & LogFileName
                 Mail.To.Add(GBeTextLine(0))
                 Mail.From = New MailAddress(GBeTextLine(1))
                 Mail.Body = SaveToGraphicsLogString
 
-                Dim SMTP As New SmtpClient("smtp.gmail.com")
+                Dim SMTP As New SmtpClient(GBeTextLine(4))
                 SMTP.EnableSsl = True
                 SMTP.Credentials = New System.Net.NetworkCredential(GBeTextLine(2), GBeTextLine(3))
-                SMTP.Port = "587"
+                SMTP.Port = GBeTextLine(5)
                 SMTP.Send(Mail)
+
+
             End If
+
         End If
-
-
     End Sub
+
+    Public Function Decryptemail(ByVal line As String)
+
+        Dim CharArray() As Char = line.ToCharArray
+        Dim DecyptString As String = ""
+
+        Dim i As Integer = 0
+        For Each element As Char In CharArray
+
+
+            CharArray(i) = ChrW(Convert.ToInt32(CharArray(i)) + 1)
+
+            DecyptString = DecyptString + CharArray(i)
+            i = i + 1
+        Next
+
+        Return DecyptString
+
+    End Function
 
     Public Sub SaveAllCut()
         'Cut Files
@@ -1222,6 +1268,7 @@ Public Class Form1
 
     Private Sub ButtonSettings_Click(sender As Object, e As EventArgs) Handles ButtonSettings.Click
         Settings.Show()
+        Settings.LoadGBemail()
     End Sub
 
 End Class
