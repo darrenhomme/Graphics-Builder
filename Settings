@@ -1,4 +1,4 @@
-'Version 1.05  01/02/2017
+'Version 1.06  01/03/2017
 
 Public Class Settings
 
@@ -8,7 +8,7 @@ Public Class Settings
 
     Dim GBemailVal(6) As String
 
-    Dim GBKeyString As String = "1342645798714825963753159123789456996633221144558774235478855275311122253564847888954336547893214569887744556621478965412332145698777744411122555889996663333123456789"
+    Dim GBKeyString As String = "134264579871482596375315912378945699663322114455877423547885527531112225356484788895433654789321456988774455662147896541233214569877774441112255588999666333312345678975311122253564847888954336547893214569887744556621478965412332145698777744411122555889996663333123456789"
 
     Private Sub Settings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim TextLine As New List(Of String)
@@ -57,13 +57,15 @@ Public Class Settings
             GBeobjReader.Close()
 
             If GBeCOUNT > 5 Then
+                Dim Off As Integer = 0
                 For i = 0 To 5
-                    GBemailVal(i) = Decryptemail(GBeTextLine(i))
+                    GBemailVal(i) = Decryptemail(GBeTextLine(i), Off)
                     If i <> 3 Then
                         Me.Controls("GBemail" & i).Text = GBemailVal(i)
                     Else
                         Me.Controls("GBemail" & i).Text = "*****"
                     End If
+                    Off = Off + 3
                 Next i
             End If
         End If
@@ -81,30 +83,34 @@ Public Class Settings
         System.IO.File.WriteAllLines(FILE_NAME, TextLine)
 
         If GBemail0.Text <> "" And GBemail1.Text <> "" And GBemail2.Text <> "" And GBemail3.Text <> "" And GBemail4.Text <> "" And GBemail5.Text <> "" Then
+            Dim Off As Integer = 0
             For i = 0 To 5
                 If i <> 3 Then
-                    GBemailVal(i) = Encryptemail(Me.Controls("GBemail" & i).Text)
+                    GBemailVal(i) = Encryptemail(Me.Controls("GBemail" & i).Text, Off)
                 Else
                     If Me.Controls("GBemail" & i).Text <> "*****" Then
                         GBemailVal(i) = Me.Controls("GBemail" & i).Text
                         Me.Controls("GBemail" & i).Text = "*****"
                     End If
-                    GBemailVal(i) = Encryptemail(GBemailVal(i))
+                    GBemailVal(i) = Encryptemail(GBemailVal(i), Off)
                 End If
-
+                Off = Off + 3
             Next i
             System.IO.File.WriteAllLines(".\txt\GraphicsBuilderemail.txt", GBemailVal)
         End If
 
+        If GBemail0.Text = "" And GBemail1.Text = "" And GBemail2.Text = "" And GBemail3.Text = "" And GBemail4.Text = "" And GBemail5.Text = "" Then
+            My.Computer.FileSystem.DeleteFile(".\txt\GraphicsBuilderemail.txt")
+        End If
 
-            Me.Hide()
+        Me.Hide()
         Form1.FileCheck()
     End Sub
 
 
 
 
-    Public Function Decryptemail(ByVal line As String)
+    Public Function Decryptemail(ByVal line As String, ByVal Offset As Integer)
 
         Dim CharArray() As Char = line.ToCharArray
         Dim GBKeyArray() As Char = GBKeyString.ToCharArray
@@ -113,7 +119,7 @@ Public Class Settings
         Dim i As Integer = 0
         For Each element As Char In CharArray
 
-            CharArray(i) = ChrW(Convert.ToInt32(CharArray(i)) - Convert.ToInt32(GBKeyArray(i)))
+            CharArray(i) = ChrW(Convert.ToInt32(CharArray(i)) - Convert.ToInt32(GBKeyArray(i + Offset)))
             DecyptString = DecyptString + CharArray(i)
             i = i + 1
         Next
@@ -123,7 +129,7 @@ Public Class Settings
 
 
 
-    Public Function Encryptemail(ByVal line As String)
+    Public Function Encryptemail(ByVal line As String, ByVal Offset As Integer)
 
         Dim CharArray() As Char = line.ToCharArray
         Dim GBKeyArray() As Char = GBKeyString.ToCharArray
@@ -132,7 +138,7 @@ Public Class Settings
         Dim i As Integer = 0
         For Each element As Char In CharArray
 
-            CharArray(i) = ChrW(Convert.ToInt32(CharArray(i)) + Convert.ToInt32(GBKeyArray(i)))
+            CharArray(i) = ChrW(Convert.ToInt32(CharArray(i)) + Convert.ToInt32(GBKeyArray(i + Offset)))
             EncyptString = EncyptString + CharArray(i)
             i = i + 1
         Next
