@@ -1,4 +1,4 @@
-'Version 1.04  12/31/2016
+'Version 1.05  01/02/2017
 
 Public Class Settings
 
@@ -7,6 +7,8 @@ Public Class Settings
     Dim Fields = New String() {"Guest1", "Guest2", "Guest3", "Guest4", "Guest5", "Guest6", "Name", "Title", "Phone", "email", "Website", "Facebook", "Twitter", "YouTube", "CityPhone", "CityWebsite", "Producer1", "Producer2", "Host1", "Host2", "Director1", "Director2", "Graphics1", "Graphics2", "Audio1", "Audio2", "Camera1", "Camera2", "Camera3", "Floor1", "Floor2", "Floor3", "CommentLine", "ShowPhone", "Showemail", "ShowWebsite", "ShowFacebook", "ShowTwitter", "ShowYouTube", "RecordDate", "ShowTitle"}
 
     Dim GBemailVal(6) As String
+
+    Dim GBKeyString As String = "1342645798714825963753159123789456996633221144558774235478855275311122253564847888954336547893214569887744556621478965412332145698777744411122555889996663333123456789"
 
     Private Sub Settings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim TextLine As New List(Of String)
@@ -105,12 +107,13 @@ Public Class Settings
     Public Function Decryptemail(ByVal line As String)
 
         Dim CharArray() As Char = line.ToCharArray
+        Dim GBKeyArray() As Char = GBKeyString.ToCharArray
         Dim DecyptString As String = ""
 
         Dim i As Integer = 0
         For Each element As Char In CharArray
 
-            CharArray(i) = ChrW(Convert.ToInt32(CharArray(i)) + 1)
+            CharArray(i) = ChrW(Convert.ToInt32(CharArray(i)) - Convert.ToInt32(GBKeyArray(i)))
             DecyptString = DecyptString + CharArray(i)
             i = i + 1
         Next
@@ -123,12 +126,13 @@ Public Class Settings
     Public Function Encryptemail(ByVal line As String)
 
         Dim CharArray() As Char = line.ToCharArray
+        Dim GBKeyArray() As Char = GBKeyString.ToCharArray
         Dim EncyptString As String = ""
 
         Dim i As Integer = 0
         For Each element As Char In CharArray
 
-            CharArray(i) = ChrW(Convert.ToInt32(CharArray(i)) - 1)
+            CharArray(i) = ChrW(Convert.ToInt32(CharArray(i)) + Convert.ToInt32(GBKeyArray(i)))
             EncyptString = EncyptString + CharArray(i)
             i = i + 1
         Next
