@@ -2,7 +2,7 @@ Imports System.Text
 Imports System.Net.Mail
 
 Public Class Form1
-    'Version 1.47  12/31/2016
+    'Version 1.48  01/02/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -63,6 +63,8 @@ Public Class Form1
     Dim SaveToGraphicsLogString As String
 
     Dim LogFileName As String
+
+    Dim GBKeyString As String = "1342645798714825963753159123789456996633221144558774235478855275311122253564847888954336547893214569887744556621478965412332145698777744411122555889996663333123456789"
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -780,14 +782,14 @@ Public Class Form1
     Public Function Decryptemail(ByVal line As String)
 
         Dim CharArray() As Char = line.ToCharArray
+        Dim GBKeyArray() As Char = GBKeyString.ToCharArray
         Dim DecyptString As String = ""
 
         Dim i As Integer = 0
+
         For Each element As Char In CharArray
 
-
-            CharArray(i) = ChrW(Convert.ToInt32(CharArray(i)) + 1)
-
+            CharArray(i) = ChrW(Convert.ToInt32(CharArray(i)) - Convert.ToInt32(GBKeyArray(i)))
             DecyptString = DecyptString + CharArray(i)
             i = i + 1
         Next
