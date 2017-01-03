@@ -2,7 +2,7 @@ Imports System.Text
 Imports System.Net.Mail
 
 Public Class Form1
-    'Version 1.48  01/02/2016
+    'Version 1.49  01/03/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -64,7 +64,7 @@ Public Class Form1
 
     Dim LogFileName As String
 
-    Dim GBKeyString As String = "1342645798714825963753159123789456996633221144558774235478855275311122253564847888954336547893214569887744556621478965412332145698777744411122555889996663333123456789"
+    Dim GBKeyString As String = "134264579871482596375315912378945699663322114455877423547885527531112225356484788895433654789321456988774455662147896541233214569877774441112255588999666333312345678975311122253564847888954336547893214569887744556621478965412332145698777744411122555889996663333123456789"
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -754,8 +754,10 @@ Public Class Form1
 
             If GBeCOUNT > 5 Then
 
+                Dim Off As Integer = 0
                 For i = 0 To 5
-                    GBeTextLine(i) = Decryptemail(GBeTextLine(i))
+                    GBeTextLine(i) = Decryptemail(GBeTextLine(i), Off)
+                    Off = Off + 3
                 Next i
 
                 'MessageBox.Show(GBeTextLine(0) & GBeTextLine(1) & GBeTextLine(2) & GBeTextLine(3) & GBeTextLine(4) & GBeTextLine(5), "Graphics Builder", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
@@ -779,7 +781,7 @@ Public Class Form1
         End If
     End Sub
 
-    Public Function Decryptemail(ByVal line As String)
+    Public Function Decryptemail(ByVal line As String, ByVal Offset As Integer)
 
         Dim CharArray() As Char = line.ToCharArray
         Dim GBKeyArray() As Char = GBKeyString.ToCharArray
@@ -789,7 +791,7 @@ Public Class Form1
 
         For Each element As Char In CharArray
 
-            CharArray(i) = ChrW(Convert.ToInt32(CharArray(i)) - Convert.ToInt32(GBKeyArray(i)))
+            CharArray(i) = ChrW(Convert.ToInt32(CharArray(i)) - Convert.ToInt32(GBKeyArray(i + Offset)))
             DecyptString = DecyptString + CharArray(i)
             i = i + 1
         Next
