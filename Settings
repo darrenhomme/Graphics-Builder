@@ -1,4 +1,4 @@
-'Version 1.06  01/03/2017
+'Version 1.07  01/04/2017
 
 Public Class Settings
 
@@ -8,7 +8,7 @@ Public Class Settings
 
     Dim GBemailVal(6) As String
 
-    Dim GBKeyString As String = "134264579871482596375315912378945699663322114455877423547885527531112225356484788895433654789321456988774455662147896541233214569877774441112255588999666333312345678975311122253564847888954336547893214569887744556621478965412332145698777744411122555889996663333123456789"
+    Dim GBKeyString As String = ""
 
     Private Sub Settings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim TextLine As New List(Of String)
@@ -44,6 +44,14 @@ Public Class Settings
     End Sub
 
     Public Sub LoadGBemail()
+        Dim KeyFile As String = ".\txt\GraphicsBuilderKey.txt"
+        If System.IO.File.Exists(KeyFile) = True Then
+            GBKeyString = My.Computer.FileSystem.ReadAllText(KeyFile)
+        End If
+
+
+
+        'Load email values
         Dim GBeFILE_NAME As String = ".\txt\GraphicsBuilderemail.txt"
         Dim GBeTextLine As New List(Of String)
         Dim GBeCOUNT As Integer
