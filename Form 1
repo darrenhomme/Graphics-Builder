@@ -2,7 +2,7 @@ Imports System.Text
 Imports System.Net.Mail
 
 Public Class Form1
-    'Version 1.49  01/03/2016
+    'Version 1.50  01/04/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -64,7 +64,7 @@ Public Class Form1
 
     Dim LogFileName As String
 
-    Dim GBKeyString As String = "134264579871482596375315912378945699663322114455877423547885527531112225356484788895433654789321456988774455662147896541233214569877774441112255588999666333312345678975311122253564847888954336547893214569887744556621478965412332145698777744411122555889996663333123456789"
+    Dim GBKeyString As String = ""
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -81,6 +81,19 @@ Public Class Form1
         Dim thisDate As Date
         thisDate = Today
         My.Computer.FileSystem.WriteAllText(".\txt\RecordDate.txt", thisDate, False, Encoding.ASCII)
+
+        'Key
+        Dim KeyFile As String = ".\txt\GraphicsBuilderKey.txt"
+        If System.IO.File.Exists(KeyFile) = True Then
+            GBKeyString = My.Computer.FileSystem.ReadAllText(KeyFile)
+        Else
+            GBKeyString = ""
+            Dim Rand As New Random
+            For i = 1 To 300
+                GBKeyString = GBKeyString & Rand.Next(1, 9)
+            Next i
+            My.Computer.FileSystem.WriteAllText(KeyFile, GBKeyString, False, Encoding.Default)
+        End If
 
         'Populate the Form Fields
         FileCheck()
