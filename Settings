@@ -1,10 +1,10 @@
-'Version 1.07  01/04/2017
+'Version 1.08  01/11/2017
 
 Public Class Settings
 
     Dim FileCount As Integer
     Dim FILE_NAME As String = ".\txt\Settings.txt"
-    Dim Fields = New String() {"Guest1", "Guest2", "Guest3", "Guest4", "Guest5", "Guest6", "Name", "Title", "Phone", "email", "Website", "Facebook", "Twitter", "YouTube", "CityPhone", "CityWebsite", "Producer1", "Producer2", "Host1", "Host2", "Director1", "Director2", "Graphics1", "Graphics2", "Audio1", "Audio2", "Camera1", "Camera2", "Camera3", "Floor1", "Floor2", "Floor3", "CommentLine", "ShowPhone", "Showemail", "ShowWebsite", "ShowFacebook", "ShowTwitter", "ShowYouTube", "RecordDate", "ShowTitle"}
+    Dim Fields = New String() {"Guest1", "Guest2", "Guest3", "Guest4", "Guest5", "Guest6", "Name", "Title", "Phone", "email", "Website", "Facebook", "Twitter", "YouTube", "CityPhone", "CityWebsite", "OfficePhone", "Officeemail", "Producer1", "Producer2", "Host1", "Host2", "Director1", "Director2", "Graphics1", "Graphics2", "Audio1", "Audio2", "Camera1", "Camera2", "Camera3", "Floor1", "Floor2", "Floor3", "CommentLine", "ShowPhone", "Showemail", "ShowWebsite", "ShowFacebook", "ShowTwitter", "ShowYouTube", "RecordDate", "ShowTitle"}
 
     Dim GBemailVal(6) As String
 
@@ -153,6 +153,5 @@ Public Class Settings
 
         Return EncyptString
     End Function
-
 
 End Class
