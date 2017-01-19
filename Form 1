@@ -1,8 +1,8 @@
 Imports System.Text
-Imports System.Net.Mail
+
 
 Public Class Form1
-    'Version 1.51  01/11/2016
+    'Version 1.52  01/19/2016
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -66,7 +66,6 @@ Public Class Form1
 
     Dim LogFileName As String
 
-    Dim GBKeyString As String = ""
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -84,18 +83,6 @@ Public Class Form1
         thisDate = Today
         My.Computer.FileSystem.WriteAllText(".\txt\RecordDate.txt", thisDate, False, Encoding.ASCII)
 
-        'Key
-        Dim KeyFile As String = ".\txt\GraphicsBuilderKey.txt"
-        If System.IO.File.Exists(KeyFile) = True Then
-            GBKeyString = My.Computer.FileSystem.ReadAllText(KeyFile)
-        Else
-            GBKeyString = ""
-            Dim Rand As New Random
-            For i = 1 To 300
-                GBKeyString = GBKeyString & Rand.Next(1, 9)
-            Next i
-            My.Computer.FileSystem.WriteAllText(KeyFile, GBKeyString, False, Encoding.Default)
-        End If
 
         'Populate the Form Fields
         FileCheck()
@@ -745,8 +732,6 @@ Public Class Form1
         'Save Log File
         SaveLog()
 
-        'email Log
-        emailLog()
 
     End Sub
 
@@ -769,67 +754,7 @@ Public Class Form1
     End Sub
 
 
-    Public Sub emailLog()
 
-        Dim GBeFILE_NAME As String = ".\txt\GraphicsBuilderemail.txt"
-        Dim GBeTextLine As New List(Of String)
-        Dim GBeCOUNT As Integer
-        GBeCOUNT = 0
-        If System.IO.File.Exists(GBeFILE_NAME) = True Then
-            Dim GBeobjReader As New System.IO.StreamReader(GBeFILE_NAME)
-            Do While GBeobjReader.Peek() <> -1
-                GBeTextLine.Add(GBeobjReader.ReadLine())
-                GBeCOUNT = GBeCOUNT + 1
-            Loop
-            GBeobjReader.Close()
-
-            If GBeCOUNT > 5 Then
-
-                Dim Off As Integer = 0
-                For i = 0 To 5
-                    GBeTextLine(i) = Decryptemail(GBeTextLine(i), Off)
-                    Off = Off + 3
-                Next i
-
-                'MessageBox.Show(GBeTextLine(0) & GBeTextLine(1) & GBeTextLine(2) & GBeTextLine(3) & GBeTextLine(4) & GBeTextLine(5), "Graphics Builder", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
-
-
-                Dim Mail As New MailMessage
-                Mail.Subject = "Graphics Builder Log " & LogFileName
-                Mail.To.Add(GBeTextLine(0))
-                Mail.From = New MailAddress(GBeTextLine(1))
-                Mail.Body = SaveToGraphicsLogString
-
-                Dim SMTP As New SmtpClient(GBeTextLine(4))
-                SMTP.EnableSsl = True
-                SMTP.Credentials = New System.Net.NetworkCredential(GBeTextLine(2), GBeTextLine(3))
-                SMTP.Port = GBeTextLine(5)
-                SMTP.Send(Mail)
-
-
-            End If
-
-        End If
-    End Sub
-
-    Public Function Decryptemail(ByVal line As String, ByVal Offset As Integer)
-
-        Dim CharArray() As Char = line.ToCharArray
-        Dim GBKeyArray() As Char = GBKeyString.ToCharArray
-        Dim DecyptString As String = ""
-
-        Dim i As Integer = 0
-
-        For Each element As Char In CharArray
-
-            CharArray(i) = ChrW(Convert.ToInt32(CharArray(i)) - Convert.ToInt32(GBKeyArray(i + Offset)))
-            DecyptString = DecyptString + CharArray(i)
-            i = i + 1
-        Next
-
-        Return DecyptString
-
-    End Function
 
     Public Sub SaveAllCut()
         'Cut Files
@@ -1343,7 +1268,6 @@ Public Class Form1
 
     Private Sub ButtonSettings_Click(sender As Object, e As EventArgs) Handles ButtonSettings.Click
         Settings.Show()
-        Settings.LoadGBemail()
     End Sub
 
 
