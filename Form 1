@@ -2,7 +2,7 @@ Imports System.Text
 
 
 Public Class Form1
-    'Version 1.52  01/19/2016
+    'Version 1.53  02/03/2017
 
     'Varables to check if the txt files have been changed remotely
     'Used in function FileCHeck
@@ -816,10 +816,12 @@ Public Class Form1
                 CutFileCount = LowerThird(CStr(NameCheck(i)), CStr(TitleCheck(i)), "Blank.tga", "Guest" & i, CutFileCount)
             End If
             'Contact
-            If PhoneCheck(i) <> "   " Or emailCheck(i) <> "   " Then
+            If PhoneCheck(i) <> "   " And emailCheck(i) <> "   " Then
                 CutFileCount = LowerThird(CStr(PhoneCheck(i)), CStr(emailCheck(i)), "Blank.tga", "Contact" & i, CutFileCount)
             ElseIf PhoneCheck(i) = "   " And emailCheck(i) <> "   " Then
                 CutFileCount = LowerThird(CStr(emailCheck(i)), "", "Blank.tga", "Contact" & i, CutFileCount)
+            ElseIf PhoneCheck(i) <> "   " And emailCheck(i) = "   " Then
+                CutFileCount = LowerThird(CStr(PhoneCheck(i)), "", "Blank.tga", "Contact" & i, CutFileCount)
             End If
             'Website
             If CStr(WebsiteCheck(i)) <> "   " Then
@@ -838,16 +840,20 @@ Public Class Form1
                 CutFileCount = LowerThird(CStr(YouTubeCheck(i)), "", "YouTube.tga", "YouTube" & i, CutFileCount)
             End If
             'City
-            If CityPhoneCheck(i) <> "   " Or CityWebsiteCheck(i) <> "   " Then
+            If CityPhoneCheck(i) <> "   " And CityWebsiteCheck(i) <> "   " Then
                 CutFileCount = LowerThird(CStr(CityPhoneCheck(i)), CStr(CityWebsiteCheck(i)), "Blank.tga", "City" & i, CutFileCount)
             ElseIf CityPhoneCheck(i) = "   " And CityWebsiteCheck(i) <> "   " Then
                 CutFileCount = LowerThird(CStr(CityWebsiteCheck(i)), "", "Blank.tga", "City" & i, CutFileCount)
+            ElseIf CityPhoneCheck(i) <> "   " And CityWebsiteCheck(i) = "   " Then
+                CutFileCount = LowerThird(CStr(CityPhoneCheck(i)), "", "Blank.tga", "City" & i, CutFileCount)
             End If
             'Office
-            If OfficePhoneCheck(i) <> "   " Or OfficeemailCheck(i) <> "   " Then
+            If OfficePhoneCheck(i) <> "   " And OfficeemailCheck(i) <> "   " Then
                 CutFileCount = LowerThird(CStr(OfficePhoneCheck(i)), CStr(OfficeemailCheck(i)), "Blank.tga", "Office" & i, CutFileCount)
             ElseIf OfficePhoneCheck(i) = "   " And OfficeemailCheck(i) <> "   " Then
                 CutFileCount = LowerThird(CStr(OfficeemailCheck(i)), "", "Blank.tga", "Office" & i, CutFileCount)
+            ElseIf OfficePhoneCheck(i) <> "   " And OfficeemailCheck(i) = "   " Then
+                CutFileCount = LowerThird(CStr(OfficePhoneCheck(i)), "", "Blank.tga", "Office" & i, CutFileCount)
             End If
         Next i
 
